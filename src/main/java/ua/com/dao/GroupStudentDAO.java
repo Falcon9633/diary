@@ -1,4 +1,7 @@
 package ua.com.dao;
 
-public interface GroupStudentDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+import ua.com.entity.GroupStudent;
+
+public interface GroupStudentDAO extends JpaRepository<GroupStudent,Integer> {
 }

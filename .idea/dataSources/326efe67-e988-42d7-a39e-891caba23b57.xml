@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="diary@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="diary">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bank"/>
+    <schema id="4" parent="1" name="boot2030"/>
+    <schema id="5" parent="1" name="db2030"/>
+    <schema id="6" parent="1" name="db2030book"/>
+    <schema id="7" parent="1" name="db2030config"/>
+    <schema id="8" parent="1" name="db2030jpa"/>
+    <schema id="9" parent="1" name="db2030mail"/>
+    <schema id="10" parent="1" name="db2030sp"/>
+    <schema id="11" parent="1" name="db2030spring"/>
+    <schema id="12" parent="1" name="db2030spring2030"/>
+    <schema id="13" parent="1" name="information_schema"/>
+    <schema id="14" parent="1" name="mysql"/>
+    <schema id="15" parent="1" name="performance_schema"/>
+    <schema id="16" parent="1" name="sakila"/>
+    <schema id="17" parent="1" name="sys"/>
+    <schema id="18" parent="1" name="testdb"/>
+    <schema id="19" parent="1" name="world"/>
+    <schema id="20" parent="1" name="xxx2030"/>
+    <table id="21" parent="2" name="groupstudent"/>
+    <table id="22" parent="2" name="student"/>
+    <column id="23" parent="21" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="24" parent="21" name="nameOfGroup">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="25" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="26" parent="22" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="22" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="28" parent="22" name="surname">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="29" parent="22" name="groupStudent_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="30" parent="22" name="FK21684cd9g885r3n5icgfnyw9g">
+      <ColNames>groupStudent_id</ColNames>
+    </index>
+    <key id="31" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="32" parent="22" name="FK21684cd9g885r3n5icgfnyw9g">
+      <ColNames>groupStudent_id</ColNames>
+      <RefSchemaName>diary</RefSchemaName>
+      <RefTableName>groupstudent</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

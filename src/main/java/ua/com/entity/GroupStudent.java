@@ -2,10 +2,9 @@ package ua.com.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -13,11 +12,20 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class Group {
+@ToString(exclude = "studentsList")
+public class GroupStudent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+//    @Column(unique = true)
     private String nameOfGroup;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy="groupStudent")
+    private List<Student> studentsList=new ArrayList<>();
+
+
+    public GroupStudent(String nameOfGroup) {
+        this.nameOfGroup = nameOfGroup;
+    }
 }
