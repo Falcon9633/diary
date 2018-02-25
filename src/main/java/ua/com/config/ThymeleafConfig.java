@@ -31,7 +31,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("css/**")
-                .addResourceLocations("/static/css/");
+                .addResourceLocations("/WEB-INF/static/css/");
     }
 
     @Bean
@@ -56,8 +56,9 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     public ViewResolver viewResolver(){
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
-        resolver.setCharacterEncoding("UTF-8");
+
         resolver.setContentType("text/html;charset=UTF-8");
+        resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
 }

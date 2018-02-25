@@ -33,8 +33,10 @@ public class DataConfig {
         dataSource.setUrl(environment.getProperty("db.url"));
         dataSource.setUsername(environment.getProperty("db.username"));
         dataSource.setPassword(environment.getProperty("db.password"));
+
         return dataSource;
     }
+
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {

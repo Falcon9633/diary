@@ -24,6 +24,12 @@ public class GroupStudent {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy="groupStudent")
     private List<Student> studentsList=new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name = "group_subject",joinColumns =@JoinColumn(name="subject_id"),
+            inverseJoinColumns = @JoinColumn(name="group_id"))
+    private List<Subject> subjects=new ArrayList<>();
+
+
 
     public GroupStudent(String nameOfGroup) {
         this.nameOfGroup = nameOfGroup;

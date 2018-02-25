@@ -49,13 +49,17 @@ public class MainController {
                          @RequestParam("surname") String surname,
                          @RequestParam("idOfGroup") int idOfGroup) {
         Student student = new Student();
+//        student.setName("вася");
         student.setName(name);
         student.setSurname(surname);
 
 
-        System.out.println(groupStudentService.findOne(idOfGroup));
+//      groupStudentService.findOne(idOfGroup);
+        GroupStudent groupStudent = groupStudentService.findOne(idOfGroup);
 
-//        student.setGroupStudent(groupStudentService.findOne(idOfGroup));
+        student.setGroupStudent(groupStudent);
+//        groupStudent.getStudentsList().add(student);
+
         studentService.save(student);
 
 
