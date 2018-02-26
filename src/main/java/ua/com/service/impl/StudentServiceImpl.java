@@ -7,6 +7,8 @@ import ua.com.dao.StudentDAO;
 import ua.com.entity.Student;
 import ua.com.service.StudentService;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService {
@@ -23,6 +25,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findOne(int id) {
         return studentDAO.findOne(id);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        return studentDAO.findAll();
     }
 
 

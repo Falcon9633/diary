@@ -31,7 +31,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("css/**")
-                .addResourceLocations("/WEB-INF/static/css/");
+                .addResourceLocations("/static/css/");
     }
 
     @Bean

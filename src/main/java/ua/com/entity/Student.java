@@ -4,13 +4,15 @@ package ua.com.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = "groupStudent")
+@ToString(exclude = "band")
 public class Student {
 
     @Id
@@ -22,8 +24,7 @@ public class Student {
     private String password;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private GroupStudent groupStudent;
-
+    private Band band;
 
 
 }

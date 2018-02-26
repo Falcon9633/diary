@@ -3,6 +3,7 @@ package ua.com.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString(exclude={"bandList", "teacherList"})
 public class Subject {
 
     @Id
@@ -20,13 +22,16 @@ public class Subject {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "group_subject",joinColumns =@JoinColumn(name="subject_id"),
-            inverseJoinColumns = @JoinColumn(name="group_id"))
-    private List<GroupStudent> groupStudents =new ArrayList<>();
+    @JoinTable(name = "band_subject",joinColumns =@JoinColumn(name="subject_id"),
+            inverseJoinColumns = @JoinColumn(name="band_id"))
+    private List<Band> bandList =new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(name = "teacher_subject",joinColumns =@JoinColumn(name="subject_id"),
             inverseJoinColumns = @JoinColumn(name="teacher_id"))
-    private List<Teacher> teachers =new ArrayList<>();
+    private List<Teacher> teacherList =new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "subject")
+    private List<Schedule> scheduleList = new ArrayList<>();
 
 }

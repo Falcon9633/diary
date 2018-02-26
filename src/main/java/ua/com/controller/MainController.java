@@ -6,13 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ua.com.entity.GroupStudent;
+import ua.com.entity.Band;
 import ua.com.entity.Student;
-import ua.com.service.GroupStudentService;
+import ua.com.service.BandService;
 import ua.com.service.StudentService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -21,7 +18,7 @@ public class MainController {
     private StudentService studentService;
 
     @Autowired
-    private GroupStudentService groupStudentService;
+    private BandService groupStudentService;
 
     @GetMapping("/")
     public String groups(Model model) {
@@ -35,8 +32,8 @@ public class MainController {
     @PostMapping("/createGroup")
     public String createGroup(@RequestParam("nameOfGroup") String nameOfGroup) {
 
-        GroupStudent groupStudent = new GroupStudent();
-        groupStudent.setNameOfGroup(nameOfGroup);
+        Band groupStudent = new Band();
+        groupStudent.setName(nameOfGroup);
         groupStudentService.save(groupStudent);
 
         return "redirect:/";
@@ -55,9 +52,9 @@ public class MainController {
 
 
 //      groupStudentService.findOne(idOfGroup);
-        GroupStudent groupStudent = groupStudentService.findOne(idOfGroup);
+        Band band = groupStudentService.findOne(idOfGroup);
 
-        student.setGroupStudent(groupStudent);
+        student.setBand(band);
 //        groupStudent.getStudentsList().add(student);
 
         studentService.save(student);
