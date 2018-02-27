@@ -7,6 +7,8 @@ import ua.com.dao.TeacherDAO;
 import ua.com.entity.Teacher;
 import ua.com.service.TeacherService;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TeacherServiceImpl implements TeacherService {
@@ -17,5 +19,15 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void save(Teacher teacher) {
         teacherDAO.save(teacher);
+    }
+
+    @Override
+    public Teacher findOne(int id) {
+        return teacherDAO.findOne(id);
+    }
+
+    @Override
+    public List<Teacher> findAll() {
+        return teacherDAO.findAll();
     }
 }
