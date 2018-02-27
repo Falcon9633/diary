@@ -18,13 +18,13 @@ public class MainController {
     private StudentService studentService;
 
     @Autowired
-    private BandService groupStudentService;
+    private BandService bandService;
 
     @GetMapping("/")
     public String groups(Model model) {
 
 //        model.addAttribute("key",groupStudentService.findOne(1));
-        model.addAttribute("key", groupStudentService.findAll());
+        model.addAttribute("key", bandService.findAll());
 
         return "index";
     }
@@ -49,7 +49,7 @@ public class MainController {
 
         Band groupStudent = new Band();
         groupStudent.setName(nameOfGroup);
-        groupStudentService.save(groupStudent);
+        bandService.save(groupStudent);
 
         return "redirect:/";
 //        return "index";
@@ -67,7 +67,7 @@ public class MainController {
 
 
 //      groupStudentService.findOne(idOfGroup);
-        Band band = groupStudentService.findOne(idOfGroup);
+        Band band = bandService.findOne(idOfGroup);
 
         student.setBand(band);
 //        groupStudent.getStudentsList().add(student);

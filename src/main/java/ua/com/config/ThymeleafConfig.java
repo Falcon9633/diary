@@ -50,7 +50,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     }
 
     @Bean
-    public TemplateEngine templateEngine(){
+    public TemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         engine.setEnableSpringELCompiler(true);
@@ -58,7 +58,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     }
 
     @Bean
-    public ViewResolver viewResolver(){
+    public ViewResolver viewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         resolver.setContentType("text/html;charset=UTF-8");
