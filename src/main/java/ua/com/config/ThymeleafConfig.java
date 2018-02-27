@@ -30,8 +30,12 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("css/**")
-                .addResourceLocations("/WEB-INF/static/css/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/static/css/");
+        registry.addResourceHandler("js/**")
+                .addResourceLocations("/static/js/");
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("/static/images/");
     }
 
     @Bean
@@ -40,6 +44,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/pages/");
         templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
     }
@@ -56,7 +61,6 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     public ViewResolver viewResolver(){
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
-
         resolver.setContentType("text/html;charset=UTF-8");
         resolver.setCharacterEncoding("UTF-8");
         return resolver;

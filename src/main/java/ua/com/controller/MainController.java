@@ -32,6 +32,21 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/student")
+    public String student(){
+        return "student";
+    }
+
+    @GetMapping("/teacher")
+    public String teacher(){
+        return "teacher";
+    }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
     @PostMapping("/createGroup")
     public String createGroup(@RequestParam("nameOfGroup") String nameOfGroup) {
 

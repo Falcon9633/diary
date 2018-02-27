@@ -1,51 +1,55 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
+    <title>Головна сторінка</title>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-index page
-
-<!--<form action="/start" method="post">-->
-<!--<input type="text" name="nameOfGroup" placeholder="nameOfGroup">-->
-<!--<input type="text" name="name" placeholder="name">-->
-<!--<input type="text" name="surname" placeholder="surname">-->
-<!--<input type="submit">-->
-<!--</form>-->
-
-<form action="/createGroup" method="post">
-    <input type="text" name="nameOfGroup" placeholder="nameOfGroup"/>
-    <input type="submit"/>
-</form>
-<br/>
-<br/>
-<br/>
-<!--<ul>-->
-    <!--<li th:each="temp:${key}" th:text="${temp.nameOfGroup}"/>-->
-    <!--<ul/>-->
-    <br/>
-
-    <form th:action="@{/insert}" method="post">
-        <select name="idOfGroup">
-            <option th:each="temp:${key}"
-                    th:text="${temp.nameOfGroup}"
-                    th:value="${temp.id}"/>
-
-        </select>
-
-        <input type="text" name="name" placeholder="name"/>
-        <input type="text" name="surname" placeholder="surname"/>
-        <input type="submit" value="asd"/>
-
-    </form>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="logo"><a href="">Щоден<span class="pink">ник</span><span class="gray">.com</span></a></div>
+            <ul class="nav h-menu">
+                <li><a href="#" class="active">Головна</a>
+                    <ul>
+                        <li><a href="">Обогреватели для быта</a></li>
+                        <li><a href="">Обогреватели для строительства</a></li>
+                        <li><a href="">Промышленные обогреватели</a></li>
+                        <li><a href="">Обогреватели</a></li>
+                        <li><a href="">Для сельского хозяйства</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Про проект</a>
+                    <ul>
+                        <li><a href="">Обогреватели для быта</a></li>
+                        <li><a href="">Обогреватели для строительства</a></li>
+                        <li><a href="">Промышленные обогреватели</a></li>
+                        <li><a href="">Обогреватели</a></li>
+                        <li><a href="">Для сельского хозяйства</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Як зареєструватись</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </div>
+    </div>
+    <h1>Content індекс</h1>
 
 
+    <a th:href="@{/student}">student page</a><br>
+    <a th:href="@{/teacher}">teacher page</a><br>
+    <a th:href="@{/admin}">admin page</a><br>
+</div>
+
+
+<div th:replace="fragments/styles::main"/>
+<div th:replace="fragments/styles::dropDownMenu"/>
+<script type="text/javascript" th:src="@{/js/css3-mediaqueries.js}"/>
 </body>
 </html>
