@@ -65,4 +65,5 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
+
 }
