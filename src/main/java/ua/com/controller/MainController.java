@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.entity.Band;
 import ua.com.entity.Student;
+import ua.com.entity.Subject;
 import ua.com.service.BandService;
 import ua.com.service.StudentService;
+import ua.com.service.SubjectService;
 
 @Controller
 public class MainController {
@@ -19,6 +21,9 @@ public class MainController {
 
     @Autowired
     private BandService bandService;
+
+    @Autowired
+    private SubjectService subjectService;
 
     @GetMapping("/")
     public String groups(Model model) {
@@ -30,31 +35,19 @@ public class MainController {
     }
 
     @GetMapping("/student")
-    public String student(){
+    public String student() {
         return "student";
     }
 
     @GetMapping("/teacher")
-    public String teacher(){
+    public String teacher() {
         return "teacher";
     }
 
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "admin";
     }
-
-    @PostMapping("/createGroup")
-    public String createGroup(@RequestParam("nameOfGroup") String nameOfGroup) {
-
-        Band groupStudent = new Band();
-        groupStudent.setName(nameOfGroup);
-        bandService.save(groupStudent);
-
-        return "redirect:/";
-//        return "index";
-    }
-
 
     @PostMapping("/insert")
     public String insert(@RequestParam("name") String name,
@@ -74,8 +67,32 @@ public class MainController {
 
         studentService.save(student);
 
-
         return "redirect:/";
     }
 
+    @GetMapping("/bandRegistration")
+    public String bandRegistration() {
+        return "bandRegistration";
+    }
+
+    @PostMapping("/saveBand")
+    public String saveBand(@RequestParam("name") String name) {
+        Band band = new Band();
+        band.setName(name);
+        bandService.save(band);
+        return "redirect:/bandRegistration";
+    }
+
+    @GetMapping("/subjectRegistration")
+    public String subjectRegistration() {
+        return "subjectRegistration";
+    }
+
+    @PostMapping("/saveSubject")
+    public String saveSubject(@RequestParam("name") String name){
+        Subject subject = new Subject();
+        subject.setName(name);
+        subjectService.save(subject);
+        return "redirect:/subjectRegistration";
+    }
 }
