@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Admin page</title>
+    <title>Реєстрація користувачів</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -19,21 +19,21 @@
             <ul class="nav h-menu">
                 <li><a href="#" class="active">Користувачі</a>
                     <ul>
-                        <li><a href="" class="active">Реєстрація користувачів</a></li>
+                        <li><a th:href="@{/userRegistration}" class="active">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a href="">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Класи</a>
                     <ul>
-                        <li><a href="">Створення класів</a></li>
+                        <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a href="">Редагування класів</a></li>
                         <li><a href="">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Предмети</a>
                     <ul>
-                        <li><a href="">Створення предмету</a></li>
+                        <li><a th:href="@{/subjectRegistration}">Створення предмету</a></li>
                         <li><a href="">Редагування предметів</a></li>
                         <li><a href="">Додавання вчителів</a></li>
                     </ul>
@@ -60,13 +60,13 @@
     <!--Формы-->
     <form th:action="@{/saveUser}" method="post">
         <div class="row">
-            <h1>
+            <h2>
                 <label>Реєстрація користувачів <br/>
                     <input type="text" name="name" placeholder="name"/>
                     <input type="text" name="surname" placeholder="surname"/>
                     <input type="text" name="email" placeholder="email"/>
                 </label>
-            </h1>
+            </h2>
             <div class="row">
                 <input id="student" checked type="radio" name="userType" value="student"/>
                 <label class="label-right" for="student">Користувач є учнем</label>

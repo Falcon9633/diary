@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Реєстрація користувачів</title>
+    <title>Додавання учня у клас</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,35 +17,35 @@
             <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
             </div>
             <ul class="nav h-menu">
-                <li><a href="#" class="active">Користувачі</a>
+                <li><a href="">Користувачі</a>
                     <ul>
-                        <li><a th:href="@{/userRegistration}" class="active">Реєстрація користувачів</a></li>
+                        <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
+                        <li><a th:href="@{/setStudentToBand}" class="active">Додавання учня у клас</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Класи</a>
+                <li><a href="">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a href="">Редагування класів</a></li>
                         <li><a href="">Додавання предметів</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Предмети</a>
+                <li><a href="">Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectRegistration}">Створення предмету</a></li>
+                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
                         <li><a href="">Редагування предметів</a></li>
                         <li><a href="">Додавання вчителів</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Розклад</a>
+                <li><a href="">Розклад</a>
                     <ul>
                         <li><a href="">Створення розкладу</a></li>
                         <li><a href="">Редагування розкладу</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Статистика</a></li>
-                <li><a href="#">Хто залоганий</a>
+                <li><a href="">Статистика</a></li>
+                <li><a href="">Хто залоганий</a>
                     <ul>
                         <li><a href="">Особистий кабінет</a></li>
                         <li><a href="">Повернення на сторінку вчителя</a></li>
@@ -57,31 +57,51 @@
     </div>
 
 
-    <!--Формы-->
-    <form th:action="@{/saveUser}" method="post">
+    <form th:action="@{/saveStudentToBand}" method="post">
         <div class="row">
-            <h2>
-                <label>Реєстрація користувачів <br/>
-                    <input type="text" name="name" placeholder="name"/>
-                    <input type="text" name="surname" placeholder="surname"/>
-                    <input type="text" name="email" placeholder="email"/>
-                </label>
-            </h2>
-            <div class="row">
-                <input id="student" checked type="radio" name="userType" value="student"/>
-                <label class="label-right" for="student">Користувач є учнем</label>
+            <h2><label>Додавання учня у клас
+                <select name="band">
+                    <option th:each="band:${allBands}" th:text="${band.name}" th:value="${band.id}">
+                        Оберіть клас</option>
 
-                <input id="teacher" type="radio" name="userType" value="teacher"/>
-                <label class="label-right" for="teacher">Користувач є вчителем</label>
-            </div>
-            <div class="row">
-                <button type="submit">Зареєструвати</button>
-            </div>
-
+                </select>
+            </label></h2>
         </div>
 
 
+        <div class="mobile">
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Ім'я</th>
+                    <th>Прізвище</th>
+                    <th>Електронна пошта</th>
+                    <th>Клас</th>
+                    <th>Вибрати</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student,stat:${dateStudent}">
+                    <td th:text="${stat.count}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.surname}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.id}"></td>
+                    <td><input th:name="user-+${student.id}" type="checkbox" th:value="${student.id}"/></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <button type="submit">Додати</button>
+        </div>
+
     </form>
+
+
+    
 </div>
 
 

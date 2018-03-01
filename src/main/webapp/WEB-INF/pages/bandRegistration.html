@@ -19,7 +19,7 @@
             <ul class="nav h-menu">
                 <li><a href="">Користувачі</a>
                     <ul>
-                        <li><a href="">Реєстрація користувачів</a></li>
+                        <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
                         <li><a href="">Додавання студентів в групу</a></li>
                     </ul>
@@ -28,7 +28,7 @@
                     <ul>
                         <li><a th:href="@{/bandRegistration}" class="active">Створення класів</a></li>
                         <li><a href="">Редагування класів</a></li>
-                        <li><a href="">Додавання предметів</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
                 <li><a href="">Предмети</a>
