@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ua.com.entity.Band;
 import ua.com.entity.Student;
 import ua.com.entity.Teacher;
+import ua.com.entity.Subject;
 import ua.com.service.BandService;
 import ua.com.service.StudentService;
 import ua.com.service.TeacherService;
+import ua.com.service.SubjectService;
 
 @Controller
 public class MainController {
@@ -21,6 +23,9 @@ public class MainController {
 
     @Autowired
     private BandService bandService;
+
+    @Autowired
+    private SubjectService subjectService;
 
     @Autowired
     private TeacherService teacherService;
@@ -120,4 +125,29 @@ public class MainController {
         return "redirect:/";
     }
 
+    @GetMapping("/bandRegistration")
+    public String bandRegistration() {
+        return "bandRegistration";
+    }
+
+    @PostMapping("/saveBand")
+    public String saveBand(@RequestParam("name") String name) {
+        Band band = new Band();
+        band.setName(name);
+        bandService.save(band);
+        return "redirect:/bandRegistration";
+    }
+
+    @GetMapping("/subjectRegistration")
+    public String subjectRegistration() {
+        return "subjectRegistration";
+    }
+
+    @PostMapping("/saveSubject")
+    public String saveSubject(@RequestParam("name") String name){
+        Subject subject = new Subject();
+        subject.setName(name);
+        subjectService.save(subject);
+        return "redirect:/subjectRegistration";
+    }
 }
