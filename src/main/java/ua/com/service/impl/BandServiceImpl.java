@@ -15,7 +15,6 @@ public class BandServiceImpl implements BandService {
 
     @Autowired
     private BandDAO bandDAO;
-
     @Override
     public void save(Band band) {
         bandDAO.save(band);
