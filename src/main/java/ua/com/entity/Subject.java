@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(exclude={"bandList", "teacherList"})
+@ToString(exclude = {"bandList", "teacherList", "scheduleList"})
 public class Subject {
 
     @Id
@@ -23,17 +23,19 @@ public class Subject {
     private int id;
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "band_subject",joinColumns =@JoinColumn(name="subject_id"),
-            inverseJoinColumns = @JoinColumn(name="band_id"))
-    private Set<Band> bandList =new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "band_subject",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "band_id"))
+    private Set<Band> bandList = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "teacher_subject",joinColumns =@JoinColumn(name="subject_id"),
-            inverseJoinColumns = @JoinColumn(name="teacher_id"))
-    private Set<Teacher> teacherList =new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "teacher_subject",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    private Set<Teacher> teacherList = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "subject")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "subject")
     private Set<Schedule> scheduleList = new HashSet<>();
 
 }

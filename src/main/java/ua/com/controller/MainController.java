@@ -18,6 +18,7 @@ import ua.com.service.SubjectService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -35,11 +36,7 @@ public class MainController {
     private TeacherService teacherService;
 
     @GetMapping("/")
-    public String groups(Model model) {
-
-//        model.addAttribute("key",groupStudentService.findOne(1));
-        model.addAttribute("key", bandService.findAll());
-
+    public String index() {
         return "index";
     }
 
@@ -127,6 +124,33 @@ public class MainController {
         return "redirect:/bandRegistration";
     }
 
+    @GetMapping("/setSubjectToBand")
+    public String setSubjectToBand(Model model) {
+        model.addAttribute("allBand", bandService.findAll());
+        model.addAttribute("allSubject", subjectService.findAll());
+        return "setSubjectToBand";
+    }
+
+    @PostMapping("/saveSubjectToBand")
+    public String saveSubjectToBand(@RequestParam("idBand") int idBand,
+                                    @RequestParam Map<String, String> requestParam) {
+        Band band = bandService.findByIdWithSubject(idBand);
+        Set<Subject> subjectList = band.getSubjectList();
+
+        for (String key : requestParam.keySet()) {
+            if (key.contains("idSubject-")) {
+                Subject subject = subjectService.findOne(Integer.parseInt(requestParam.get(key)));
+                subjectList.add(subject);
+
+            }
+        }
+        band.setSubjectList(subjectList);
+        System.out.println(band);
+        System.out.println(subjectList);
+        bandService.save(band);
+        return "redirect:/setSubjectToBand";
+    }
+
     @GetMapping("/subjectRegistration")
     public String subjectRegistration() {
         return "subjectRegistration";
@@ -139,6 +163,4 @@ public class MainController {
         subjectService.save(subject);
         return "redirect:/subjectRegistration";
     }
-
-
 }

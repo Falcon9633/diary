@@ -5,7 +5,12 @@ import ua.com.entity.Band;
 import java.util.List;
 
 public interface BandService {
+
     void save(Band band);
+
     Band findOne(int id);
+
+    Band findByIdWithSubject(int id);
+
     List<Band> findAll();
 }
