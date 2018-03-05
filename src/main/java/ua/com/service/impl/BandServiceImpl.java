@@ -15,6 +15,7 @@ public class BandServiceImpl implements BandService {
 
     @Autowired
     private BandDAO bandDAO;
+
     @Override
     public void save(Band band) {
         bandDAO.save(band);
@@ -23,6 +24,11 @@ public class BandServiceImpl implements BandService {
     @Override
     public Band findOne(int id) {
         return bandDAO.findOne(id);
+    }
+
+    @Override
+    public Band findByIdWithSubject(int id) {
+        return bandDAO.findByIdWithSubject(id);
     }
 
     @Override

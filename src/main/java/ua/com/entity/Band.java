@@ -4,14 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = {"studentsList", "subjectList"})
+@ToString(exclude = {"studentsList", "subjectList", "scheduleList"})
 public class Band {
 
     @Id
@@ -20,16 +22,17 @@ public class Band {
     //    @Column(unique = true)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "band")
-    private List<Student> studentsList = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "band")
+    private Set<Student> studentsList = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "band_subject", joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "band_id"))
-    private List<Subject> subjectList = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "band_subject",
+            joinColumns = @JoinColumn(name = "band_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private Set<Subject> subjectList = new HashSet<>();
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "band")
-    private List<Schedule> scheduleList = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "band")
+    private Set<Schedule> scheduleList = new HashSet<>();
 
 }

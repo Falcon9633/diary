@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Admin page</title>
+    <title>Додавання предметів в клас</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -24,11 +24,11 @@
                         <li><a href="">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
-                <li><a href="">Класи</a>
+                <li><a href="" class="active">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a href="">Редагування класів</a></li>
-                        <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
+                        <li><a th:href="@{/setSubjectToBand}" class="active">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Предмети</a>
@@ -55,7 +55,49 @@
             </ul>
         </div>
     </div>
-    <h1>Сторінка адміністратора</h1>
+
+    <form th:action="@{/saveSubjectToBand}" method="post">
+        <div class="row">
+            <h1>
+                <label>Додавання предметів
+                    <select name="idBand">
+                        <option value="">-- Оберіть клас --</option>
+                        <option th:each="bands:${allBand}" th:text="${bands.name}" th:value="${bands.id}"></option>
+                    </select>
+                </label>
+            </h1>
+        </div>
+
+        <div class="mobile">
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th>№ з/п</th>
+                    <th>Назва предмету</th>
+                    <th>Клас</th>
+                    <th>Вибрати</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="subjects, stat :${allSubject}">
+                    <td th:text="${stat.count}"/>
+                    <td th:text="${subjects.name}"/>
+                    <td></td>
+                    <!--<td th:text="${subjects.bandList.name}"/>-->
+                    <td>
+                        <input type="checkbox" th:name="idSubject-+${subjects.id}" th:value="${subjects.id}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <button type="submit">Додати</button>
+        </div>
+    </form>
+
+
 </div>
 
 

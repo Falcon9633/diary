@@ -15,6 +15,9 @@ import ua.com.service.StudentService;
 import ua.com.service.TeacherService;
 import ua.com.service.SubjectService;
 
+import java.util.Map;
+import java.util.Set;
+
 @Controller
 public class MainController {
 
@@ -31,11 +34,7 @@ public class MainController {
     private TeacherService teacherService;
 
     @GetMapping("/")
-    public String groups(Model model) {
-
-//        model.addAttribute("key",groupStudentService.findOne(1));
-        model.addAttribute("key", bandService.findAll());
-
+    public String index() {
         return "index";
     }
 
@@ -74,8 +73,8 @@ public class MainController {
             student.setSurname(surname);
             student.setEmail(email);
             studentService.save(student);
-        }else if(userType.equals("teacher")){
-            Teacher teacher=new Teacher();
+        } else if (userType.equals("teacher")) {
+            Teacher teacher = new Teacher();
             teacher.setName(name);
             teacher.setSurname(surname);
             teacher.setEmail(email);
@@ -84,45 +83,7 @@ public class MainController {
         }
 
 
-
-
         return "redirect:/userRegistration";
-    }
-
-
-    @PostMapping("/createGroup")
-    public String createGroup(@RequestParam("nameOfGroup") String nameOfGroup) {
-
-        Band groupStudent = new Band();
-        groupStudent.setName(nameOfGroup);
-        bandService.save(groupStudent);
-
-
-        return "redirect:/";
-//        return "index";
-    }
-
-
-    @PostMapping("/insert")
-    public String insert(@RequestParam("name") String name,
-                         @RequestParam("surname") String surname,
-                         @RequestParam("idOfGroup") int idOfGroup) {
-        Student student = new Student();
-//        student.setName("вася");
-        student.setName(name);
-        student.setSurname(surname);
-
-
-//      groupStudentService.findOne(idOfGroup);
-        Band band = bandService.findOne(idOfGroup);
-
-        student.setBand(band);
-//        groupStudent.getStudentsList().add(student);
-
-        studentService.save(student);
-
-
-        return "redirect:/";
     }
 
     @GetMapping("/bandRegistration")
@@ -138,13 +99,40 @@ public class MainController {
         return "redirect:/bandRegistration";
     }
 
+    @GetMapping("/setSubjectToBand")
+    public String setSubjectToBand(Model model) {
+        model.addAttribute("allBand", bandService.findAll());
+        model.addAttribute("allSubject", subjectService.findAll());
+        return "setSubjectToBand";
+    }
+
+    @PostMapping("/saveSubjectToBand")
+    public String saveSubjectToBand(@RequestParam("idBand") int idBand,
+                                    @RequestParam Map<String, String> requestParam) {
+        Band band = bandService.findByIdWithSubject(idBand);
+        Set<Subject> subjectList = band.getSubjectList();
+
+        for (String key : requestParam.keySet()) {
+            if (key.contains("idSubject-")) {
+                Subject subject = subjectService.findOne(Integer.parseInt(requestParam.get(key)));
+                subjectList.add(subject);
+
+            }
+        }
+        band.setSubjectList(subjectList);
+        System.out.println(band);
+        System.out.println(subjectList);
+        bandService.save(band);
+        return "redirect:/setSubjectToBand";
+    }
+
     @GetMapping("/subjectRegistration")
     public String subjectRegistration() {
         return "subjectRegistration";
     }
 
     @PostMapping("/saveSubject")
-    public String saveSubject(@RequestParam("name") String name){
+    public String saveSubject(@RequestParam("name") String name) {
         Subject subject = new Subject();
         subject.setName(name);
         subjectService.save(subject);
