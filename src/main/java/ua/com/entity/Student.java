@@ -23,7 +23,7 @@ public class Student {
     private String email;
     private String password;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     private Band band;
 
 

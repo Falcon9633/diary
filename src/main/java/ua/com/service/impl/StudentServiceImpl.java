@@ -32,5 +32,15 @@ public class StudentServiceImpl implements StudentService {
         return studentDAO.findAll();
     }
 
+    @Override
+    public Student findStudentWithBand(int id) {
+        return studentDAO.findStudentWithBand(id);
+    }
+
+    @Override
+    public List<Student> findAllWithBand() {
+        return studentDAO.findAllWithBand();
+    }
+
 
 }

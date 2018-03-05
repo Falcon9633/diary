@@ -91,7 +91,9 @@ public class MainController {
     @GetMapping("/setStudentToBand")
     public String setStudentToBand(Model model) {
         model.addAttribute("allBands", bandService.findAll());
-        model.addAttribute("dateStudent", studentService.findAll());
+        model.addAttribute("dateStudent", studentService.findAllWithBand());
+
+
         return "setStudentToBand";
     }
 
@@ -100,16 +102,15 @@ public class MainController {
 
         Band band = bandService.findOne(Integer.parseInt(requestParam.get("band")));
 
-        List<Student> studentList = band.getStudentsList();
-
         for (String key : requestParam.keySet()) {
             if (key.contains("user")) {
-                Student student = studentService.findOne(Integer.parseInt(requestParam.get(key)));
-                studentList.add(student);
+                Student student = studentService.findStudentWithBand(Integer.parseInt(requestParam.get(key)));
+
+                student.setBand(band);
+                studentService.save(student);
             }
         }
-       band.setStudentsList(studentList);
-        bandService.save(band);
+
         return "redirect:/setStudentToBand";
     }
 
