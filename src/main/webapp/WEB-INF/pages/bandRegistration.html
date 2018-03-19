@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sf="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport"
@@ -35,7 +35,7 @@
                     <ul>
                         <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
                         <li><a href="">Редагування предметів</a></li>
-                        <li><a href="">Додавання вчителів</a></li>
+                        <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Розклад</a>
@@ -55,21 +55,21 @@
             </ul>
         </div>
     </div>
-    <form th:action="@{/saveBand}" method="post">
+    <form th:action="@{/saveBand}" method="post" th:object="${band}">
         <div class="row">
             <h1>
                 <label>Створення класу<br/>
-                    <input type="text" name="name" placeholder="Назва класу"/>
+                    <input type="text" th:field="*{name}" placeholder="Назва класу"/>
                     <button type="submit">Створити</button>
                 </label>
+                <h3 th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errors"/>
             </h1>
         </div>
     </form>
 </div>
 
-
 <div th:replace="fragments/styles::main"/>
 <div th:replace="fragments/styles::dropDownMenu"/>
-<script type="text/javascript" th:src="@{/js/css3-mediaqueries.js}"/>
+<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 </body>
 </html>

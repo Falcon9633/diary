@@ -27,6 +27,7 @@ public class Subject {
     @JoinTable(name = "band_subject",
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "band_id"))
+    @OrderBy("name ASC")
     private Set<Band> bandList = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)

@@ -1,11 +1,12 @@
 package ua.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import ua.com.entity.Band;
 import ua.com.entity.Student;
 import ua.com.entity.Teacher;
@@ -14,7 +15,10 @@ import ua.com.service.BandService;
 import ua.com.service.StudentService;
 import ua.com.service.TeacherService;
 import ua.com.service.SubjectService;
+import ua.com.validator.BandValidator;
+import ua.com.validator.SubjectValidator;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +38,12 @@ public class MainController {
 
     @Autowired
     private TeacherService teacherService;
+
+    @Autowired
+    private BandValidator bandValidator;
+
+    @Autowired
+    private SubjectValidator subjectValidator;
 
     @GetMapping("/")
     public String index() {
@@ -112,22 +122,28 @@ public class MainController {
     }
 
     @GetMapping("/bandRegistration")
-    public String bandRegistration() {
+    public String bandRegistration(Model model) {
+        model.addAttribute("band", new Band());
         return "bandRegistration";
     }
 
     @PostMapping("/saveBand")
-    public String saveBand(@RequestParam("name") String name) {
-        Band band = new Band();
-        band.setName(name);
+    public String saveBand(@ModelAttribute("band") @Valid Band band, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            System.out.println("bandEmptyNameErr");
+            return "bandRegistration";
+        }
         bandService.save(band);
         return "redirect:/bandRegistration";
     }
 
     @GetMapping("/setSubjectToBand")
     public String setSubjectToBand(Model model) {
+        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
+        Sort orders = new Sort(byName);
         model.addAttribute("allBand", bandService.findAll());
-        model.addAttribute("allSubject", subjectService.findAll());
+
+        model.addAttribute("allSubject", subjectService.findAllWithBand(orders));
         return "setSubjectToBand";
     }
 
@@ -145,22 +161,59 @@ public class MainController {
             }
         }
         band.setSubjectList(subjectList);
-        System.out.println(band);
-        System.out.println(subjectList);
         bandService.save(band);
         return "redirect:/setSubjectToBand";
     }
 
     @GetMapping("/subjectRegistration")
-    public String subjectRegistration() {
+    public String subjectRegistration(Model model) {
+        model.addAttribute("subject", new Subject());
         return "subjectRegistration";
     }
 
     @PostMapping("/saveSubject")
-    public String saveSubject(@RequestParam("name") String name) {
-        Subject subject = new Subject();
-        subject.setName(name);
+    public String saveSubject(@ModelAttribute("subject") @Valid Subject subject, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            System.out.println("subjectEmptyNameErr");
+            return "subjectRegistration";
+        }
         subjectService.save(subject);
         return "redirect:/subjectRegistration";
+    }
+
+    @GetMapping("/setTeacherToSubject")
+    public String setTeacherToSubject(Model model){
+        Sort.Order bySurname = new Sort.Order(Sort.Direction.ASC, "surname");
+        Sort orders = new Sort(bySurname);
+        model.addAttribute("allSubject", subjectService.findAll());
+        model.addAttribute("allTeacher", teacherService.findAllWithSubject(orders));
+        return "setTeacherToSubject";
+    }
+
+    @PostMapping("/saveTeacherToSubject")
+    public String saveTeacherToSubject(@RequestParam("idSubject") int idSubject,
+                                       @RequestParam Map<String, String> requestParam){
+        Subject subject = subjectService.findByIdWithTeacher(idSubject);
+        Set<Teacher> teacherList  = subject.getTeacherList();
+
+        for (String key : requestParam.keySet()) {
+            if (key.contains("idTeacher-")) {
+                Teacher teacher = teacherService.findOne(Integer.parseInt(requestParam.get(key)));
+                teacherList.add(teacher);
+            }
+        }
+        subject.setTeacherList(teacherList);
+        subjectService.save(subject);
+        return "redirect:/setTeacherToSubject";
+    }
+
+    @InitBinder("band")
+    public void initBandBinder(WebDataBinder binder){
+        binder.addValidators(bandValidator);
+    }
+
+    @InitBinder("subject")
+    public void initSubjectBinder(WebDataBinder binder){
+        binder.addValidators(subjectValidator);
     }
 }

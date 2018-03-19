@@ -13,6 +13,6 @@ public interface StudentDAO extends JpaRepository<Student, Integer> {
     Student findStudentWithBand(@Param("id") int id);
 
     @Query("from Student students left join fetch students.band")
-   List<Student> findAllWithBand();
+    List<Student> findAllWithBand();
 
 }

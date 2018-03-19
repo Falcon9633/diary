@@ -35,7 +35,7 @@
                     <ul>
                         <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
                         <li><a href="">Редагування предметів</a></li>
-                        <li><a href="">Додавання вчителів</a></li>
+                        <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Розклад</a>
@@ -64,6 +64,7 @@
                         <option value="">-- Оберіть клас --</option>
                         <option th:each="bands:${allBand}" th:text="${bands.name}" th:value="${bands.id}"></option>
                     </select>
+                    <h3 class="errors">Оберіть клас</h3>
                 </label>
             </h1>
         </div>
@@ -74,16 +75,18 @@
                 <tr>
                     <th>№ з/п</th>
                     <th>Назва предмету</th>
-                    <th>Клас</th>
+                    <th>Класи</th>
                     <th>Вибрати</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="subjects, stat :${allSubject}">
-                    <td th:text="${stat.count}"/>
+                <tr th:each="subjects, statSubject :${allSubject}">
+                    <td th:text="${statSubject.count}"/>
                     <td th:text="${subjects.name}"/>
-                    <td></td>
-                    <!--<td th:text="${subjects.bandList.name}"/>-->
+                    <td>
+                        <div th:each="bandList, statBandList :${subjects.bandList}"
+                             th:text="!${statBandList.last}? ${bandList.name} + ',' : ${bandList.name}"></div>
+                    </td>
                     <td>
                         <input type="checkbox" th:name="idSubject-+${subjects.id}" th:value="${subjects.id}"/>
                     </td>
@@ -103,6 +106,7 @@
 
 <div th:replace="fragments/styles::main"/>
 <div th:replace="fragments/styles::dropDownMenu"/>
-<script type="text/javascript" th:src="@{/js/css3-mediaqueries.js}"/>
+<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
+<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
 </body>
 </html>

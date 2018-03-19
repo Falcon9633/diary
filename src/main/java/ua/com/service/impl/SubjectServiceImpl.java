@@ -1,6 +1,7 @@
 package ua.com.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.dao.SubjectDAO;
@@ -8,6 +9,7 @@ import ua.com.entity.Subject;
 import ua.com.service.SubjectService;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -27,7 +29,17 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
+    public Subject findByIdWithTeacher(int id) {
+        return subjectDAO.findByIdWithTeacher(id);
+    }
+
+    @Override
     public List<Subject> findAll() {
         return subjectDAO.findAll();
+    }
+
+    @Override
+    public Set<Subject> findAllWithBand(Sort sort) {
+        return subjectDAO.findAllWithBand(sort);
     }
 }

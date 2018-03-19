@@ -29,6 +29,7 @@ public class Teacher {
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    @OrderBy("name ASC")
     private Set<Subject> subjectList = new HashSet<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "teacher")

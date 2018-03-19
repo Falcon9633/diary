@@ -473,6 +473,15 @@ ul.leftNav li:last-child a {
     border: 10px solid #a45f93;
 }
 
+.errors {
+    display: inline;
+    color: red;
+}
+
+td div{
+    display: inline;
+}
+
 /*Подвал*/
 .footer {
 

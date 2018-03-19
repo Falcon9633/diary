@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Додавання предметів в клас</title>
+    <title>Admin page</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,21 +21,21 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
-                <li><a href="" class="active">Класи</a>
+                <li><a href="">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a href="">Редагування класів</a></li>
-                        <li><a th:href="@{/setSubjectToBand}" class="active">Додавання предметів</a></li>
+                        <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
-                <li><a href="">Предмети</a>
+                <li><a href="" class="active">Предмети</a>
                     <ul>
                         <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
                         <li><a href="">Редагування предметів</a></li>
-                        <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
+                        <li><a th:href="@{/setTeacherToSubject}" class="active">Додавання вчителів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Розклад</a>
@@ -56,15 +56,16 @@
         </div>
     </div>
 
-    <form th:action="@{/saveSubjectToBand}" method="post">
+    <form th:action="@{/saveTeacherToSubject}" method="post">
         <div class="row">
             <h1>
-                <label>Додавання предметів
-                    <select name="idBand">
-                        <option value="">-- Оберіть клас --</option>
-                        <option th:each="bands:${allBand}" th:text="${bands.name}" th:value="${bands.id}"></option>
+                <label>Додавання вчителів
+                    <select name="idSubject">
+                        <option value="">-- Оберіть предмет --</option>
+                        <option th:each="subjects:${allSubject}" th:text="${subjects.name}"
+                                th:value="${subjects.id}"></option>
                     </select>
-                    <h3 class="errors">Оберіть клас</h3>
+                    <h3 class="errors">Оберіть предмет</h3>
                 </label>
             </h1>
         </div>
@@ -74,21 +75,23 @@
                 <thead>
                 <tr>
                     <th>№ з/п</th>
-                    <th>Назва предмету</th>
-                    <th>Класи</th>
+                    <th>Прізвище</th>
+                    <th>Ім’я</th>
+                    <th>Предмети</th>
                     <th>Вибрати</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="subjects, statSubject :${allSubject}">
-                    <td th:text="${statSubject.count}"/>
-                    <td th:text="${subjects.name}"/>
+                <tr th:each="teachers, statTeacher :${allTeacher}">
+                    <td th:text="${statTeacher.count}"/>
+                    <td th:text="${teachers.surname}"/>
+                    <td th:text="${teachers.name}"/>
                     <td>
-                        <div th:each="bandList, statBandList :${subjects.bandList}"
-                             th:text="!${statBandList.last}? ${bandList.name} + ',' : ${bandList.name}"></div>
+                        <div th:each="subjectList, statSubjectList:${teachers.subjectList}"
+                             th:text="!${statSubjectList.last}? ${subjectList.name} + ',' : ${subjectList.name}"></div>
                     </td>
                     <td>
-                        <input type="checkbox" th:name="idSubject-+${subjects.id}" th:value="${subjects.id}"/>
+                        <input type="checkbox" th:name="idTeacher-+${teachers.id}" th:value="${teachers.id}"/>
                     </td>
                 </tr>
                 </tbody>
@@ -98,6 +101,7 @@
         <div class="row">
             <button type="submit">Додати</button>
         </div>
+
     </form>
 
 
