@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Редагування класів</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
+            </div>
+            <ul class="nav h-menu">
+                <li><a href="">Користувачі</a>
+                    <ul>
+                        <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
+                        <li><a href="">Редагування користувачів</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Класи</a>
+                    <ul>
+                        <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
+                        <li><a th:href="@{/bandEditing}" class="active">Редагування класів</a></li>
+                        <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Предмети</a>
+                    <ul>
+                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
+                        <li><a href="">Редагування предметів</a></li>
+                        <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Розклад</a>
+                    <ul>
+                        <li><a href="">Створення розкладу</a></li>
+                        <li><a href="">Редагування розкладу</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Статистика</a></li>
+                <li><a href="">Хто залоганий</a>
+                    <ul>
+                        <li><a href="">Особистий кабінет</a></li>
+                        <li><a href="">Повернення на сторінку вчителя</a></li>
+                        <li><a href="">Вийти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>
+            <label>Клас
+                <select name="idBand">
+                    <option value="">-- Оберіть клас --</option>
+                    <option th:each="bands : ${allBand}" th:text="${bands.name}"
+                            th:value="${bands.id}"></option>
+                </select>
+                <h3 class="errors hide">Оберіть клас</h3>
+                <button type="button" data-type="button" data-target="#bandEditingModal">
+                    Редагувати
+                </button>
+            </label>
+        </h1>
+    </div>
+
+    <div class="modal fade" id="bandEditingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Редагування класу</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h2 class="inline" data-container="band-name"></h2>
+                        <input type="text" data-container="band-name" placeholder="Нова назва"/>
+                    </div>
+                    <div class="mobile">
+                        <table class="bordered">
+                            <thead>
+                            <tr>
+                                <th>Учні</th>
+                                <th>Предмети</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td data-container="band-studentList"></td>
+                                <td data-container="band-subjectList">Математика</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Закрити</button>
+                    <button type="button" >Зберегти зміни</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div th:replace="fragments/styles::modal"/>
+<div th:replace="fragments/styles::main"/>
+<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
+<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
+<script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:inline="javascript" th:src="@{../js/bandEditor.js}"></script>
+</body>
+</html>

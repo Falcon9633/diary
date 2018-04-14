@@ -269,6 +269,19 @@ table.bordered tbody tr:last-child td:last-child {
 
 }
 
+.errors {
+    display: inline;
+    color: red;
+}
+
+.hide {
+    display: none;
+}
+
+.inline{
+    display: inline;
+}
+
 /*Шапка*/
 .header {
     padding-top: 20px;
@@ -473,14 +486,7 @@ ul.leftNav li:last-child a {
     border: 10px solid #a45f93;
 }
 
-.errors {
-    display: inline;
-    color: red;
-}
 
-td div{
-    display: inline;
-}
 
 /*Подвал*/
 .footer {

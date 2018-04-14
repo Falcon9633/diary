@@ -129,7 +129,7 @@ public class MainController {
 
     @PostMapping("/saveBand")
     public String saveBand(@ModelAttribute("band") @Valid Band band, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             System.out.println("bandEmptyNameErr");
             return "bandRegistration";
         }
@@ -137,12 +137,19 @@ public class MainController {
         return "redirect:/bandRegistration";
     }
 
+    @GetMapping("/bandEditing")
+    public String bandEditing(Model model) {
+        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
+        Sort orders = new Sort(byName);
+        model.addAttribute("allBand", bandService.findAll(orders));
+        return "bandEditing";
+    }
+
     @GetMapping("/setSubjectToBand")
     public String setSubjectToBand(Model model) {
         Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
         Sort orders = new Sort(byName);
         model.addAttribute("allBand", bandService.findAll());
-
         model.addAttribute("allSubject", subjectService.findAllWithBand(orders));
         return "setSubjectToBand";
     }
@@ -157,7 +164,6 @@ public class MainController {
             if (key.contains("idSubject-")) {
                 Subject subject = subjectService.findOne(Integer.parseInt(requestParam.get(key)));
                 subjectList.add(subject);
-
             }
         }
         band.setSubjectList(subjectList);
@@ -173,7 +179,7 @@ public class MainController {
 
     @PostMapping("/saveSubject")
     public String saveSubject(@ModelAttribute("subject") @Valid Subject subject, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             System.out.println("subjectEmptyNameErr");
             return "subjectRegistration";
         }
@@ -182,7 +188,7 @@ public class MainController {
     }
 
     @GetMapping("/setTeacherToSubject")
-    public String setTeacherToSubject(Model model){
+    public String setTeacherToSubject(Model model) {
         Sort.Order bySurname = new Sort.Order(Sort.Direction.ASC, "surname");
         Sort orders = new Sort(bySurname);
         model.addAttribute("allSubject", subjectService.findAll());
@@ -192,9 +198,9 @@ public class MainController {
 
     @PostMapping("/saveTeacherToSubject")
     public String saveTeacherToSubject(@RequestParam("idSubject") int idSubject,
-                                       @RequestParam Map<String, String> requestParam){
+                                       @RequestParam Map<String, String> requestParam) {
         Subject subject = subjectService.findByIdWithTeacher(idSubject);
-        Set<Teacher> teacherList  = subject.getTeacherList();
+        Set<Teacher> teacherList = subject.getTeacherList();
 
         for (String key : requestParam.keySet()) {
             if (key.contains("idTeacher-")) {
@@ -208,12 +214,12 @@ public class MainController {
     }
 
     @InitBinder("band")
-    public void initBandBinder(WebDataBinder binder){
+    public void initBandBinder(WebDataBinder binder) {
         binder.addValidators(bandValidator);
     }
 
     @InitBinder("subject")
-    public void initSubjectBinder(WebDataBinder binder){
+    public void initSubjectBinder(WebDataBinder binder) {
         binder.addValidators(subjectValidator);
     }
 }

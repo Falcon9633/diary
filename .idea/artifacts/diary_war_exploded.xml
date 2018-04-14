@@ -49,6 +49,9 @@
           <element id="library" level="project" name="Maven: nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.1.2" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy:2.4.6" />
           <element id="library" level="project" name="Maven: nz.net.ultraq.thymeleaf:thymeleaf-expression-processor:1.1.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.4" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.18" />
         </element>
       </element>

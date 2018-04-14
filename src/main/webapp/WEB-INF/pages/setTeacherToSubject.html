@@ -27,7 +27,7 @@
                 <li><a href="">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
-                        <li><a href="">Редагування класів</a></li>
+                        <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
@@ -65,7 +65,7 @@
                         <option th:each="subjects:${allSubject}" th:text="${subjects.name}"
                                 th:value="${subjects.id}"></option>
                     </select>
-                    <h3 class="errors">Оберіть предмет</h3>
+                    <h3 class="errors hide">Оберіть предмет</h3>
                 </label>
             </h1>
         </div>
@@ -99,7 +99,7 @@
         </div>
 
         <div class="row">
-            <button type="submit">Додати</button>
+            <button type="submit" data-type="submit">Додати</button>
         </div>
 
     </form>
@@ -109,7 +109,6 @@
 
 
 <div th:replace="fragments/styles::main"/>
-<div th:replace="fragments/styles::dropDownMenu"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 <script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
 </body>

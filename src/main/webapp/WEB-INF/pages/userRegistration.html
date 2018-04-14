@@ -27,7 +27,7 @@
                 <li><a href="#">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
-                        <li><a href="">Редагування класів</a></li>
+                        <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
@@ -86,7 +86,6 @@
 
 
 <div th:replace="fragments/styles::main"/>
-<div th:replace="fragments/styles::dropDownMenu"/>
-<script type="text/javascript" th:src="@{/js/css3-mediaqueries.js}"/>
+<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package ua.com.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,9 +30,11 @@ public class Teacher {
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    @JsonIgnoreProperties({"bandList", "teacherList", "scheduleList"})
     @OrderBy("name ASC")
     private Set<Subject> subjectList = new HashSet<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "teacher")
+    @JsonIgnoreProperties({"band", "subject", "teacher"})
     private Set<Schedule> scheduleList = new HashSet<>();
 }

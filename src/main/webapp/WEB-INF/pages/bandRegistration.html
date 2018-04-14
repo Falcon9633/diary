@@ -21,13 +21,13 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
                 <li><a href="" class="active">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}" class="active">Створення класів</a></li>
-                        <li><a href="">Редагування класів</a></li>
+                        <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
@@ -55,6 +55,7 @@
             </ul>
         </div>
     </div>
+
     <form th:action="@{/saveBand}" method="post" th:object="${band}">
         <div class="row">
             <h1>
@@ -66,10 +67,13 @@
             </h1>
         </div>
     </form>
+
 </div>
 
+
+
+
 <div th:replace="fragments/styles::main"/>
-<div th:replace="fragments/styles::dropDownMenu"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 </body>
 </html>

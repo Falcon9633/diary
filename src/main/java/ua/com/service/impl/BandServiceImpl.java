@@ -1,6 +1,7 @@
 package ua.com.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.dao.BandDAO;
@@ -8,6 +9,7 @@ import ua.com.entity.Band;
 import ua.com.service.BandService;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -34,4 +36,16 @@ public class BandServiceImpl implements BandService {
     public List<Band> findAll() {
         return bandDAO.findAll();
     }
+
+    @Override
+    public List<Band> findAll(Sort sort) {
+        return bandDAO.findAll(sort);
+    }
+
+    @Override
+    public List<Band> findAllWithAllNested() {
+        return bandDAO.findAllWithAllNested();
+    }
+
+
 }

@@ -1,30 +1,48 @@
-var $button = $('button');
+/*<![CDATA[*/
+
+var $button = $('button[data-type]');
 var $select = $('select');
+var $errorElement = $('label>h3.errors');
 
 function init() {
-    $button.attr('type', 'button');
-    $('label>h3.errors').hide();
-    $button.on('click', handleButtonClick);
-    $select.on('change', handleSelectChange);
+    if ($button.data('type') === 'submit'){
+        $button.attr('type', 'button');
+        $button.on('click', handleButtonClick);
+        $select.on('change', handleSelectChange);
+    }
+    if ($button.data('type') === 'button'){
+        $button.on('click', handleButtonClick)
+        $select.on('change', handleSelectChange);
+    }
 }
 
 function handleSelectChange() {
     var newValue = $(this).val();
 
-    if (newValue === ''){
-        return;
+    if ($button.data('type') === 'submit'){
+        if (newValue === '') {
+            $button.attr('type', 'button');
+            return;
+        }
+        $button.attr('type', 'submit');
     }
 
-    $('label>h3.errors').hide();
-    $button.attr('type', 'submit');
+    if ($button.data('type') === 'button'){
+        if (newValue === ''){
+            $button.removeAttr('data-toggle');
+            return;
+        }
+        $button.attr('data-toggle', 'modal');
+    }
 }
 
 function handleButtonClick() {
-    if ($button.attr('type') === 'button'){
-        alert($('label>h3.errors').text());
-        $('label>h3.errors').show();
+    if ($button.attr('type') === 'button' && $select.val() === '') {
+        alert($errorElement.text());
+        $errorElement.removeClass('hide');
     }
-    return;
 }
 
-init();
+$(document).ready(init());
+
+/*]]>*/

@@ -1,6 +1,7 @@
 package ua.com.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Student {
     private String password;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
     private Band band;
 
 
