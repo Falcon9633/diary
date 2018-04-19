@@ -7,72 +7,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6967284f-6eb2-4466-bfb5-f2a3110bc779" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/modal.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectEditing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/subjectEditor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/controller/MainController.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/dao/BandDAO.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/dao/BandDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/controller/MainRestController.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/controller/MainRestController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/entity/Band.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/entity/Band.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/entity/Schedule.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/entity/Schedule.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/entity/Student.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/entity/Student.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/entity/Subject.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/entity/Subject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/entity/Teacher.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/entity/Teacher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/service/BandService.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/service/BandService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/service/impl/BandServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/service/impl/BandServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/service/SubjectService.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/service/SubjectService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ua/com/service/impl/SubjectServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ua/com/service/impl/SubjectServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/controller/MainController.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/dao/BandDAO.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/dao/BandDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/controller/MainRestController.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/controller/MainRestController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Band.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Band.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Schedule.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Schedule.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Student.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Student.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Subject.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Subject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Teacher.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/entity/Teacher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/BandService.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/BandService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/impl/BandServiceImpl.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/impl/BandServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/diary_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/diary_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/SubjectService.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/SubjectService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/impl/SubjectServiceImpl.class" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/classes/ua/com/service/impl/SubjectServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/326efe67-e988-42d7-a39e-891caba23b57.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/326efe67-e988-42d7-a39e-891caba23b57.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/diary.iml" afterPath="$PROJECT_DIR$/diary.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/controller/MainController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/entity/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/entity/Schedule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/entity/Student.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/entity/Student.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/entity/Teacher.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/entity/Teacher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/fragments/styles.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/fragments/styles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setStudentToBand.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setStudentToBand.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/student.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/student.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/teacher.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/teacher.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/emptySelectValidator.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/emptySelectValidator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/admin.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/bandEditing.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/bandEditing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/bandRegistration.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/bandRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/fragments/styles.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/fragments/styles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/index.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setStudentToBand.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setStudentToBand.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setSubjectToBand.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setSubjectToBand.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setTeacherToSubject.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/setTeacherToSubject.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/student.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/student.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/subjectRegistration.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/subjectRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/teacher.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/teacher.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/userRegistration.html" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/WEB-INF/pages/userRegistration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/css/style.css" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/js/emptySelectValidator.js" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/js/emptySelectValidator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/js/bandEditor.js" afterPath="$PROJECT_DIR$/target/diary-1.0-SNAPSHOT/static/js/bandEditor.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -101,77 +80,26 @@
         <item name="diary@localhost" type="e3449647:DbNodeDescriptor" />
         <item name="diary" type="e3449647:DbNodeDescriptor" />
       </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="diary@localhost" type="e3449647:DbNodeDescriptor" />
-        <item name="diary" type="e3449647:DbNodeDescriptor" />
-        <item name="band" type="e3449647:DbNodeDescriptor" />
-      </path>
-      <path>
-        <item name="" type="eadb38e5:DatabaseStructure$Root" />
-        <item name="diary@localhost" type="e3449647:DbNodeDescriptor" />
-        <item name="diary" type="e3449647:DbNodeDescriptor" />
-        <item name="teacher_subject" type="e3449647:DbNodeDescriptor" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainRestController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bandEditing.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1887">
-              <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bandEditor.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>label</find>
-      <find>p</find>
       <find>h3</find>
       <find>display: blo</find>
       <find>!important</find>
@@ -200,6 +128,8 @@
       <find>button</find>
       <find>hide</find>
       <find>#373e47</find>
+      <find>console</find>
+      <find>sort</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -214,8 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/config/WebInit.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/studentPage.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/teacher.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/admin.html" />
         <option value="G:/New folder/bluepink/style.css" />
@@ -226,21 +154,12 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/StudentDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/validator/BandValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/validator/SubjectValidator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/TeacherDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/service/TeacherService.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/service/impl/TeacherServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/bootstrap.min.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/fragments/styles.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/student.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/teacher.html" />
@@ -249,22 +168,33 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/bandEditing.js" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Schedule.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Teacher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/emptySelectValidator.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/test.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Student.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/modal.css" />
-        <option value="$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setStudentToBand.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectEditing.html" />
+        <option value="$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/subjectEditor.js" />
       </list>
     </option>
   </component>
@@ -305,7 +235,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="53" />
+    <option name="x" value="418" />
+    <option name="y" value="182" />
     <option name="width" value="1239" />
     <option name="height" value="744" />
   </component>
@@ -327,6 +258,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,7 +309,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ua" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="diary" type="b2602c69:ProjectViewProjectNode" />
@@ -387,7 +319,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ua" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="diary" type="b2602c69:ProjectViewProjectNode" />
@@ -479,24 +411,13 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="diary" type="b2602c69:ProjectViewProjectNode" />
-              <item name="diary" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -751,19 +672,22 @@
       <workItem from="1523275621076" duration="13632000" />
       <workItem from="1523467846470" duration="11414000" />
       <workItem from="1523544688586" duration="11396000" />
-      <workItem from="1523694486047" duration="625000" />
+      <workItem from="1523694486047" duration="1633000" />
+      <workItem from="1523715771866" duration="4230000" />
+      <workItem from="1523911690966" duration="3506000" />
+      <workItem from="1523987491513" duration="4401000" />
+      <workItem from="1524158946177" duration="3927000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329375000" />
+    <option name="totallyTimeSpent" value="346447000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41675618" sideWeight="0.5101279" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41675618" sideWeight="0.51226014" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867885" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -775,16 +699,17 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60042965" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41675618" sideWeight="0.48987207" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.4968017" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41675618" sideWeight="0.48773986" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.4946695" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22867803" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23400854" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -793,7 +718,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -803,8 +727,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41245973" sideWeight="0.50586355" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41675618" sideWeight="0.51226014" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867885" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -814,7 +738,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39849624" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60042965" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -822,13 +746,13 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41675618" sideWeight="0.49413645" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41675618" sideWeight="0.48773986" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.4968017" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.4946695" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25692964" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23400854" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -893,41 +817,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.9.1.RELEASE/spring-data-jpa-1.9.1.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/53121aa8/326efe67-e988-42d7-a39e-891caba23b57/diary.teacher_subject">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/impl/TeacherServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/53121aa8/326efe67-e988-42d7-a39e-891caba23b57/diary.subject">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -946,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,13 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/student.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -999,24 +880,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/teacher.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="41" column="79" lean-forward="false" selection-start-line="41" selection-start-column="79" selection-end-line="41" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1051,21 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Schedule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="36" column="28" lean-forward="false" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/StudentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/TeacherService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1080,46 +932,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/ScheduleService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/StudentDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/ScheduleDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="74" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,57 +960,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="22" lean-forward="false" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="55" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        <state relative-caret-position="476">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1206,64 +982,227 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/ScheduleDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="56" lean-forward="false" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
+        <state relative-caret-position="68">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/StudentDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/StudentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="852">
+          <caret line="594" column="1" lean-forward="true" selection-start-line="594" selection-start-column="1" selection-end-line="594" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="56" lean-forward="false" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+        <state relative-caret-position="323">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/53121aa8/326efe67-e988-42d7-a39e-891caba23b57/diary.band_student">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Band.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="59" lean-forward="false" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandRegistration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setStudentToBand.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="21" lean-forward="true" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        <state relative-caret-position="612">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setSubjectToBand.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/setTeacherToSubject.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userRegistration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectRegistration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="214" column="0" lean-forward="true" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+        <state relative-caret-position="339">
+          <caret line="191" column="36" lean-forward="true" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/impl/SubjectServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="52" column="48" lean-forward="false" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+          <folding>
+            <element signature="e#1232#1233#0" expanded="true" />
+            <element signature="e#1288#1289#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/impl/BandServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="44" column="13" lean-forward="true" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding>
+            <element signature="e#1048#1049#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/SubjectService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/entity/Subject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/service/BandService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/BandDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/bandEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state relative-caret-position="764">
+          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/bandEditing.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="0" lean-forward="true" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#874#875#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/dao/SubjectDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/com/controller/MainRestController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/subjectEditing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="356">
+          <caret line="95" column="68" lean-forward="false" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/subjectEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2873">
+          <caret line="169" column="7" lean-forward="true" selection-start-line="169" selection-start-column="7" selection-end-line="169" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-            <element signature="e#616#617#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

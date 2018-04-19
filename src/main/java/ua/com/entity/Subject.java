@@ -37,6 +37,7 @@ public class Subject {
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     @JsonIgnoreProperties({"subjectList", "scheduleList"})
+    @OrderBy("name ASC")
     private Set<Teacher> teacherList = new HashSet<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "subject")

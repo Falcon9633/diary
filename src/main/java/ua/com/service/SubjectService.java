@@ -16,5 +16,9 @@ public interface SubjectService {
 
     List<Subject> findAll();
 
+    List<Subject> findAll(Sort sort);
+
     Set<Subject> findAllWithBand(Sort sort);
+
+    List<Subject> findAllWithAllNested();
 }

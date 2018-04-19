@@ -3,6 +3,7 @@ package ua.com.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,8 +25,12 @@ public class Band {
     //    @Column(unique = true)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "band")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinTable(name = "band_student",
+            joinColumns = @JoinColumn(name = "band_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
     @JsonIgnoreProperties("band")
+    @OrderBy("name ASC")
     private Set<Student> studentsList = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
@@ -33,6 +38,7 @@ public class Band {
             joinColumns = @JoinColumn(name = "band_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     @JsonIgnoreProperties({"bandList", "teacherList", "scheduleList"})
+    @OrderBy("name ASC")
     private Set<Subject> subjectList = new HashSet<>();
 
 

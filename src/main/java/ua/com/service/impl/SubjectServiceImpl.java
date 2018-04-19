@@ -39,7 +39,17 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
+    public List<Subject> findAll(Sort sort) {
+        return subjectDAO.findAll(sort);
+    }
+
+    @Override
     public Set<Subject> findAllWithBand(Sort sort) {
         return subjectDAO.findAllWithBand(sort);
+    }
+
+    @Override
+    public List<Subject> findAllWithAllNested() {
+        return subjectDAO.findAllWithAllNested();
     }
 }

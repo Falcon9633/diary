@@ -9,7 +9,7 @@ var $saveButton = $('div.modal-footer>:not(button[data-dismiss])');
 
 function init() {
     getAllBands();
-    $select.on('change', getSelectedBand);
+    $select.on('change', getSelectedBandId);
     $editButton.on('click', handleEditButton);
     $saveButton.on('click', handleSaveButton);
 }
@@ -20,7 +20,7 @@ function getAllBands() {
     });
 }
 
-function getSelectedBand() {
+function getSelectedBandId() {
     $selectedBandId = $(this).val();
 }
 
@@ -62,10 +62,14 @@ function getBandStudentList(selectedBand) {
             'checked': ''
         })
             .addClass('student');
-        var $label = $('<label/>').attr('for', $inputCheckbox.attr('id')).addClass('label-right').text(studentList.name + ' ' + studentList.surname);
-        $bandStudentListContainer.append($inputCheckbox);
-        $bandStudentListContainer.append($label);
-        $bandStudentListContainer.append($('<br/>'));
+        var $label = $('<label/>')
+            .attr('for', $inputCheckbox.attr('id'))
+            .addClass('label-right')
+            .text(studentList.name + ' ' + studentList.surname);
+        $bandStudentListContainer
+            .append($inputCheckbox)
+            .append($label)
+            .append($('<br/>'));
     }
 }
 
@@ -100,7 +104,6 @@ function handleSaveButton() {
     editedBand.subjectList = setBandSubjectList(editedBand);
 
     editBand(editedBand);
-    console.log(editedBand);
 }
 
 function setBandName() {

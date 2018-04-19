@@ -187,6 +187,14 @@ public class MainController {
         return "redirect:/subjectRegistration";
     }
 
+    @GetMapping("/subjectEditing")
+    public String subjectEditing(Model model){
+        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
+        Sort orders = new Sort(byName);
+        model.addAttribute("allSubject", subjectService.findAll(orders));
+        return "subjectEditing";
+    }
+
     @GetMapping("/setTeacherToSubject")
     public String setTeacherToSubject(Model model) {
         Sort.Order bySurname = new Sort.Order(Sort.Direction.ASC, "surname");
