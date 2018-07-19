@@ -3,6 +3,7 @@ package ua.com.service;
 import ua.com.entity.Student;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StudentService {
 
@@ -11,6 +12,8 @@ public interface StudentService {
     Student findOne(int id);
 
     List<Student> findAll();
+
+    Set<Student> findAllSet();
 
     Student findStudentWithBand(int id);
 

@@ -37,4 +37,9 @@ public class TeacherServiceImpl implements TeacherService {
     public Set<Teacher> findAllWithSubject(Sort sort) {
         return teacherDAO.findAllWithSubject(sort);
     }
+
+    @Override
+    public Set<Teacher> findAllWithAllNested() {
+        return teacherDAO.findAllWithAllNested();
+    }
 }

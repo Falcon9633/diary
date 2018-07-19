@@ -14,5 +14,7 @@ public interface TeacherService {
     List<Teacher> findAll();
 
     Set<Teacher> findAllWithSubject(Sort sort);
+
+    Set<Teacher> findAllWithAllNested();
 }
 

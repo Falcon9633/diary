@@ -12,11 +12,13 @@ public interface BandService {
 
     Band findOne(int id);
 
+    Band findByIdWithStudents(int id);
+
     Band findByIdWithSubject(int id);
 
     List<Band> findAll();
 
     List<Band> findAll(Sort sort);
 
-    List<Band> findAllWithAllNested();
+    Set<Band> findAllWithAllNested();
 }

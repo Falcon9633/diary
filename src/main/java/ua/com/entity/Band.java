@@ -25,10 +25,7 @@ public class Band {
     //    @Column(unique = true)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(name = "band_student",
-            joinColumns = @JoinColumn(name = "band_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "band")
     @JsonIgnoreProperties("band")
     @OrderBy("name ASC")
     private Set<Student> studentsList = new HashSet<>();
@@ -41,9 +38,25 @@ public class Band {
     @OrderBy("name ASC")
     private Set<Subject> subjectList = new HashSet<>();
 
-
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "band")
     @JsonIgnoreProperties({"band", "subject", "teacher"})
     private Set<Schedule> scheduleList = new HashSet<>();
 
+//    public void addStudent(Student student) {
+//        addStudent(student, true);
+//    }
+//
+//    void addStudent(Student student, boolean set){
+//        if (student != null){
+//            getStudentsList().add(student);
+//            if (set){
+//                student.setBand(this, false);
+//            }
+//        }
+//    }
+//
+//    public void removeStudent(Student student){
+//        getStudentsList().remove(student);
+//        student.setBand(null);
+//    }
 }

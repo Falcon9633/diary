@@ -40,7 +40,7 @@
                 </li>
                 <li><a href="#">Розклад</a>
                     <ul>
-                        <li><a href="">Створення розкладу</a></li>
+                        <li><a th:href="@{/scheduleCreation}">Створення розкладу</a></li>
                         <li><a href="">Редагування розкладу</a></li>
                     </ul>
                 </li>
@@ -56,10 +56,9 @@
         </div>
     </div>
 
-
-    <!--Формы-->
     <form th:action="@{/saveUser}" method="post">
         <div class="row">
+
             <h2>
                 <label>Реєстрація користувачів <br/>
                     <input type="text" name="name" placeholder="name"/>
@@ -67,6 +66,7 @@
                     <input type="text" name="email" placeholder="email"/>
                 </label>
             </h2>
+
             <div class="row">
                 <input id="student" checked type="radio" name="userType" value="student"/>
                 <label class="label-right" for="student">Користувач є учнем</label>
@@ -74,13 +74,12 @@
                 <input id="teacher" type="radio" name="userType" value="teacher"/>
                 <label class="label-right" for="teacher">Користувач є вчителем</label>
             </div>
+
             <div class="row">
                 <button type="submit">Зареєструвати</button>
             </div>
 
         </div>
-
-
     </form>
 </div>
 

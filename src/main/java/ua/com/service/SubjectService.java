@@ -20,5 +20,5 @@ public interface SubjectService {
 
     Set<Subject> findAllWithBand(Sort sort);
 
-    List<Subject> findAllWithAllNested();
+    Set<Subject> findAllWithAllNested();
 }

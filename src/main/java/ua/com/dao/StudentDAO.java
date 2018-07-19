@@ -6,13 +6,16 @@ import org.springframework.data.repository.query.Param;
 import ua.com.entity.Student;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StudentDAO extends JpaRepository<Student, Integer> {
 
-    @Query("from Student students left join fetch students.band where students.id=:id")
+    @Query("from Student s left join fetch s.band where s.id=:id")
     Student findStudentWithBand(@Param("id") int id);
 
-    @Query("from Student students left join fetch students.band")
+    @Query("from Student s left join fetch s.band")
     List<Student> findAllWithBand();
 
+    @Query("from Student s")
+    Set<Student> findAllSet();
 }

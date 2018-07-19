@@ -133,12 +133,6 @@ label {
 
 }
 
-.label-right {
-    display: inline;
-    padding: 0 10px 0 0;
-    float: left;
-}
-
 input:focus, textarea:focus, select:focus {
     outline: none;
     box-shadow: none;
@@ -267,19 +261,6 @@ table.bordered tbody tr:last-child td:last-child {
     min-height: 100%;
     position: relative;
 
-}
-
-.errors {
-    display: inline;
-    color: red;
-}
-
-.hide {
-    display: none;
-}
-
-.inline{
-    display: inline;
 }
 
 /*Шапка*/
@@ -486,8 +467,6 @@ ul.leftNav li:last-child a {
     border: 10px solid #a45f93;
 }
 
-
-
 /*Подвал*/
 .footer {
 
@@ -497,3 +476,41 @@ ul.leftNav li:last-child a {
     text-align: center;
 }
 
+/*Other*/
+.float-left {
+    float: left;
+}
+.errors {
+    display: inline;
+    color: #ff0000;
+}
+
+.hide {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.label-right {
+    display: inline;
+    padding: 0 10px 0 0;
+    float: left;
+}
+
+.scheduleMainTable {
+    width: 48% !important;
+    float: left;
+    margin: 5px 0.5% !important;
+}
+
+.scheduleSubjectForm {
+    width: 53%;
+    float: left;
+}
+
+.scheduleTeacherForm {
+    width: 47%;
+    float: left;
+}

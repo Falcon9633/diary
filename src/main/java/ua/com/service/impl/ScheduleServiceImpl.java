@@ -7,6 +7,7 @@ import ua.com.dao.ScheduleDAO;
 import ua.com.entity.Schedule;
 import ua.com.service.ScheduleService;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,8 +18,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleDAO scheduleDAO;
 
     @Override
-    public void save(Schedule Schedule) {
-        scheduleDAO.save(Schedule);
+    public void save(Schedule schedule) {
+        scheduleDAO.save(schedule);
     }
 
     @Override
@@ -31,5 +32,18 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleDAO.findAll();
     }
 
+    @Override
+    public List<Schedule> findAllByWeekOfYearWithAllNested(int weekOfYear) {
+        return scheduleDAO.findAllByWeekOfYearWithAllNested(weekOfYear);
+    }
 
+    @Override
+    public List<Schedule> findAllByDate(Date startDate) {
+        return scheduleDAO.findAllByDate(startDate);
+    }
+
+    @Override
+    public void delete(Schedule schedule) {
+        scheduleDAO.delete(schedule);
+    }
 }

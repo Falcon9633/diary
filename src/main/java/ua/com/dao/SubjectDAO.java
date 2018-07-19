@@ -19,5 +19,5 @@ public interface SubjectDAO extends JpaRepository<Subject, Integer> {
     @Query("from Subject s left join fetch s.bandList " +
             "left join fetch s.teacherList " +
             "left join fetch s.scheduleList")
-    List<Subject> findAllWithAllNested ();
+    Set<Subject> findAllWithAllNested ();
 }

@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.DayOfWeek;
 import java.util.Date;
 
 @Entity
@@ -19,14 +19,15 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @DateTimeFormat(pattern = "YYYY/MM/DD")
     private Date date;
-    private int numberOfLesson;
+    private int weekOfYear;
     private int dayOfWeek;
+    private int numberOfLesson;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
     private Band band;
-
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"bandList", "teacherList", "scheduleList"})
@@ -35,6 +36,4 @@ public class Schedule {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"subjectList", "scheduleList"})
     private Teacher teacher;
-
-
 }

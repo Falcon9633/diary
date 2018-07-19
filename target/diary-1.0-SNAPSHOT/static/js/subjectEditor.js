@@ -158,7 +158,9 @@ function editSubject(editedSubject) {
         contentType: 'application/json',
         success: function () {
             getAllSubjects();
-            $(document).ajaxComplete(initModalContent());
+            $(document).ajaxComplete(function(){
+                initModalContent()
+            });
         },
         error: function () {
             alert("Сталась помилка");

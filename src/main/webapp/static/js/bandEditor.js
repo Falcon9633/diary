@@ -46,7 +46,7 @@ function getBandName(selectedBand) {
 }
 
 function getBandStudentList(selectedBand) {
-    var $bandStudentListContainer = $('[data-container="band-studentList"]');
+    let $bandStudentListContainer = $('[data-container="band-studentList"]');
     $bandStudentListContainer.empty();
 
     if (selectedBand.studentsList.length === 0) {
@@ -55,14 +55,14 @@ function getBandStudentList(selectedBand) {
     }
 
     for (let studentList of selectedBand.studentsList) {
-        var $inputCheckbox = $('<input/>').attr({
+        let $inputCheckbox = $('<input/>').attr({
             'type': 'checkbox',
             'id': `student_id_${studentList.id}`,
             'value': studentList.id,
             'checked': ''
         })
             .addClass('student');
-        var $label = $('<label/>')
+        let $label = $('<label/>')
             .attr('for', $inputCheckbox.attr('id'))
             .addClass('label-right')
             .text(studentList.name + ' ' + studentList.surname);
@@ -74,7 +74,7 @@ function getBandStudentList(selectedBand) {
 }
 
 function getBandSubjectList(selectedBand) {
-    var $bandSubjectListContainer = $('[data-container="band-subjectList"]');
+    let $bandSubjectListContainer = $('[data-container="band-subjectList"]');
     $bandSubjectListContainer.empty();
 
     if (selectedBand.subjectList.length === 0) {
@@ -83,14 +83,14 @@ function getBandSubjectList(selectedBand) {
     }
 
     for (let subjectList of selectedBand.subjectList) {
-        var $inputCheckbox = $('<input/>').attr({
+        let $inputCheckbox = $('<input/>').attr({
             'type': 'checkbox',
             'id': `subject_id_${subjectList.id}`,
             'value': subjectList.id,
             'checked': ''
         })
             .addClass('subject');
-        var $label = $('<label/>').attr('for', $inputCheckbox.attr('id')).addClass('label-right').text(subjectList.name);
+        let $label = $('<label/>').attr('for', $inputCheckbox.attr('id')).addClass('label-right').text(subjectList.name);
         $bandSubjectListContainer.append($inputCheckbox);
         $bandSubjectListContainer.append($label);
         $bandSubjectListContainer.append($('<br/>'));
@@ -98,7 +98,7 @@ function getBandSubjectList(selectedBand) {
 }
 
 function handleSaveButton() {
-    var editedBand = selectedBand;
+    let editedBand = selectedBand;
     editedBand.name = setBandName(selectedBand);
     editedBand.studentsList = setBandStudentList(editedBand);
     editedBand.subjectList = setBandSubjectList(editedBand);
@@ -107,7 +107,7 @@ function handleSaveButton() {
 }
 
 function setBandName() {
-    var editedName = $('input[data-container="band-name"]').val();
+    let editedName = $('input[data-container="band-name"]').val();
 
     if (editedName === '') {
         return selectedBand.name;
@@ -117,23 +117,23 @@ function setBandName() {
 }
 
 function setBandStudentList(editedBand) {
-    var selectedStudentId = [];
-    var $selectedStudentsInput = $('input.student');
+    let unselectedStudentId = [];
+    let $selectedStudentsInput = $('input.student');
 
     $selectedStudentsInput.each(function () {
-        if ($(this).is(':checked')) {
-            selectedStudentId.push(parseInt($(this).val()));
+        if ($(this).is(':not(:checked)')) {
+            unselectedStudentId.push(parseInt($(this).val()));
         }
     });
 
     return editedBand.studentsList.filter(function (item) {
-        return selectedStudentId.indexOf(item.id) !== -1;
+        return unselectedStudentId.indexOf(item.id) !== -1;
     })
 }
 
 function setBandSubjectList(editedBand) {
-    var selectedSubjectId = [];
-    var $selectedSubjectsInput = $('input.subject');
+    let selectedSubjectId = [];
+    let $selectedSubjectsInput = $('input.subject');
 
     $selectedSubjectsInput.each(function () {
         if ($(this).is(':checked')) {
@@ -154,7 +154,9 @@ function editBand(editedBand) {
         contentType: 'application/json',
         success: function () {
             getAllBands();
-            $(document).ajaxComplete(initModalContent());
+            $(document).ajaxComplete(function(){
+                initModalContent();
+            });
         },
         error: function () {
             alert("Сталась помилка");

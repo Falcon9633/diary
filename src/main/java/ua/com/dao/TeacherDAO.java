@@ -11,4 +11,8 @@ import java.util.Set;
 public interface TeacherDAO extends JpaRepository<Teacher, Integer> {
     @Query("from Teacher t left join fetch t.subjectList")
     Set<Teacher> findAllWithSubject(Sort sort);
+
+    @Query("from Teacher t left join fetch t.subjectList" +
+            " left join fetch t.scheduleList")
+    Set<Teacher> findAllWithAllNested();
 }

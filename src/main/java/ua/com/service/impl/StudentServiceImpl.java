@@ -8,6 +8,7 @@ import ua.com.entity.Student;
 import ua.com.service.StudentService;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -30,6 +31,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAll() {
         return studentDAO.findAll();
+    }
+
+    @Override
+    public Set<Student> findAllSet() {
+        return studentDAO.findAllSet();
     }
 
     @Override

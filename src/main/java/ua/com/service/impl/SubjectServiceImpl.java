@@ -49,7 +49,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> findAllWithAllNested() {
+    public Set<Subject> findAllWithAllNested() {
         return subjectDAO.findAllWithAllNested();
     }
 }

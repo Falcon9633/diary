@@ -28,6 +28,11 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
+    public Band findByIdWithStudents(int id) {
+        return bandDAO.findByIdWithStudents(id);
+    }
+
+    @Override
     public Band findByIdWithSubject(int id) {
         return bandDAO.findByIdWithSubject(id);
     }
@@ -43,9 +48,7 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public List<Band> findAllWithAllNested() {
+    public Set<Band> findAllWithAllNested() {
         return bandDAO.findAllWithAllNested();
     }
-
-
 }

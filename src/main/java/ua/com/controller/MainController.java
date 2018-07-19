@@ -7,22 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import ua.com.entity.Band;
-import ua.com.entity.Student;
-import ua.com.entity.Teacher;
-import ua.com.entity.Subject;
-import ua.com.service.BandService;
-import ua.com.service.StudentService;
-import ua.com.service.TeacherService;
-import ua.com.service.SubjectService;
+import ua.com.entity.*;
+import ua.com.service.*;
 import ua.com.validator.BandValidator;
 import ua.com.validator.SubjectValidator;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -38,6 +29,9 @@ public class MainController {
 
     @Autowired
     private TeacherService teacherService;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     @Autowired
     private BandValidator bandValidator;
@@ -188,7 +182,7 @@ public class MainController {
     }
 
     @GetMapping("/subjectEditing")
-    public String subjectEditing(Model model){
+    public String subjectEditing(Model model) {
         Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
         Sort orders = new Sort(byName);
         model.addAttribute("allSubject", subjectService.findAll(orders));
@@ -219,6 +213,57 @@ public class MainController {
         subject.setTeacherList(teacherList);
         subjectService.save(subject);
         return "redirect:/setTeacherToSubject";
+    }
+
+    @GetMapping("/scheduleCreation")
+    public String scheduleCreating(Model model) {
+        model.addAttribute("allBand", bandService.findAll());
+        return "scheduleCreation";
+    }
+
+    @PostMapping("/createSchedule")
+    public String createSchedule(@RequestParam Map<String, String> requestParam) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        GregorianCalendar startDate = new GregorianCalendar();
+        startDate.set(GregorianCalendar.HOUR_OF_DAY, 0);
+        startDate.set(GregorianCalendar.MINUTE, 0);
+        startDate.set(GregorianCalendar.SECOND, 0);
+        List<Schedule> oldSchedule = scheduleService.findAllByDate(startDate.getTime());
+        for (Schedule schedule : oldSchedule) {
+            scheduleService.delete(schedule);
+        }
+        while (calendar.get(GregorianCalendar.MONTH) < 5 || calendar.get(GregorianCalendar.MONTH) > 7) {
+            for (int dayOfWeek = 2; dayOfWeek <= 7; dayOfWeek++) {
+                if (calendar.get(GregorianCalendar.DAY_OF_WEEK) == dayOfWeek) {
+                    for (int numberOfLesson = 0; numberOfLesson <= 8; numberOfLesson++) {
+                        Schedule schedule = new Schedule();
+                        schedule.setDate(calendar.getTime());
+                        schedule.setWeekOfYear(calendar.get(GregorianCalendar.WEEK_OF_YEAR));
+                        schedule.setDayOfWeek(dayOfWeek);
+                        schedule.setNumberOfLesson(numberOfLesson);
+                        scheduleService.save(schedule);
+                        try {
+                            schedule.setBand(bandService
+                                    .findOne(Integer.parseInt(
+                                            requestParam.get("idBand")
+                                    )));
+                            schedule.setSubject(subjectService
+                                    .findOne(Integer.parseInt(
+                                            requestParam.get("subject_" + dayOfWeek + "_" + numberOfLesson)
+                                    )));
+                            schedule.setTeacher(teacherService
+                                    .findOne(Integer.parseInt(
+                                            requestParam.get("teacher_" + dayOfWeek + "_" + numberOfLesson)
+                                    )));
+                        } catch (NumberFormatException ex) {
+                        }
+                        scheduleService.save(schedule);
+                    }
+                }
+            }
+            calendar.add(GregorianCalendar.DAY_OF_MONTH, 1); // day increment
+        }
+        return "redirect:/scheduleCreation";
     }
 
     @InitBinder("band")

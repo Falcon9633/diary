@@ -26,11 +26,17 @@ public class Student {
     private String password;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(name = "band_student",
-            inverseJoinColumns = @JoinColumn(name = "band_id"),
-            joinColumns = @JoinColumn(name = "student_id"))
     @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
     private Band band;
 
-
+//    public void setBand(Band band) {
+//        setBand(band, true);
+//    }
+//
+//    void setBand(Band band, boolean add){
+//        this.band = band;
+//        if (band != null && add){
+//            band.addStudent(this, false);
+//        }
+//    }
 }

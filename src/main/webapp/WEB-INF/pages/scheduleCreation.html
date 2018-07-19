@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Додавання предметів в клас</title>
+    <title>Створення розкладу</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,14 +21,14 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
-                <li><a href="" class="active">Класи</a>
+                <li><a href="">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
-                        <li><a th:href="@{/setSubjectToBand}" class="active">Додавання предметів</a></li>
+                        <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Предмети</a>
@@ -40,7 +40,7 @@
                 </li>
                 <li><a href="">Розклад</a>
                     <ul>
-                        <li><a th:href="@{/scheduleCreation}">Створення розкладу</a></li>
+                        <li><a th:href="@{/scheduleCreation}" class="active">Створення розкладу</a></li>
                         <li><a href="">Редагування розкладу</a></li>
                     </ul>
                 </li>
@@ -56,13 +56,14 @@
         </div>
     </div>
 
-    <form th:action="@{/saveSubjectToBand}" method="post">
+    <form th:action="@{/createSchedule}" method="post">
         <div class="row">
             <h1>
-                <label>Додавання предметів
+                <label>Клас
                     <select name="idBand">
                         <option value="">-- Оберіть клас --</option>
-                        <option th:each="bands:${allBand}" th:text="${bands.name}" th:value="${bands.id}"></option>
+                        <option th:each="band:${allBand}" th:text="${band.name}"
+                                th:value="${band.id}"></option>
                     </select>
                     <h3 class="errors hide">Оберіть клас</h3>
                 </label>
@@ -70,42 +71,97 @@
         </div>
 
         <div class="mobile">
-            <table class="bordered">
+            <table class="bordered scheduleMainTable">
                 <thead>
                 <tr>
-                    <th>№ з/п</th>
-                    <th>Назва предмету</th>
-                    <th>Класи</th>
-                    <th>Вибрати</th>
+                    <th>Понеділок</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="subjects, statSubject :${allSubject}">
-                    <td th:text="${statSubject.count}"/>
-                    <td th:text="${subjects.name}"/>
-                    <td>
-                        <div th:each="bandList, statBandList :${subjects.bandList}"
-                             th:text="!${statBandList.last}? ${bandList.name} + ',' : ${bandList.name}"></div>
-                    </td>
-                    <td>
-                        <input type="checkbox" th:name="idSubject-+${subjects.id}" th:value="${subjects.id}"/>
-                    </td>
+                <tr>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
+
+            <table class="bordered scheduleMainTable">
+                <thead>
+                <tr>
+                    <th>Вівторок</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="bordered scheduleMainTable">
+                <thead>
+                <tr>
+                    <th>Середа</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="bordered scheduleMainTable">
+                <thead>
+                <tr>
+                    <th>Четвер</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="bordered scheduleMainTable">
+                <thead>
+                <tr>
+                    <th>П’ятниця</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="bordered scheduleMainTable">
+                <thead>
+                <tr>
+                    <th>Субота</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
 
-        <div class="row">
-            <button type="submit" data-type="submit">Додати</button>
+        <div class="row float-left">
+            <button type="submit" data-type="submit">Створити</button>
         </div>
     </form>
-
 
 </div>
 
 
 <div th:replace="fragments/styles::main"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
+<!--<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>-->
+<script type="text/javascript" th:src="@{../js/scheduleCreation.js}"></script>
 </body>
 </html>
