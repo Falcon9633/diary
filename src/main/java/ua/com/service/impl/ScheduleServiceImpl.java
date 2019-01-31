@@ -7,7 +7,6 @@ import ua.com.dao.ScheduleDAO;
 import ua.com.entity.Schedule;
 import ua.com.service.ScheduleService;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +27,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public Schedule findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(int bandId, int weekOfYear, int dayOfWeek, int numberOfLesson) {
+        return scheduleDAO.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(bandId, weekOfYear, dayOfWeek, numberOfLesson);
+    }
+
+    @Override
     public List<Schedule> findAll() {
         return scheduleDAO.findAll();
     }
@@ -38,8 +42,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> findAllByDate(Date startDate) {
-        return scheduleDAO.findAllByDate(startDate);
+    public List<Schedule> findAllByBandAndWeekOfYearAndDayOfWeek(int bandId, int weekOfYear, int dayOfWeek) {
+        return scheduleDAO.findAllByBandAndWeekOfYearAndDayOfWeek(bandId, weekOfYear,dayOfWeek);
+    }
+
+    @Override
+    public List<Schedule> findAllGraterThenOrEqualToWeekOfYear(int weekOfYear) {
+        return scheduleDAO.findAllGraterThenOrEqualToWeekOfYear(weekOfYear);
     }
 
     @Override

@@ -41,7 +41,7 @@
                 <li><a href="">Розклад</a>
                     <ul>
                         <li><a th:href="@{/scheduleCreation}" class="active">Створення розкладу</a></li>
-                        <li><a href="">Редагування розкладу</a></li>
+                        <li><a th:href="@{/scheduleEditing}">Редагування розкладу</a></li>
                     </ul>
                 </li>
                 <li><a href="">Статистика</a></li>
@@ -60,7 +60,7 @@
         <div class="row">
             <h1>
                 <label>Клас
-                    <select name="idBand">
+                    <select name="idBand" class="valid">
                         <option value="">-- Оберіть клас --</option>
                         <option th:each="band:${allBand}" th:text="${band.name}"
                                 th:value="${band.id}"></option>
@@ -152,7 +152,7 @@
         </div>
 
         <div class="row float-left">
-            <button type="submit" data-type="submit">Створити</button>
+            <button type="button" data-type="submit">Створити</button>
         </div>
     </form>
 
@@ -161,7 +161,8 @@
 
 <div th:replace="fragments/styles::main"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<!--<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>-->
+<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
+<script type="text/javascript" th:src="@{../js/scheduleElements.js}"></script>
 <script type="text/javascript" th:src="@{../js/scheduleCreation.js}"></script>
 </body>
 </html>

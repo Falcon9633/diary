@@ -224,11 +224,9 @@ public class MainController {
     @PostMapping("/createSchedule")
     public String createSchedule(@RequestParam Map<String, String> requestParam) {
         GregorianCalendar calendar = new GregorianCalendar();
-        GregorianCalendar startDate = new GregorianCalendar();
-        startDate.set(GregorianCalendar.HOUR_OF_DAY, 0);
-        startDate.set(GregorianCalendar.MINUTE, 0);
-        startDate.set(GregorianCalendar.SECOND, 0);
-        List<Schedule> oldSchedule = scheduleService.findAllByDate(startDate.getTime());
+        Date currentTime = calendar.getTime();
+        int currentWeekOfYear = calendar.get(GregorianCalendar.WEEK_OF_YEAR);
+        List<Schedule> oldSchedule = scheduleService.findAllGraterThenOrEqualToWeekOfYear(currentWeekOfYear);
         for (Schedule schedule : oldSchedule) {
             scheduleService.delete(schedule);
         }
@@ -237,7 +235,7 @@ public class MainController {
                 if (calendar.get(GregorianCalendar.DAY_OF_WEEK) == dayOfWeek) {
                     for (int numberOfLesson = 0; numberOfLesson <= 8; numberOfLesson++) {
                         Schedule schedule = new Schedule();
-                        schedule.setDate(calendar.getTime());
+                        schedule.setEditingDate(currentTime);
                         schedule.setWeekOfYear(calendar.get(GregorianCalendar.WEEK_OF_YEAR));
                         schedule.setDayOfWeek(dayOfWeek);
                         schedule.setNumberOfLesson(numberOfLesson);
@@ -247,15 +245,24 @@ public class MainController {
                                     .findOne(Integer.parseInt(
                                             requestParam.get("idBand")
                                     )));
+                        } catch (NumberFormatException ex) {
+                            ex.printStackTrace();
+                        }
+                        try {
                             schedule.setSubject(subjectService
                                     .findOne(Integer.parseInt(
                                             requestParam.get("subject_" + dayOfWeek + "_" + numberOfLesson)
                                     )));
+                        } catch (NumberFormatException ex) {
+                            schedule.setSubject(null);
+                        }
+                        try {
                             schedule.setTeacher(teacherService
                                     .findOne(Integer.parseInt(
                                             requestParam.get("teacher_" + dayOfWeek + "_" + numberOfLesson)
                                     )));
                         } catch (NumberFormatException ex) {
+                            schedule.setTeacher(null);
                         }
                         scheduleService.save(schedule);
                     }
@@ -264,6 +271,48 @@ public class MainController {
             calendar.add(GregorianCalendar.DAY_OF_MONTH, 1); // day increment
         }
         return "redirect:/scheduleCreation";
+    }
+
+    @GetMapping("/scheduleEditing")
+    public String scheduleEditing(Model model) {
+        model.addAttribute("allBand", bandService.findAll());
+        return "scheduleEditing";
+    }
+
+    @PostMapping("/editSchedule")
+    public String editSchedule(@RequestParam Map<String, String> requestParam,
+                               @RequestParam("bandId") int bandId,
+                               @RequestParam("weekOfYear") int weekOfYear,
+                               @RequestParam("dayOfWeek") int dayOfWeek) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        Date currentTime = calendar.getTime();
+        for (int numberOfLesson = 0; numberOfLesson <= 8; numberOfLesson++) {
+            Schedule currentLessonSchedule = scheduleService.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(
+                    bandId,
+                    weekOfYear,
+                    dayOfWeek,
+                    numberOfLesson
+            );
+            currentLessonSchedule.setEditingDate(currentTime);
+            try {
+                currentLessonSchedule.setSubject(subjectService
+                        .findOne(Integer.parseInt(
+                                requestParam.get("subject_" + numberOfLesson)
+                        )));
+            } catch (NumberFormatException ex) {
+                currentLessonSchedule.setSubject(null);
+            }
+            try {
+                currentLessonSchedule.setTeacher(teacherService
+                        .findOne(Integer.parseInt(
+                                requestParam.get("teacher_" + numberOfLesson)
+                        )));
+            } catch (NumberFormatException ex) {
+                currentLessonSchedule.setTeacher(null);
+            }
+            scheduleService.save(currentLessonSchedule);
+        }
+        return "redirect:/scheduleEditing";
     }
 
     @InitBinder("band")

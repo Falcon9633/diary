@@ -20,7 +20,7 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @DateTimeFormat(pattern = "YYYY/MM/DD")
-    private Date date;
+    private Date editingDate;
     private int weekOfYear;
     private int dayOfWeek;
     private int numberOfLesson;

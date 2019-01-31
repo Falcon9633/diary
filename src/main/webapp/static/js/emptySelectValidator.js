@@ -1,7 +1,11 @@
 /*<![CDATA[*/
+/*
+Put attr 'type="button"' and 'data-type="submit"' in your submit button
+to check all empty selects witch has class 'valid'. Also works with bootstrap modal.
+ */
 
 var $button = $('button[data-type]');
-var $select = $('select');
+var $select = $('select.valid');
 var $errorElement = $('label>h3.errors');
 
 function init() {
@@ -11,7 +15,7 @@ function init() {
         $select.on('change', handleSelectChange);
     }
     if ($button.data('type') === 'button'){
-        $button.on('click', handleButtonClick)
+        $button.on('click', handleButtonClick);
         $select.on('change', handleSelectChange);
     }
 }
@@ -43,6 +47,6 @@ function handleButtonClick() {
     }
 }
 
-$(document).ready(init());
+$(document).ready(init);
 
 /*]]>*/

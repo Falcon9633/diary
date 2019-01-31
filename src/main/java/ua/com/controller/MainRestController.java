@@ -2,7 +2,6 @@ package ua.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.GC;
 import ua.com.entity.*;
 import ua.com.service.*;
 
@@ -60,5 +59,12 @@ public class MainRestController {
     public List<Schedule> getAllScheduleCurrentWeek(){
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         return scheduleService.findAllByWeekOfYearWithAllNested(gregorianCalendar.get(GregorianCalendar.WEEK_OF_YEAR));
+    }
+
+    @GetMapping("/getBandScheduleByDate")
+    public List<Schedule> getBandScheduleByDate (@RequestParam("bandId") int bandId,
+                                                 @RequestParam("weekOfYear") int weekOfYear,
+                                                 @RequestParam("dayOfWeek") int dayOfWeek){
+        return scheduleService.findAllByBandAndWeekOfYearAndDayOfWeek(bandId, weekOfYear, dayOfWeek);
     }
 }

@@ -5,10 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Реєстрація користувачів</title>
+    <title>Редагування розкладу</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="wrapper">
@@ -17,35 +18,35 @@
             <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
             </div>
             <ul class="nav h-menu">
-                <li><a href="#" class="active">Користувачі</a>
+                <li><a href="">Користувачі</a>
                     <ul>
-                        <li><a th:href="@{/userRegistration}" class="active">Реєстрація користувачів</a></li>
+                        <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
                         <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Класи</a>
+                <li><a href="">Класи</a>
                     <ul>
                         <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Предмети</a>
+                <li><a href="">Предмети</a>
                     <ul>
                         <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
                         <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
                         <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Розклад</a>
+                <li><a href="">Розклад</a>
                     <ul>
                         <li><a th:href="@{/scheduleCreation}">Створення розкладу</a></li>
-                        <li><a th:href="@{/scheduleEditing}">Редагування розкладу</a></li>
+                        <li><a th:href="@{/scheduleEditing}" class="active">Редагування розкладу</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Статистика</a></li>
-                <li><a href="#">Хто залоганий</a>
+                <li><a href="">Статистика</a></li>
+                <li><a href="">Хто залоганий</a>
                     <ul>
                         <li><a href="">Особистий кабінет</a></li>
                         <li><a href="">Повернення на сторінку вчителя</a></li>
@@ -56,35 +57,39 @@
         </div>
     </div>
 
-    <form th:action="@{/saveUser}" method="post">
-        <div class="row">
-
-            <h2>
-                <label>Реєстрація користувачів <br/>
-                    <input type="text" name="name" placeholder="name"/>
-                    <input type="text" name="surname" placeholder="surname"/>
-                    <input type="text" name="email" placeholder="email"/>
+    <form th:action="@{/editSchedule}" method="post">
+        <div class="row" id="class-select-container">
+            <h1>
+                <label class="label-right">Клас
+                    <select name="bandId">
+                        <option value="">-- Оберіть клас --</option>
+                        <option th:each="band:${allBand}" th:text="${band.name}"
+                                th:value="${band.id}"></option>
+                    </select>
+                    <h3 id="bandSelectError" class="errors hide">Оберіть клас</h3>
                 </label>
-            </h2>
-
-            <div class="row">
-                <input id="student" checked type="radio" name="userType" value="student"/>
-                <label class="label-right" for="student">Користувач є учнем</label>
-
-                <input id="teacher" type="radio" name="userType" value="teacher"/>
-                <label class="label-right" for="teacher">Користувач є вчителем</label>
-            </div>
-
-            <div class="row">
-                <button type="submit">Зареєструвати</button>
-            </div>
-
+            </h1>
+            <button type="submit">Зберегти зміни</button>
         </div>
+
+        <div id="calendar" class="cal1"></div>
+
+        <input type="hidden" th:name="weekOfYear"/>
+        <input type="hidden" th:name="dayOfWeek"/>
     </form>
+
+
+
 </div>
 
-
 <div th:replace="fragments/styles::main"/>
+<div th:replace="fragments/styles::calendar"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
+<script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
+<script type="text/javascript" th:src="@{../js/underscore.js}"></script>
+<script type="text/javascript" th:src="@{../js/clndr.js}"></script>
+<script type="text/javascript" th:src="@{../js/scheduleElements.js}"></script>
+<script type="text/javascript" th:src="@{../js/scheduleEditing.js}"></script>
+<!--<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>-->
 </body>
 </html>

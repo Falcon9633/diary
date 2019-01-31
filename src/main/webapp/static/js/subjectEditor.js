@@ -168,5 +168,5 @@ function editSubject(editedSubject) {
     })
 }
 
-$(document).ready(init());
+$(document).ready(init);
 /*]]>*/

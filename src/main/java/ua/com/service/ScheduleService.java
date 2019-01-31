@@ -11,11 +11,18 @@ public interface ScheduleService {
 
     Schedule findOne(int id);
 
+    Schedule findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(int bandId,
+                                                                               int weekOfYear,
+                                                                               int dayOfWeek,
+                                                                               int numberOfLesson);
+
     List<Schedule> findAll();
 
     List<Schedule> findAllByWeekOfYearWithAllNested(int weekOfYear);
 
-    List<Schedule> findAllByDate(Date startDate);
+    List<Schedule> findAllByBandAndWeekOfYearAndDayOfWeek(int bandId, int weekOfYear, int dayOfWeek);
+
+    List<Schedule> findAllGraterThenOrEqualToWeekOfYear(int weekOfYear);
 
     void delete(Schedule schedule);
 }

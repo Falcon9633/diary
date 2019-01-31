@@ -164,5 +164,5 @@ function editBand(editedBand) {
     })
 }
 
-$(document).ready(init());
+$(document).ready(init);
 /*]]>*/
