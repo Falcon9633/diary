@@ -1,16 +1,20 @@
 /*<![CDATA[*/
+const $SUBJECT_EDITING_MODAL = $('#subjectEditingModal');
+const $SUBJECT_SELECT = $('select[name=subjectId]');
 
 var subjects;
-var $select = $('select');
-var $selectedSubjectId = '';
+var $selectedSubjectId;
 var selectedSubject;
-var $editButton = $('button[data-target]');
-var $saveButton = $('div.modal-footer>:not(button[data-dismiss])');
 
 function init() {
+    let $showModalButton = $('#showModalButton');
+    let $saveButton = $('#saveButton');
+
+    $SUBJECT_EDITING_MODAL.modal({'show': false});
     getAllSubjects();
-    $select.on('change', getSelectedSubjectId);
-    $editButton.on('click', handleEditButton);
+
+    $SUBJECT_SELECT.on('change', getSelectedSubjectId);
+    $showModalButton.on('click', showModalValidator);
     $saveButton.on('click', handleSaveButton);
 }
 
@@ -22,16 +26,31 @@ function getAllSubjects() {
 
 function getSelectedSubjectId() {
     $selectedSubjectId = $(this).val();
-}
 
-function handleEditButton() {
-    if ($select.val() === '') {
+    if (!$selectedSubjectId){
+        $SUBJECT_EDITING_MODAL.modal('hide');
         return;
     }
+
     initModalContent();
 }
 
+function showModalValidator() {
+    if (!$selectedSubjectId) {
+        let $errorElement = $('#subjectSelectError');
+        $errorElement.show();
+        alert($errorElement.text());
+        return;
+    }
+
+    $SUBJECT_EDITING_MODAL.modal('show');
+}
+
 function initModalContent() {
+    if (!$SUBJECT_SELECT){
+        return;
+    }
+
     selectedSubject = subjects.find(function (item) {
         return item.id === parseInt($selectedSubjectId);
     });

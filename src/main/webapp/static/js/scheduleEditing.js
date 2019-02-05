@@ -25,18 +25,10 @@ function init() {
     loadData();
     setWOYandDOWinputsValue(TODAY);
 
-    var $classSelectContainer = $('#class-select-container');
+    let $classSelectContainer = $('#class-select-container');
 
     $classSelectContainer.on('change', 'select[name=bandId]', handleBandSelectChange);
-
-    // const $subjectEditingModal = $('#subjectEditingModal')
-    // $subjectEditingModal.modal({show: false})
-    //
-    // $showModalButton.on('click', function () {
-    //     if (canEditSubject()) {
-    //         $subjectEditingModal.modal('show')
-    //     }
-    // });
+    $('form').submit(handleSubmitForm);
 
     $(document).ajaxComplete(function () {
         $('#calendar').clndr({
@@ -59,7 +51,7 @@ function init() {
                     selectedDate = target.date;
                     changeEventListingTitle(target.date);
                     if (!$selectedBandId){
-                        $errorElement = $('#bandSelectError');
+                        let $errorElement = $('#bandSelectError');
                         $errorElement.show();
                         alert($errorElement.text());
                         return;
@@ -90,6 +82,15 @@ function loadData() {
 function setWOYandDOWinputsValue(moment) {
     $('input[name=weekOfYear]').val(moment.week());
     $('input[name=dayOfWeek]').val(moment.weekday() + 1)
+}
+
+function handleSubmitForm(event){
+    if (!$selectedBandId){
+        let $errorElement = $('#bandSelectError');
+        $errorElement.show();
+        alert($errorElement.text());
+        event.preventDefault();
+    }
 }
 
 function createEventForm() {

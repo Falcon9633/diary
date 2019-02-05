@@ -481,13 +481,13 @@ ul.leftNav li:last-child a {
     float: left;
 }
 .errors {
-    display: inline;
+    display: none;
     color: #ff0000;
 }
 
-.hide {
-    display: none;
-}
+/*.hide {*/
+    /*display: none;*/
+/*}*/
 
 .inline {
     display: inline;

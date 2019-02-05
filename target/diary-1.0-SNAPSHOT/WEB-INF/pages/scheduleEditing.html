@@ -27,14 +27,14 @@
                 </li>
                 <li><a href="">Класи</a>
                     <ul>
-                        <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
+                        <li><a th:href="@{/bandCreation}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
+                        <li><a th:href="@{/subjectCreation}">Створення предметів</a></li>
                         <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
                         <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
@@ -60,16 +60,16 @@
     <form th:action="@{/editSchedule}" method="post">
         <div class="row" id="class-select-container">
             <h1>
-                <label class="label-right">Клас
+                <label>Клас
                     <select name="bandId">
                         <option value="">-- Оберіть клас --</option>
                         <option th:each="band:${allBand}" th:text="${band.name}"
                                 th:value="${band.id}"></option>
                     </select>
-                    <h3 id="bandSelectError" class="errors hide">Оберіть клас</h3>
+                    <button type="submit" id="saveButton">Зберегти зміни</button>
                 </label>
+                <h3 id="bandSelectError" class="errors">Оберіть клас</h3>
             </h1>
-            <button type="submit">Зберегти зміни</button>
         </div>
 
         <div id="calendar" class="cal1"></div>
@@ -90,6 +90,5 @@
 <script type="text/javascript" th:src="@{../js/clndr.js}"></script>
 <script type="text/javascript" th:src="@{../js/scheduleElements.js}"></script>
 <script type="text/javascript" th:src="@{../js/scheduleEditing.js}"></script>
-<!--<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>-->
 </body>
 </html>

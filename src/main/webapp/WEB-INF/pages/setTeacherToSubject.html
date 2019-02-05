@@ -26,14 +26,14 @@
                 </li>
                 <li><a href="">Класи</a>
                     <ul>
-                        <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
+                        <li><a th:href="@{/bandCreation}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="" class="active">Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
+                        <li><a th:href="@{/subjectCreation}">Створення предметів</a></li>
                         <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
                         <li><a th:href="@{/setTeacherToSubject}" class="active">Додавання вчителів</a></li>
                     </ul>
@@ -60,13 +60,14 @@
         <div class="row">
             <h1>
                 <label>Додавання вчителів
-                    <select name="idSubject" class="valid">
+                    <select name="subjectId">
                         <option value="">-- Оберіть предмет --</option>
                         <option th:each="subjects:${allSubject}" th:text="${subjects.name}"
                                 th:value="${subjects.id}"></option>
                     </select>
-                    <h3 class="errors hide">Оберіть предмет</h3>
+                    <button type="submit">Додати</button>
                 </label>
+                <h3 id="subjectSelectError" class="errors">Оберіть предмет</h3>
             </h1>
         </div>
 
@@ -91,25 +92,29 @@
                              th:text="!${statSubjectList.last}? ${subjectList.name} + ',' : ${subjectList.name}"></div>
                     </td>
                     <td>
-                        <input type="checkbox" th:name="idTeacher-+${teachers.id}" th:value="${teachers.id}"/>
+                        <input type="checkbox" th:name="teacherId-+${teachers.id}" th:value="${teachers.id}"/>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="row">
-            <button type="submit" data-type="submit">Додати</button>
-        </div>
-
     </form>
-
 
 </div>
 
 
 <div th:replace="fragments/styles::main"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
+<script type="text/javascript">
+    $('form').submit(function (event) {
+        if (!$('select[name=sujectId]').val()){
+            let $errorElement = $('#subjectSelectError');
+            $errorElement.show();
+            alert($errorElement.text());
+            event.preventDefault();
+        }
+    });
+</script>
 </body>
 </html>

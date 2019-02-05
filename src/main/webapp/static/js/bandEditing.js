@@ -1,16 +1,20 @@
 /*<![CDATA[*/
+const $BAND_EDITING_MODAL = $('#bandEditingModal');
+const $BAND_SELECT = $('select[name=bandId]');
 
 var bands;
-var $select = $('select');
-var $selectedBandId = '';
+var $selectedBandId;
 var selectedBand;
-var $editButton = $('button[data-target]');
-var $saveButton = $('div.modal-footer>:not(button[data-dismiss])');
 
 function init() {
+    let $showModalButton = $('#showModalButton');
+    let $saveButton = $('#saveButton');
+
+    $BAND_EDITING_MODAL.modal({'show': false});
     getAllBands();
-    $select.on('change', getSelectedBandId);
-    $editButton.on('click', handleEditButton);
+
+    $BAND_SELECT.on('change', getSelectedBandId);
+    $showModalButton.on('click', showModalValidator);
     $saveButton.on('click', handleSaveButton);
 }
 
@@ -22,16 +26,31 @@ function getAllBands() {
 
 function getSelectedBandId() {
     $selectedBandId = $(this).val();
-}
 
-function handleEditButton() {
-    if ($select.val() === '') {
+    if (!$selectedBandId){
+        $BAND_EDITING_MODAL.modal('hide');
         return;
     }
+
     initModalContent();
 }
 
+function showModalValidator() {
+    if (!$selectedBandId) {
+        let $errorElement = $('#bandSelectError');
+        $errorElement.show();
+        alert($errorElement.text());
+        return;
+    }
+
+    $BAND_EDITING_MODAL.modal('show');
+}
+
 function initModalContent() {
+    if (!$BAND_SELECT){
+        return;
+    }
+
     selectedBand = bands.find(function (item) {
         return item.id === parseInt($selectedBandId);
     });

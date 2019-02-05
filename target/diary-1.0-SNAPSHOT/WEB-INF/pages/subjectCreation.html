@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sf="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Створення класу</title>
+    <title>Створення предмету</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,19 +21,19 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
                     </ul>
                 </li>
-                <li><a href="" class="active">Класи</a>
+                <li><a href="">Класи</a>
                     <ul>
-                        <li><a th:href="@{/bandRegistration}" class="active">Створення класів</a></li>
+                        <li><a th:href="@{/bandCreation}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
-                <li><a href="">Предмети</a>
+                <li><a href="" class="active">Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
+                        <li><a th:href="@{/subjectCreation}" class="active">Створення предметів</a></li>
                         <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
                         <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
@@ -56,11 +56,11 @@
         </div>
     </div>
 
-    <form th:action="@{/saveBand}" method="post" th:object="${band}">
+    <form th:action="@{/saveSubject}" method="post" th:object="${subject}">
         <div class="row">
             <h1>
-                <label>Створення класу<br/>
-                    <input type="text" th:field="*{name}" placeholder="Назва класу"/>
+                <label>Створення предмету<br/>
+                    <input type="text" th:field="*{name}" placeholder="Назва предмету"/>
                     <button type="submit">Створити</button>
                 </label>
                 <h3 th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errors"/>
@@ -69,8 +69,6 @@
     </form>
 
 </div>
-
-
 
 
 <div th:replace="fragments/styles::main"/>

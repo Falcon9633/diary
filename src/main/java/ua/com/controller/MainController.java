@@ -115,10 +115,10 @@ public class MainController {
         return "redirect:/setStudentToBand";
     }
 
-    @GetMapping("/bandRegistration")
+    @GetMapping("/bandCreation")
     public String bandRegistration(Model model) {
         model.addAttribute("band", new Band());
-        return "bandRegistration";
+        return "bandCreation";
     }
 
     @PostMapping("/saveBand")
@@ -149,13 +149,13 @@ public class MainController {
     }
 
     @PostMapping("/saveSubjectToBand")
-    public String saveSubjectToBand(@RequestParam("idBand") int idBand,
+    public String saveSubjectToBand(@RequestParam("bandId") int idBand,
                                     @RequestParam Map<String, String> requestParam) {
         Band band = bandService.findByIdWithSubject(idBand);
         Set<Subject> subjectList = band.getSubjectList();
 
         for (String key : requestParam.keySet()) {
-            if (key.contains("idSubject-")) {
+            if (key.contains("subjectId-")) {
                 Subject subject = subjectService.findOne(Integer.parseInt(requestParam.get(key)));
                 subjectList.add(subject);
             }
@@ -165,10 +165,10 @@ public class MainController {
         return "redirect:/setSubjectToBand";
     }
 
-    @GetMapping("/subjectRegistration")
+    @GetMapping("/subjectCreation")
     public String subjectRegistration(Model model) {
         model.addAttribute("subject", new Subject());
-        return "subjectRegistration";
+        return "subjectCreation";
     }
 
     @PostMapping("/saveSubject")
@@ -199,13 +199,13 @@ public class MainController {
     }
 
     @PostMapping("/saveTeacherToSubject")
-    public String saveTeacherToSubject(@RequestParam("idSubject") int idSubject,
+    public String saveTeacherToSubject(@RequestParam("subjectId") int idSubject,
                                        @RequestParam Map<String, String> requestParam) {
         Subject subject = subjectService.findByIdWithTeacher(idSubject);
         Set<Teacher> teacherList = subject.getTeacherList();
 
         for (String key : requestParam.keySet()) {
-            if (key.contains("idTeacher-")) {
+            if (key.contains("teacherId-")) {
                 Teacher teacher = teacherService.findOne(Integer.parseInt(requestParam.get(key)));
                 teacherList.add(teacher);
             }

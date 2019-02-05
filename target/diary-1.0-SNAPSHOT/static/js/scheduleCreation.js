@@ -8,6 +8,7 @@ var $mainTable;
 var $bandSelect;
 var $subjectsForm;
 var $teachersForm;
+var $selectedBandId;
 
 var bands;
 var subjects;
@@ -19,9 +20,11 @@ function init() {
     const INIT_VAR_COUNT = 4;
 
     $mainTable = $('div.mobile');
-    $bandSelect = $('select[name=idBand]');
+    $bandSelect = $('select[name=bandId]');
 
     $mainTable.hide();
+
+    $('form').submit(handleSubmitForm);
 
     $.getJSON("/getAllBands", function (json) {
         bands = json;
@@ -54,6 +57,15 @@ function init() {
     }
 }
 
+function handleSubmitForm(event){
+    if (!$selectedBandId){
+        let $errorElement = $('#bandSelectError');
+        $errorElement.show();
+        alert($errorElement.text());
+        event.preventDefault();
+    }
+}
+
 function createSchedule() {
     createSubjectTeacherForm();
     $bandSelect.on('change', handleBandSelectChange);
@@ -73,7 +85,7 @@ function emptySubjectTeacherForm() {
 }
 
 function handleBandSelectChange() {
-    let $selectedBandId = $(this).val();
+    $selectedBandId = $(this).val();
 
     if ($selectedBandId === '') {
         $mainTable.hide();

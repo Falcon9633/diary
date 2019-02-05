@@ -26,14 +26,14 @@
                 </li>
                 <li><a href="">Класи</a>
                     <ul>
-                        <li><a th:href="@{/bandRegistration}">Створення класів</a></li>
+                        <li><a th:href="@{/bandCreation}">Створення класів</a></li>
                         <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
                         <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
                 <li><a href="">Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectRegistration}">Створення предметів</a></li>
+                        <li><a th:href="@{/subjectCreation}">Створення предметів</a></li>
                         <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
                         <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
@@ -60,13 +60,14 @@
         <div class="row">
             <h1>
                 <label>Клас
-                    <select name="idBand" class="valid">
+                    <select name="bandId">
                         <option value="">-- Оберіть клас --</option>
                         <option th:each="band:${allBand}" th:text="${band.name}"
                                 th:value="${band.id}"></option>
                     </select>
-                    <h3 class="errors hide">Оберіть клас</h3>
+                    <button type="submit">Створити</button>
                 </label>
+                <h3 id="bandSelectError" class="errors">Оберіть клас</h3>
             </h1>
         </div>
 
@@ -151,9 +152,6 @@
 
         </div>
 
-        <div class="row float-left">
-            <button type="button" data-type="submit">Створити</button>
-        </div>
     </form>
 
 </div>
@@ -161,7 +159,6 @@
 
 <div th:replace="fragments/styles::main"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<script type="text/javascript" th:src="@{../js/emptySelectValidator.js}"></script>
 <script type="text/javascript" th:src="@{../js/scheduleElements.js}"></script>
 <script type="text/javascript" th:src="@{../js/scheduleCreation.js}"></script>
 </body>
