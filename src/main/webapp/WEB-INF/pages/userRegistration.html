@@ -56,28 +56,21 @@
         </div>
     </div>
 
-    <form th:action="@{/saveUser}" method="post">
+    <form th:action="@{/saveUser}" th:object="${userRegistrationDTO}" method="post">
         <div class="row">
 
             <h2>
                 <label>Реєстрація користувачів <br/>
-                    <input type="text" name="name" placeholder="name"/>
-                    <input type="text" name="surname" placeholder="surname"/>
-                    <input type="text" name="email" placeholder="email"/>
+                    <input type="text" th:field="*{name}" placeholder="name"/>
+                    <input type="text" th:field="*{surname}" placeholder="surname"/>
+                    <input type="text" th:field="*{email}" placeholder="email"/>
+                    <button type="submit">Зареєструвати</button>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+                    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</div>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
                 </label>
             </h2>
 
-            <div class="row">
-                <input id="student" checked type="radio" name="userType" value="student"/>
-                <label class="label-right" for="student">Користувач є учнем</label>
-
-                <input id="teacher" type="radio" name="userType" value="teacher"/>
-                <label class="label-right" for="teacher">Користувач є вчителем</label>
-            </div>
-
-            <div class="row">
-                <button type="submit">Зареєструвати</button>
-            </div>
 
         </div>
     </form>

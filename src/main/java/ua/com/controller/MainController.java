@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import ua.com.dto.UserRegistrationDTO;
 import ua.com.entity.*;
 import ua.com.service.*;
 import ua.com.validator.BandValidator;
@@ -61,31 +62,19 @@ public class MainController {
 
 
     @GetMapping("/userRegistration")
-    public String userRegistration() {
+    public String userRegistration(Model model) {
+        model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
         return "userRegistration";
     }
 
 
     @PostMapping("/saveUser")
-    public String saveUser(@RequestParam("name") String name,
-                           @RequestParam("surname") String surname,
-                           @RequestParam("email") String email,
-                           @RequestParam("userType") String userType) {
-
-        if (userType.equals("student")) {
-
-            Student student = new Student();
-            student.setName(name);
-            student.setSurname(surname);
-            student.setEmail(email);
-            studentService.save(student);
-        } else if (userType.equals("teacher")) {
-            Teacher teacher = new Teacher();
-            teacher.setName(name);
-            teacher.setSurname(surname);
-            teacher.setEmail(email);
-            teacherService.save(teacher);
+    public String saveUser(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "userRegistration";
         }
+
         return "redirect:/userRegistration";
     }
 

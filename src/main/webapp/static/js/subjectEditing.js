@@ -61,7 +61,7 @@ function initModalContent() {
 }
 
 function getSubjectName(selectedSubject) {
-    $('h2[data-container="subject-name"]').text("Назва класу:\xa0\xa0\xa0\xa0" + selectedSubject.name + "\xa0\xa0\xa0\xa0--->\xa0\xa0\xa0\xa0");
+    $('h2[data-container="subject-name"]').text("Назва предмету:\xa0\xa0\xa0\xa0" + selectedSubject.name + "\xa0\xa0\xa0\xa0--->\xa0\xa0\xa0\xa0");
 }
 
 function getSubjectBandList(selectedSubject) {
