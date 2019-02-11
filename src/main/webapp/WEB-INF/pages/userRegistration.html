@@ -21,7 +21,7 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}" class="active">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Класи</a>
@@ -59,17 +59,30 @@
     <form th:action="@{/saveUser}" th:object="${userRegistrationDTO}" method="post">
         <div class="row">
 
-            <h2>
+            <h1>
                 <label>Реєстрація користувачів <br/>
-                    <input type="text" th:field="*{name}" placeholder="name"/>
-                    <input type="text" th:field="*{surname}" placeholder="surname"/>
-                    <input type="text" th:field="*{email}" placeholder="email"/>
+                    <div class="inline float-left">
+                        <input type="text" th:field="*{name}" placeholder="Ім’я"/>
+                        <h3 th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errors">name error</h3>
+                    </div>
+                    <div class="inline float-left">
+                        <input type="text" th:field="*{surname}" placeholder="Прізвище"/>
+                        <h3 th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="errors">surname error</h3>
+                    </div>
+                    <div class="inline float-left">
+                        <input type="text" th:field="*{email}" placeholder="email"/>
+                        <h3 th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errors">email error</h3>
+                    </div>
                     <button type="submit">Зареєструвати</button>
-                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
-                    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</div>
-                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
                 </label>
-            </h2>
+                <h2 style="clear: both">
+                    <input type="radio" id="studentRadio" th:field="*{userType}" th:value="student">
+                    <label for="studentRadio" class="label-right">Студент</label>
+                    <input type="radio"  id="teacherRadio" th:field="*{userType}" th:value="teacher">
+                    <label for="teacherRadio" class="label-right">Вчитель</label>
+                    <h3 style="clear: both" th:if="${#fields.hasErrors('userType')}" th:errors="*{userType}" class="errors">email error</h3>
+                </h2>
+            </h1>
 
 
         </div>

@@ -7,6 +7,7 @@ import ua.com.entity.Band;
 
 @Component
 public class BandValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> aClass) {
         return aClass.equals(Band.class);

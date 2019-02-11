@@ -21,7 +21,7 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання учня у клас</a></li>
+                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
                 <li><a href="">Класи</a>
@@ -67,7 +67,7 @@
                     </select>
                     <button type="submit">Додати</button>
                 </label>
-                <h3 id="subjectSelectError" class="errors">Оберіть предмет</h3>
+                <h3 id="subjectSelectError" class="errors hideError">Оберіть предмет</h3>
             </h1>
         </div>
 
@@ -107,14 +107,14 @@
 <div th:replace="fragments/styles::main"/>
 <script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 <script type="text/javascript">
-    $('form').submit(function (event) {
-        if (!$('select[name=sujectId]').val()){
-            let $errorElement = $('#subjectSelectError');
-            $errorElement.show();
-            alert($errorElement.text());
-            event.preventDefault();
-        }
-    });
+        $('form').submit(function (event) {
+            if (!$('select[name=subjectId]').val()){
+                let $errorElement = $('#subjectSelectError');
+                $errorElement.show();
+                alert($errorElement.text());
+                event.preventDefault();
+            }
+        });
 </script>
 </body>
 </html>

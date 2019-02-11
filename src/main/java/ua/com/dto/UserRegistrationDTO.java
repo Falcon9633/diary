@@ -15,7 +15,8 @@ import javax.validation.constraints.Size;
 @ToString
 public class UserRegistrationDTO {
 
-    private int id;
+    @NotBlank
+    private String userType;
     @NotBlank
     @Size(min = 2, max = 16)
     private String name;

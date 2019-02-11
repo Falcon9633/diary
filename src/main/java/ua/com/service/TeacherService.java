@@ -11,6 +11,8 @@ public interface TeacherService {
 
     Teacher findOne(int id);
 
+    Teacher findByEmail(String email);
+
     List<Teacher> findAll();
 
     Set<Teacher> findAllWithSubject(Sort sort);

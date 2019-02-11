@@ -29,6 +29,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student findByEmail(String email) {
+        return studentDAO.findByEmail(email);
+    }
+
+    @Override
     public List<Student> findAll() {
         return studentDAO.findAll();
     }
@@ -39,8 +44,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student findStudentWithBand(int id) {
-        return studentDAO.findStudentWithBand(id);
+    public Student findStudentByIdWithBand(int id) {
+        return studentDAO.findStudentByIdWithBand(id);
     }
 
     @Override

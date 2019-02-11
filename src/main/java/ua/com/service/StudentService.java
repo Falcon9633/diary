@@ -11,11 +11,13 @@ public interface StudentService {
 
     Student findOne(int id);
 
+    Student findByEmail(String email);
+
     List<Student> findAll();
 
     Set<Student> findAllSet();
 
-    Student findStudentWithBand(int id);
+    Student findStudentByIdWithBand(int id);
 
     List<Student> findAllWithBand();
 

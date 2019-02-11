@@ -12,6 +12,7 @@ import ua.com.entity.*;
 import ua.com.service.*;
 import ua.com.validator.BandValidator;
 import ua.com.validator.SubjectValidator;
+import ua.com.validator.UserRegistrationValidator;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -33,6 +34,9 @@ public class MainController {
 
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private UserRegistrationValidator userRegistrationValidator;
 
     @Autowired
     private BandValidator bandValidator;
@@ -72,7 +76,27 @@ public class MainController {
     public String saveUser(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            bindingResult
+                    .getFieldErrors()
+                    .stream()
+                    .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
             return "userRegistration";
+        }
+
+        if (userRegistrationDTO.getUserType().equals("student")) {
+            Student registered = new Student();
+            registered.setName(userRegistrationDTO.getName());
+            registered.setSurname(userRegistrationDTO.getSurname());
+            registered.setEmail(userRegistrationDTO.getEmail());
+            studentService.save(registered);
+        }
+
+        if (userRegistrationDTO.getUserType().equals("teacher")) {
+            Teacher registered = new Teacher();
+            registered.setName(userRegistrationDTO.getName());
+            registered.setSurname(userRegistrationDTO.getSurname());
+            registered.setEmail(userRegistrationDTO.getEmail());
+            teacherService.save(registered);
         }
 
         return "redirect:/userRegistration";
@@ -81,7 +105,7 @@ public class MainController {
     @GetMapping("/setStudentToBand")
     public String setStudentToBand(Model model) {
         model.addAttribute("allBands", bandService.findAll());
-        model.addAttribute("dateStudent", studentService.findAllWithBand());
+        model.addAttribute("allStudents", studentService.findAllWithBand());
 
 
         return "setStudentToBand";
@@ -89,12 +113,11 @@ public class MainController {
 
     @PostMapping("/saveStudentToBand")
     public String saveStudentToBand(@RequestParam Map<String, String> requestParam) {
-
         Band band = bandService.findOne(Integer.parseInt(requestParam.get("band")));
 
         for (String key : requestParam.keySet()) {
             if (key.contains("user")) {
-                Student student = studentService.findStudentWithBand(Integer.parseInt(requestParam.get(key)));
+                Student student = studentService.findStudentByIdWithBand(Integer.parseInt(requestParam.get(key)));
 
                 student.setBand(band);
                 studentService.save(student);
@@ -113,11 +136,14 @@ public class MainController {
     @PostMapping("/saveBand")
     public String saveBand(@ModelAttribute("band") @Valid Band band, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println("bandEmptyNameErr");
-            return "bandRegistration";
+            bindingResult
+                    .getFieldErrors()
+                    .stream()
+                    .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
+            return "bandCreation";
         }
         bandService.save(band);
-        return "redirect:/bandRegistration";
+        return "redirect:/bandCreation";
     }
 
     @GetMapping("/bandEditing")
@@ -163,11 +189,14 @@ public class MainController {
     @PostMapping("/saveSubject")
     public String saveSubject(@ModelAttribute("subject") @Valid Subject subject, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println("subjectEmptyNameErr");
-            return "subjectRegistration";
+            bindingResult
+                    .getFieldErrors()
+                    .stream()
+                    .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
+            return "subjectCreation";
         }
         subjectService.save(subject);
-        return "redirect:/subjectRegistration";
+        return "redirect:/subjectCreation";
     }
 
     @GetMapping("/subjectEditing")
@@ -232,7 +261,7 @@ public class MainController {
                         try {
                             schedule.setBand(bandService
                                     .findOne(Integer.parseInt(
-                                            requestParam.get("idBand")
+                                            requestParam.get("bandId")
                                     )));
                         } catch (NumberFormatException ex) {
                             ex.printStackTrace();
@@ -302,6 +331,11 @@ public class MainController {
             scheduleService.save(currentLessonSchedule);
         }
         return "redirect:/scheduleEditing";
+    }
+
+    @InitBinder("userRegistrationDTO")
+    public void initUserRegistrationBinder(WebDataBinder binder) {
+        binder.addValidators(userRegistrationValidator);
     }
 
     @InitBinder("band")

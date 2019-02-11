@@ -29,6 +29,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher findByEmail(String email) {
+        return teacherDAO.findByEmail(email);
+    }
+
+    @Override
     public List<Teacher> findAll() {
         return teacherDAO.findAll();
     }

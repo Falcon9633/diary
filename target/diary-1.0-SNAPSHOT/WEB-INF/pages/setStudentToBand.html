@@ -21,7 +21,7 @@
                     <ul>
                         <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
                         <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}" class="active">Додавання учня у клас</a></li>
+                        <li><a th:href="@{/setStudentToBand}" class="active">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
                 <li><a href="">Класи</a>
@@ -83,12 +83,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="student,stat:${dateStudent}">
+                <tr th:each="student,stat:${allStudents}">
                     <td th:text="${stat.count}"></td>
                     <td th:text="${student.name}"></td>
                     <td th:text="${student.surname}"></td>
                     <td th:text="${student.email}"></td>
-                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.band}? ${student.band.name} : ''"></td>
                     <td><input th:name="user-+${student.id}" type="checkbox" th:value="${student.id}"/></td>
                 </tr>
 
