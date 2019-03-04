@@ -81,7 +81,7 @@ input, button, textarea {
     display: inline-block;
 }
 
-input[type=text], textarea, select {
+input[type=text], input[type=password], textarea, select {
     padding: 5px;
     height: auto;
     border: 1px solid white;
@@ -91,7 +91,7 @@ input[type=text], textarea, select {
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-input[type=text], textarea, button {
+input[type=text], input[type=password],textarea, button {
     -webkit-transition: all linear 0.2s;
     -moz-transition: all linear 0.2s;
     -ms-transition: all linear 0.2s;
@@ -113,8 +113,12 @@ input[type=radio] {
 
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     width: 200px;
+}
+
+input.login {
+    width: 450px;
 }
 
 select {
@@ -401,7 +405,6 @@ ul.leftNav li a {
     padding: 8px 10px 8px 30px;
     display: block;
     border-top: 1px solid #4c545e;
-    background: url("images/arrow-right.png") 13px 50% no-repeat;
 }
 
 ul.leftNav li:first-child a {

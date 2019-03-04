@@ -14,7 +14,10 @@ import ua.com.validator.BandValidator;
 import ua.com.validator.SubjectValidator;
 import ua.com.validator.UserRegistrationValidator;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -49,6 +52,17 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "index";
+    }
+
     @GetMapping("/student")
     public String student() {
         return "student";
@@ -60,10 +74,10 @@ public class MainController {
     }
 
     @GetMapping("/admin")
-    public String admin() {
+    public String admin(Principal principal, Model model) {
+        model.addAttribute("principal", principal);
         return "admin";
     }
-
 
     @GetMapping("/userRegistration")
     public String userRegistration(Model model) {
@@ -71,14 +85,12 @@ public class MainController {
         return "userRegistration";
     }
 
-
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult
                     .getFieldErrors()
-                    .stream()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
             return "userRegistration";
         }

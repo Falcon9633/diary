@@ -1,6 +1,10 @@
 package ua.com.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.dao.StudentDAO;
@@ -12,14 +16,18 @@ import java.util.Set;
 
 @Service
 @Transactional
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService{
 
     @Autowired
     private StudentDAO studentDAO;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void save(Student student) {
+//        String password = "1";
+//        String encode = passwordEncoder.encode(password);
+//        student.setPassword(encode);
         studentDAO.save(student);
     }
 
@@ -52,6 +60,4 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> findAllWithBand() {
         return studentDAO.findAllWithBand();
     }
-
-
 }

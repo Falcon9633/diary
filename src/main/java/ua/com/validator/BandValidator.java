@@ -17,7 +17,7 @@ public class BandValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Band band = (Band) o;
         if (band.getName().isEmpty()){
-            errors.rejectValue("name", "emptyNameErr", "Заповніть назву");
+            errors.rejectValue("name", "emptyBandNameError", "Заповніть назву");
         }
     }
 }

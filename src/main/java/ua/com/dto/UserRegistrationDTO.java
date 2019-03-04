@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 import ua.com.anotation.ValidEmail;
+import ua.com.entity.Authority;
 
 import javax.validation.constraints.Size;
 
@@ -28,5 +29,6 @@ public class UserRegistrationDTO {
     private String email;
     private String password;
     private String matchingPassword;
+    private Authority authority;
 
 }

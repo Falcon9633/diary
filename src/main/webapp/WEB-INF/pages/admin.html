@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport"
@@ -48,13 +48,15 @@
                     <ul>
                         <li><a href="">Особистий кабінет</a></li>
                         <li><a href="">Повернення на сторінку вчителя</a></li>
-                        <li><a href="">Вийти</a></li>
+                        <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
     <h1>Сторінка адміністратора</h1>
+
+    <div th:text="${principal}"></div>
 </div>
 
 

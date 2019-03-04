@@ -16,7 +16,7 @@ public class SubjectValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Subject subject = (Subject) o;
         if (subject.getName().isEmpty()){
-            errors.rejectValue("name", "emptyNameErr", "Заповніть назву");
+            errors.rejectValue("name", "emptySubjectNameError", "Заповніть назву");
         }
     }
 }
