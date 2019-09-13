@@ -166,11 +166,17 @@ function setBandSubjectList(editedBand) {
 }
 
 function editBand(editedBand) {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
     $.ajax({
         url: '/editBand',
         type: 'POST',
         data: JSON.stringify(editedBand),
         contentType: 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+        },
         success: function () {
             getAllBands();
             $(document).ajaxComplete(function(){

@@ -21,7 +21,7 @@ ul.h-menu li ul {
     display: none;
 }
 
-ul.h-menu li:hover ul {
+ul.h-menu li:hover > ul {
     display: block;
     position: absolute;
     top: 30px;
@@ -67,4 +67,50 @@ ul.h-menu li:hover ul li:first-child a:hover {
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
+}
+
+ul.h-menu li ul li ul {
+    display: none;
+}
+
+ul.h-menu li ul li:hover ul{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    box-shadow: 0 3px 2px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 3px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 3px 2px rgba(0,0,0,0.3);
+    background-color: #f2f2f2;
+    background-repeat: no-repeat;
+    background-image: -ms-linear-gradient(top, #f2f2f2, #e4e4e4);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#e4e4e4));
+    background-image: -webkit-linear-gradient(top, #f2f2f2, #e4e4e4);
+    background-image: -o-linear-gradient(top, #f2f2f2, #e4e4e4);
+    background-image: linear-gradient(top, #f2f2f2, #e4e4e4);
+    background-image: -moz-linear-gradient(top, #f2f2f2, #e4e4e4);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e4e4e4', GradientType=0);
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+ul.h-menu li ul li:hover ul li{
+    float: none;
+    border-right: none;
+}
+
+ul.h-menu li ul li:hover ul li a {
+    border-right: none;
+    padding: 6px 20px 8px;
+    display: block;
+}
+
+ul.h-menu li ul li:hover ul li a:hover {
+    background-color: transparent;
+    text-decoration: underline;
 }

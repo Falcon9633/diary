@@ -14,8 +14,6 @@ import ua.com.validator.BandValidator;
 import ua.com.validator.SubjectValidator;
 import ua.com.validator.UserRegistrationValidator;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.*;
@@ -27,13 +25,13 @@ public class MainController {
     private StudentService studentService;
 
     @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
     private BandService bandService;
 
     @Autowired
     private SubjectService subjectService;
-
-    @Autowired
-    private TeacherService teacherService;
 
     @Autowired
     private ScheduleService scheduleService;
@@ -69,7 +67,8 @@ public class MainController {
     }
 
     @GetMapping("/teacher")
-    public String teacher() {
+    public String teacher(Principal principal, Model model) {
+        model.addAttribute("principal", principal);
         return "teacher";
     }
 
@@ -79,13 +78,13 @@ public class MainController {
         return "admin";
     }
 
-    @GetMapping("/userRegistration")
+    @GetMapping("/admin/userRegistration")
     public String userRegistration(Model model) {
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
         return "userRegistration";
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping("/admin/saveUser")
     public String saveUser(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -111,71 +110,160 @@ public class MainController {
             teacherService.save(registered);
         }
 
-        return "redirect:/userRegistration";
+        return "redirect:/admin/userRegistration";
     }
 
-    @GetMapping("/setStudentToBand")
+    @GetMapping("/admin/userEditingTeachers")
+    public String userEditingTeachers(Model model) {
+        Sort orders = sortByPropertyASC("surname");
+        model.addAttribute("allTeachers", teacherService.findAllWithAllNested(orders));
+        return "userEditingTeachers";
+    }
+
+    @GetMapping("/admin/findSpecificTeacher")
+    public String findSpecificTeacher(@RequestParam("searchForm") String searchForm, Model model) {
+        model.addAttribute("searchForm", searchForm);
+        String[] splitSearchForm = searchForm.trim().split(" ");
+        if (splitSearchForm.length > 1) {
+            model.addAttribute("specifiedTeachers", teacherService.findSpecific(splitSearchForm[0], splitSearchForm[1]));
+        } else {
+            model.addAttribute("specifiedTeachers", teacherService.findSpecific(searchForm));
+        }
+        return "userEditingSpecifiedTeachers";
+    }
+
+    @PostMapping("/admin/editTeacher")
+    public String editTeacher(@RequestParam("surname") String surname,
+                              @RequestParam("name") String name,
+                              @RequestParam("email") String email,
+                              @RequestParam("id") int id) {
+        userEditor(surname, name, email, id, "teacher");
+        return "redirect:/admin/userEditingTeachers";
+    }
+
+    @GetMapping("/admin/userEditingStudents")
+    public String userEditingStudents(Model model) {
+        Sort orders = sortByPropertyASC("surname");
+        model.addAttribute("allStudents", studentService.findAllWithBand(orders));
+        return "userEditingStudents";
+    }
+
+    @GetMapping("/admin/findSpecificStudent")
+    public String findSpecificStudent(@RequestParam("searchForm") String searchForm, Model model) {
+        model.addAttribute("searchFrom", searchForm);
+        String[] splitSearchForm = searchForm.trim().split(" ");
+        if (splitSearchForm.length > 1) {
+            model.addAttribute("specifiedStudents", studentService.findSpecific(splitSearchForm[0], splitSearchForm[1]));
+        } else {
+            model.addAttribute("specifiedStudents", studentService.findSpecific(searchForm));
+        }
+        return "userEditingSpecifiedStudents";
+    }
+
+    @PostMapping("/admin/editStudent")
+    public String editStudent(@RequestParam("surname") String surname,
+                              @RequestParam("name") String name,
+                              @RequestParam("email") String email,
+                              @RequestParam("id") int id) {
+        userEditor(surname, name, email, id, "student");
+        return "redirect:/admin/userEditingStudents";
+    }
+
+    private Sort sortByPropertyASC(String property) {
+        Sort.Order byProperty = new Sort.Order(Sort.Direction.ASC, property);
+        Sort orders = new Sort(byProperty);
+        return orders;
+    }
+
+    private void userEditor(String surname, String name, String email, int id, String userType) {
+        if (!surname.trim().isEmpty() || !name.trim().isEmpty() || !email.trim().isEmpty()) {
+            if (userType.equals("student")) {
+                Student selectedStudent = studentService.findOne(id);
+                if (!surname.trim().isEmpty()) {
+                    selectedStudent.setSurname(surname);
+                }
+                if (!name.trim().isEmpty()) {
+                    selectedStudent.setName(name);
+                }
+                if (!email.trim().isEmpty()) {
+                    selectedStudent.setEmail(email);
+                }
+                studentService.save(selectedStudent);
+            }
+
+            if (userType.equals("teacher")) {
+                Teacher selectedTeacher = teacherService.findOne(id);
+                if (!surname.trim().isEmpty()) {
+                    selectedTeacher.setSurname(surname);
+                }
+                if (!name.trim().isEmpty()) {
+                    selectedTeacher.setName(name);
+                }
+                if (!email.trim().isEmpty()) {
+                    selectedTeacher.setEmail(email);
+                }
+                teacherService.save(selectedTeacher);
+            }
+        }
+    }
+
+    @GetMapping("/admin/setStudentToBand")
     public String setStudentToBand(Model model) {
         model.addAttribute("allBands", bandService.findAll());
         model.addAttribute("allStudents", studentService.findAllWithBand());
 
-
         return "setStudentToBand";
     }
 
-    @PostMapping("/saveStudentToBand")
+    @PostMapping("/admin/saveStudentToBand")
     public String saveStudentToBand(@RequestParam Map<String, String> requestParam) {
         Band band = bandService.findOne(Integer.parseInt(requestParam.get("band")));
 
         for (String key : requestParam.keySet()) {
             if (key.contains("user")) {
                 Student student = studentService.findStudentByIdWithBand(Integer.parseInt(requestParam.get(key)));
-
                 student.setBand(band);
                 studentService.save(student);
             }
         }
 
-        return "redirect:/setStudentToBand";
+        return "redirect:/admin/setStudentToBand";
     }
 
-    @GetMapping("/bandCreation")
+    @GetMapping("/admin/bandCreation")
     public String bandRegistration(Model model) {
         model.addAttribute("band", new Band());
         return "bandCreation";
     }
 
-    @PostMapping("/saveBand")
+    @PostMapping("/admin/saveBand")
     public String saveBand(@ModelAttribute("band") @Valid Band band, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult
                     .getFieldErrors()
-                    .stream()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
             return "bandCreation";
         }
         bandService.save(band);
-        return "redirect:/bandCreation";
+        return "redirect:/admin/bandCreation";
     }
 
-    @GetMapping("/bandEditing")
+    @GetMapping("/admin/bandEditing")
     public String bandEditing(Model model) {
-        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
-        Sort orders = new Sort(byName);
+        Sort orders = sortByPropertyASC("name");
         model.addAttribute("allBand", bandService.findAll(orders));
         return "bandEditing";
     }
 
-    @GetMapping("/setSubjectToBand")
+    @GetMapping("/admin/setSubjectToBand")
     public String setSubjectToBand(Model model) {
-        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
-        Sort orders = new Sort(byName);
+        Sort orders = sortByPropertyASC("name");
         model.addAttribute("allBand", bandService.findAll());
         model.addAttribute("allSubject", subjectService.findAllWithBand(orders));
         return "setSubjectToBand";
     }
 
-    @PostMapping("/saveSubjectToBand")
+    @PostMapping("/admin/saveSubjectToBand")
     public String saveSubjectToBand(@RequestParam("bandId") int idBand,
                                     @RequestParam Map<String, String> requestParam) {
         Band band = bandService.findByIdWithSubject(idBand);
@@ -189,46 +277,43 @@ public class MainController {
         }
         band.setSubjectList(subjectList);
         bandService.save(band);
-        return "redirect:/setSubjectToBand";
+        return "redirect:/admin/setSubjectToBand";
     }
 
-    @GetMapping("/subjectCreation")
+    @GetMapping("/admin/subjectCreation")
     public String subjectRegistration(Model model) {
         model.addAttribute("subject", new Subject());
         return "subjectCreation";
     }
 
-    @PostMapping("/saveSubject")
+    @PostMapping("/admin/saveSubject")
     public String saveSubject(@ModelAttribute("subject") @Valid Subject subject, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             bindingResult
                     .getFieldErrors()
-                    .stream()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
             return "subjectCreation";
         }
         subjectService.save(subject);
-        return "redirect:/subjectCreation";
+        return "redirect:/admin/subjectCreation";
     }
 
-    @GetMapping("/subjectEditing")
+    @GetMapping("/admin/subjectEditing")
     public String subjectEditing(Model model) {
-        Sort.Order byName = new Sort.Order(Sort.Direction.ASC, "name");
-        Sort orders = new Sort(byName);
+        Sort orders = sortByPropertyASC("name");
         model.addAttribute("allSubject", subjectService.findAll(orders));
         return "subjectEditing";
     }
 
-    @GetMapping("/setTeacherToSubject")
+    @GetMapping("/admin/setTeacherToSubject")
     public String setTeacherToSubject(Model model) {
-        Sort.Order bySurname = new Sort.Order(Sort.Direction.ASC, "surname");
-        Sort orders = new Sort(bySurname);
-        model.addAttribute("allSubject", subjectService.findAll());
-        model.addAttribute("allTeacher", teacherService.findAllWithSubject(orders));
+        Sort orders = sortByPropertyASC("surname");
+        model.addAttribute("allSubjects", subjectService.findAll());
+        model.addAttribute("allTeachers", teacherService.findAllWithSubject(orders));
         return "setTeacherToSubject";
     }
 
-    @PostMapping("/saveTeacherToSubject")
+    @PostMapping("/admin/saveTeacherToSubject")
     public String saveTeacherToSubject(@RequestParam("subjectId") int idSubject,
                                        @RequestParam Map<String, String> requestParam) {
         Subject subject = subjectService.findByIdWithTeacher(idSubject);
@@ -242,17 +327,21 @@ public class MainController {
         }
         subject.setTeacherList(teacherList);
         subjectService.save(subject);
-        return "redirect:/setTeacherToSubject";
+        return "redirect:/admin/setTeacherToSubject";
     }
 
-    @GetMapping("/scheduleCreation")
+    @GetMapping("/admin/scheduleCreation")
     public String scheduleCreating(Model model) {
         model.addAttribute("allBand", bandService.findAll());
         return "scheduleCreation";
     }
 
-    @PostMapping("/createSchedule")
+    @PostMapping("/admin/createSchedule")
     public String createSchedule(@RequestParam Map<String, String> requestParam) {
+        final int MIN_DAY_NR = 2;
+        final int MAX_DAY_NR = 7;
+        final int MIN_LESSON_NR = 0;
+        final int MAX_LESSON_NR = 8;
         GregorianCalendar calendar = new GregorianCalendar();
         Date currentTime = calendar.getTime();
         int currentWeekOfYear = calendar.get(GregorianCalendar.WEEK_OF_YEAR);
@@ -261,9 +350,9 @@ public class MainController {
             scheduleService.delete(schedule);
         }
         while (calendar.get(GregorianCalendar.MONTH) < 5 || calendar.get(GregorianCalendar.MONTH) > 7) {
-            for (int dayOfWeek = 2; dayOfWeek <= 7; dayOfWeek++) {
+            for (int dayOfWeek = MIN_DAY_NR; dayOfWeek <= MAX_DAY_NR; dayOfWeek++) {
                 if (calendar.get(GregorianCalendar.DAY_OF_WEEK) == dayOfWeek) {
-                    for (int numberOfLesson = 0; numberOfLesson <= 8; numberOfLesson++) {
+                    for (int numberOfLesson = MIN_LESSON_NR; numberOfLesson <= MAX_LESSON_NR; numberOfLesson++) {
                         Schedule schedule = new Schedule();
                         schedule.setEditingDate(currentTime);
                         schedule.setWeekOfYear(calendar.get(GregorianCalendar.WEEK_OF_YEAR));
@@ -300,16 +389,16 @@ public class MainController {
             }
             calendar.add(GregorianCalendar.DAY_OF_MONTH, 1); // day increment
         }
-        return "redirect:/scheduleCreation";
+        return "redirect:/admin/scheduleCreation";
     }
 
-    @GetMapping("/scheduleEditing")
+    @GetMapping("/admin/scheduleEditing")
     public String scheduleEditing(Model model) {
         model.addAttribute("allBand", bandService.findAll());
         return "scheduleEditing";
     }
 
-    @PostMapping("/editSchedule")
+    @PostMapping("/admin/editSchedule")
     public String editSchedule(@RequestParam Map<String, String> requestParam,
                                @RequestParam("bandId") int bandId,
                                @RequestParam("weekOfYear") int weekOfYear,
@@ -342,7 +431,7 @@ public class MainController {
             }
             scheduleService.save(currentLessonSchedule);
         }
-        return "redirect:/scheduleEditing";
+        return "redirect:/admin/scheduleEditing";
     }
 
     @InitBinder("userRegistrationDTO")

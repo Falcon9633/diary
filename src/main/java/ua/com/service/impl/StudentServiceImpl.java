@@ -1,6 +1,7 @@
 package ua.com.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -47,17 +48,27 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Set<Student> findAllSet() {
-        return studentDAO.findAllSet();
-    }
-
-    @Override
     public Student findStudentByIdWithBand(int id) {
         return studentDAO.findStudentByIdWithBand(id);
     }
 
     @Override
-    public List<Student> findAllWithBand() {
+    public Set<Student> findAllWithBand() {
         return studentDAO.findAllWithBand();
+    }
+
+    @Override
+    public Set<Student> findAllWithBand(Sort sort) {
+        return studentDAO.findAllWithBand(sort);
+    }
+
+    @Override
+    public Set<Student> findSpecific(String searchForm) {
+        return studentDAO.findSpecific(searchForm);
+    }
+
+    @Override
+    public Set<Student> findSpecific(String searchForm1, String searchForm2) {
+        return studentDAO.findSpecific(searchForm1, searchForm2);
     }
 }

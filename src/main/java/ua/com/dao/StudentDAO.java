@@ -1,5 +1,6 @@
 package ua.com.dao;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,8 +18,16 @@ public interface StudentDAO extends JpaRepository<Student, Integer> {
     Student findStudentByIdWithBand(@Param("id") int id);
 
     @Query("from Student s left join fetch s.band")
-    List<Student> findAllWithBand();
+    Set<Student> findAllWithBand();
 
-    @Query("from Student s")
-    Set<Student> findAllSet();
+    @Query("from Student s left join fetch s.band")
+    Set<Student> findAllWithBand(Sort sort);
+
+    @Query("from Student s left join fetch s.band bands" +
+            " where s.name=:searchForm or s.surname=:searchForm or bands.name=:searchForm")
+    Set<Student> findSpecific (@Param("searchForm") String searchForm);
+
+    @Query("from Student s left join fetch s.band" +
+            " where (s.name=:searchForm1 and s.surname=:searchForm2) or (s.name=:searchForm2 and s.surname=:searchForm1)")
+    Set<Student> findSpecific (@Param("searchForm1") String searchForm1, @Param("searchForm2") String searchForm2);
 }

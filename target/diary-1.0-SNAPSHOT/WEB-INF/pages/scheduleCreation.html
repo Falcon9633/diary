@@ -17,37 +17,42 @@
             <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
             </div>
             <ul class="nav h-menu">
-                <li><a href="">Користувачі</a>
+                <li><a>Користувачі</a>
                     <ul>
-                        <li><a th:href="@{/userRegistration}">Реєстрація користувачів</a></li>
-                        <li><a href="">Редагування користувачів</a></li>
-                        <li><a th:href="@{/setStudentToBand}">Додавання студентів в групу</a></li>
+                        <li><a th:href="@{/admin/userRegistration}">Реєстрація користувачів</a></li>
+                        <li>
+                            <a>Редагування користувачів</a>
+                            <ul>
+                                <li><a th:href="@{/admin/userEditingTeachers}">Вчителі</a></li>
+                                <li><a th:href="@{/admin/userEditingStudents}">Студенти</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/admin/setStudentToBand}">Додавання студентів в групу</a></li>
                     </ul>
                 </li>
-                <li><a href="">Класи</a>
+                <li><a>Класи</a>
                     <ul>
-                        <li><a th:href="@{/bandCreation}">Створення класів</a></li>
-                        <li><a th:href="@{/bandEditing}">Редагування класів</a></li>
-                        <li><a th:href="@{/setSubjectToBand}">Додавання предметів</a></li>
+                        <li><a th:href="@{/admin/bandCreation}">Створення класів</a></li>
+                        <li><a th:href="@{/admin/bandEditing}">Редагування класів</a></li>
+                        <li><a th:href="@{/admin/setSubjectToBand}">Додавання предметів</a></li>
                     </ul>
                 </li>
-                <li><a href="">Предмети</a>
+                <li><a>Предмети</a>
                     <ul>
-                        <li><a th:href="@{/subjectCreation}">Створення предметів</a></li>
-                        <li><a th:href="@{/subjectEditing}">Редагування предметів</a></li>
-                        <li><a th:href="@{/setTeacherToSubject}">Додавання вчителів</a></li>
+                        <li><a th:href="@{/admin/subjectCreation}">Створення предметів</a></li>
+                        <li><a th:href="@{/admin/subjectEditing}">Редагування предметів</a></li>
+                        <li><a th:href="@{/admin/setTeacherToSubject}">Додавання вчителів</a></li>
                     </ul>
                 </li>
-                <li><a href="">Розклад</a>
+                <li><a class="active">Розклад</a>
                     <ul>
-                        <li><a th:href="@{/scheduleCreation}" class="active">Створення розкладу</a></li>
-                        <li><a th:href="@{/scheduleEditing}">Редагування розкладу</a></li>
+                        <li><a th:href="@{/admin/scheduleCreation}" class="active">Створення розкладу</a></li>
+                        <li><a th:href="@{/admin/scheduleEditing}">Редагування розкладу</a></li>
                     </ul>
                 </li>
                 <li><a href="">Статистика</a></li>
-                <li><a href="">Хто залоганий</a>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
                     <ul>
-                        <li><a href="">Особистий кабінет</a></li>
                         <li><a href="">Повернення на сторінку вчителя</a></li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
@@ -56,7 +61,7 @@
         </div>
     </div>
 
-    <form th:action="@{/createSchedule}" method="post">
+    <form th:action="@{/admin/createSchedule}" method="post">
         <div class="row">
             <h1>
                 <label>Клас

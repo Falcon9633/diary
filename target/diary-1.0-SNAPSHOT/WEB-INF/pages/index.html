@@ -21,7 +21,18 @@
                 <li><a href="#">Про проект</a></li>
                 <li><a href="#">Як зареєструватись</a></li>
                 <li><a href="#">Контакти</a></li>
-                <li><a id="showModalElement">Увійти</a></li>
+                <li th:if="${#request.getUserPrincipal() == null}">
+                    <a id="showModalElement">Увійти</a>
+                </li>
+                <li th:if="${#request.getUserPrincipal() != null}">
+                    <a th:text="${#request.getUserPrincipal().name}"></a>
+                    <ul>
+                        <li>
+                            <a th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
+                               th:href="${authority.getAuthority()} != 'ROLE_STUDENT' ? @{/teacher} : @{/student}">Особистий кабінет</a></li>
+                        <li><a th:href="@{/logout}">Вийти</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -48,7 +59,8 @@
                         <div class="row">
                             <label>
                                 <h1>Пароль</h1>
-                                <input type="password" class="login" th:name="password" placeholder="password" required/>
+                                <input type="password" class="login" th:name="password" placeholder="password"
+                                       required/>
                             </label>
                         </div>
                         <h2 th:if="${loginError}" class="errors" style="width: 450px">Невірний емейл або пароль</h2>
@@ -59,7 +71,7 @@
                     <div class="modal-footer">
                         <label class="label-right">
                             <input type="checkbox" th:name="remember-me"/>
-                            <span style="font-size: 13px">Запам’ятати мене</span>
+                            <span style="font-size: 15px">Запам’ятати мене</span>
                         </label>
                         <button type="button" data-dismiss="modal">Закрити</button>
                         <button type="submit" id="loginButton">Увійти</button>
@@ -86,7 +98,7 @@
             $LOGIN_MODAL.modal('show');
         });
 
-        if ($(location).attr('href').includes('login-error')){
+        if ($(location).attr('href').includes('login-error')) {
             $LOGIN_MODAL.modal('show');
         }
     }

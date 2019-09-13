@@ -50,6 +50,11 @@ public class MainRestController {
         subjectService.save(subject);
     }
 
+    @GetMapping("/getAllStudents")
+    public Set<Student> getAllStudents(){
+        return studentService.findAllWithBand();
+    }
+
     @GetMapping("/getAllTeachers")
     public Set<Teacher> getAllTeachers() {
         return teacherService.findAllWithAllNested();

@@ -24,10 +24,13 @@
                 </li>
                 <li><a href="#">Класи</a></li>
                 <li><a href="#">Вчительська</a></li>
-                <li><a href="#">Управління</a></li>
-                <li><a href="#">Хто залоганий</a>
+                <li th:each="authority : ${principal.getAuthorities()}"
+                    th:if="${authority.getAuthority()} == 'ROLE_ADMIN'" >
+                    <a th:href="@{/admin}">Управління</a>
+                </li>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
                     <ul>
-                        <li><a href="">Особистий кабінет</a></li>
+                        <li><a href="">Налаштування</a></li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>

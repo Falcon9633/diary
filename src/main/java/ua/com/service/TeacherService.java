@@ -18,5 +18,11 @@ public interface TeacherService {
     Set<Teacher> findAllWithSubject(Sort sort);
 
     Set<Teacher> findAllWithAllNested();
+
+    Set<Teacher> findAllWithAllNested(Sort sort);
+
+    Set<Teacher> findSpecific(String searchForm);
+
+    Set<Teacher> findSpecific(String searchForm1, String searchForm2);
 }
 

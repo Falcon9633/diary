@@ -20,9 +20,9 @@
                 <li><a href="#">Щоденник</a></li>
                 <li><a href="#">Домашні завдання</a></li>
                 <li><a href="#">Табель успішності</a></li>
-                <li><a href="#">Хто залоганий</a>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
                     <ul>
-                        <li><a href="">Особистий кабінет</a></li>
+                        <li><a href="">Налаштування</a></li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>

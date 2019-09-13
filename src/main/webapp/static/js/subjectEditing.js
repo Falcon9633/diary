@@ -170,18 +170,26 @@ function setSubjectTeacherList(editedSubject) {
 }
 
 function editSubject(editedSubject) {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    console.log(editedSubject);
     $.ajax({
         url: '/editSubject',
         type: 'POST',
-        data: JSON.stringify(editedSubject),
         contentType: 'application/json',
+        data: JSON.stringify(editedSubject),
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+        },
         success: function () {
             getAllSubjects();
             $(document).ajaxComplete(function(){
                 initModalContent()
             });
         },
-        error: function () {
+        error: function (e) {
+            console.log(e);
             alert("Сталась помилка");
         }
     })

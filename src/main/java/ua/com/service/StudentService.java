@@ -1,5 +1,6 @@
 package ua.com.service;
 
+import org.springframework.data.domain.Sort;
 import ua.com.entity.Student;
 
 import java.util.List;
@@ -15,10 +16,14 @@ public interface StudentService {
 
     List<Student> findAll();
 
-    Set<Student> findAllSet();
-
     Student findStudentByIdWithBand(int id);
 
-    List<Student> findAllWithBand();
+    Set<Student> findAllWithBand();
+
+    Set<Student> findAllWithBand(Sort sort);
+
+    Set<Student> findSpecific(String searchForm);
+
+    Set<Student> findSpecific(String searchForm1, String searchForm2);
 
 }

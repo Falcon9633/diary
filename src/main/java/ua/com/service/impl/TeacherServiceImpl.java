@@ -50,4 +50,19 @@ public class TeacherServiceImpl implements TeacherService{
     public Set<Teacher> findAllWithAllNested() {
         return teacherDAO.findAllWithAllNested();
     }
+
+    @Override
+    public Set<Teacher> findAllWithAllNested(Sort sort) {
+        return teacherDAO.findAllWithAllNested(sort);
+    }
+
+    @Override
+    public Set<Teacher> findSpecific(String searchForm) {
+        return teacherDAO.findSpecific(searchForm);
+    }
+
+    @Override
+    public Set<Teacher> findSpecific(String searchForm1, String searchForm2) {
+        return teacherDAO.findSpecific(searchForm1, searchForm2);
+    }
 }
