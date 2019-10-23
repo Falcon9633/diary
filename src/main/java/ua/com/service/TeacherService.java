@@ -1,6 +1,7 @@
 package ua.com.service;
 
 import org.springframework.data.domain.Sort;
+import ua.com.dto.UserRegistrationDTO;
 import ua.com.entity.Teacher;
 
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.Set;
 
 public interface TeacherService {
     void save(Teacher teacher);
+
+    void save (UserRegistrationDTO userRegistrationDTO);
+
+    void edit(int id, String name, String surname, String email, boolean isAdmin);
 
     Teacher findOne(int id);
 
@@ -22,7 +27,5 @@ public interface TeacherService {
     Set<Teacher> findAllWithAllNested(Sort sort);
 
     Set<Teacher> findSpecific(String searchForm);
-
-    Set<Teacher> findSpecific(String searchForm1, String searchForm2);
 }
 

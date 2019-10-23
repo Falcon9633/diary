@@ -56,64 +56,64 @@ function initModalContent() {
     });
 
     getSubjectName(selectedSubject);
-    getSubjectBandList(selectedSubject);
-    getSubjectTeacherList(selectedSubject);
+    getSubjectBandSet(selectedSubject);
+    getSubjectTeacherSet(selectedSubject);
 }
 
 function getSubjectName(selectedSubject) {
     $('h2[data-container="subject-name"]').text("Назва предмету:\xa0\xa0\xa0\xa0" + selectedSubject.name + "\xa0\xa0\xa0\xa0--->\xa0\xa0\xa0\xa0");
 }
 
-function getSubjectBandList(selectedSubject) {
-    var $subjectBandListContainer = $('[data-container="subject-bandList"]');
-    $subjectBandListContainer.empty();
+function getSubjectBandSet(selectedSubject) {
+    var $subjectBandSetContainer = $('[data-container="subject-bandSet"]');
+    $subjectBandSetContainer.empty();
 
-    if (selectedSubject.bandList.length === 0) {
-        $subjectBandListContainer.append($('<label/>').text('Немає'));
+    if (selectedSubject.bandSet.length === 0) {
+        $subjectBandSetContainer.append($('<label/>').text('Немає'));
         return;
     }
 
-    for (let bandList of selectedSubject.bandList) {
+    for (let bandSet of selectedSubject.bandSet) {
         var $inputCheckbox = $('<input/>').attr({
             'type': 'checkbox',
-            'id': `band_id_${bandList.id}`,
-            'value': bandList.id,
+            'id': `band_id_${bandSet.id}`,
+            'value': bandSet.id,
             'checked': ''
         })
             .addClass('band');
         var $label = $('<label/>')
             .attr('for', $inputCheckbox.attr('id'))
             .addClass('label-right')
-            .text(bandList.name);
-        $subjectBandListContainer
+            .text(bandSet.name);
+        $subjectBandSetContainer
             .append($inputCheckbox)
             .append($label)
             .append($('<br/>'));
     }
 }
 
-function getSubjectTeacherList(selectedSubject) {
-    var $subjectTeacherListContainer = $('[data-container="subject-teacherList"]');
-    $subjectTeacherListContainer.empty();
+function getSubjectTeacherSet(selectedSubject) {
+    var $subjectTeacherSetContainer = $('[data-container="subject-teacherSet"]');
+    $subjectTeacherSetContainer.empty();
 
-    if (selectedSubject.teacherList.length === 0) {
-        $subjectTeacherListContainer.append($('<label/>').text('Немає'));
+    if (selectedSubject.teacherSet.length === 0) {
+        $subjectTeacherSetContainer.append($('<label/>').text('Немає'));
         return;
     }
 
-    for (let teacherList of selectedSubject.teacherList) {
+    for (let teacherSet of selectedSubject.teacherSet) {
         var $inputCheckbox = $('<input/>').attr({
             'type': 'checkbox',
-            'id': `teacher_id_${teacherList.id}`,
-            'value': teacherList.id,
+            'id': `teacher_id_${teacherSet.id}`,
+            'value': teacherSet.id,
             'checked': ''
         })
             .addClass('teacher');
         var $label = $('<label/>')
             .attr('for', $inputCheckbox.attr('id'))
             .addClass('label-right')
-            .text(teacherList.name + ' ' + teacherList.surname);
-        $subjectTeacherListContainer
+            .text(teacherSet.name + ' ' + teacherSet.surname);
+        $subjectTeacherSetContainer
             .append($inputCheckbox)
             .append($label)
             .append($('<br/>'));
@@ -123,8 +123,8 @@ function getSubjectTeacherList(selectedSubject) {
 function handleSaveButton() {
     var editedSubject = selectedSubject;
     editedSubject.name = setSubjectName(selectedSubject);
-    editedSubject.bandList = setSubjectBandList(editedSubject);
-    editedSubject.teacherList = setSubjectTeacherList(editedSubject);
+    editedSubject.bandSet = setSubjectBandSet(editedSubject);
+    editedSubject.teacherSet = setSubjectTeacherSet(editedSubject);
 
     editSubject(editedSubject);
 }
@@ -139,7 +139,7 @@ function setSubjectName() {
     return editedName;
 }
 
-function setSubjectBandList(editedSubject) {
+function setSubjectBandSet(editedSubject) {
     var selectedBandId = [];
     var $selectedBandInput = $('input.band');
 
@@ -149,12 +149,12 @@ function setSubjectBandList(editedSubject) {
         }
     });
 
-    return editedSubject.bandList.filter(function (item) {
+    return editedSubject.bandSet.filter(function (item) {
         return selectedBandId.indexOf(item.id) !== -1;
     })
 }
 
-function setSubjectTeacherList(editedSubject) {
+function setSubjectTeacherSet(editedSubject) {
     var selectedTeacherId = [];
     var $selectedTeacherInput = $('input.teacher');
 
@@ -164,7 +164,7 @@ function setSubjectTeacherList(editedSubject) {
         }
     });
 
-    return editedSubject.teacherList.filter(function (item) {
+    return editedSubject.teacherSet.filter(function (item) {
         return selectedTeacherId.indexOf(item.id) !== -1;
     })
 }

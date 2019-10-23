@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"bandList", "teacherList", "scheduleList"})
+@ToString(exclude = {"bandSet", "teacherSet", "scheduleSet"})
 public class Subject {
 
     @Id
@@ -28,20 +28,20 @@ public class Subject {
     @JoinTable(name = "band_subject",
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "band_id"))
-    @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
+    @JsonIgnoreProperties({"studentsSet", "subjectSet", "scheduleSet"})
     @OrderBy("name ASC")
-    private Set<Band> bandList = new HashSet<>();
+    private Set<Band> bandSet = new HashSet<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
-    @JsonIgnoreProperties({"subjectList", "scheduleList"})
+    @JsonIgnoreProperties({"subjectSet", "scheduleSet"})
     @OrderBy("name ASC")
-    private Set<Teacher> teacherList = new HashSet<>();
+    private Set<Teacher> teacherSet = new HashSet<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "subject")
-    @JsonIgnoreProperties({"band", "subject", "teacher"})
-    private Set<Schedule> scheduleList = new HashSet<>();
+    @JsonIgnoreProperties({"band", "subject", "teacher", "lesson"})
+    private Set<Schedule> scheduleSet = new HashSet<>();
 
 }

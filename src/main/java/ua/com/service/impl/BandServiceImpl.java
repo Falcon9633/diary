@@ -5,10 +5,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.dao.BandDAO;
+import ua.com.dao.SubjectDAO;
 import ua.com.entity.Band;
+import ua.com.entity.Subject;
 import ua.com.service.BandService;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -17,9 +19,28 @@ public class BandServiceImpl implements BandService {
 
     @Autowired
     private BandDAO bandDAO;
+
+    @Autowired
+    private SubjectDAO subjectDAO;
+
     @Override
     public void save(Band band) {
         bandDAO.save(band);
+    }
+
+    @Override
+    public void saveSubjectToBand(int bandId, Map<String, String> requestParam) {
+        Band selectedBand = bandDAO.findByIdWithSubject(bandId);
+        Set<Subject> subjectSet = selectedBand.getSubjectSet();
+
+        for (String key : requestParam.keySet()) {
+            if (key.contains("subjectId-")) {
+                Subject subject = subjectDAO.findOne(Integer.parseInt(requestParam.get(key)));
+                subjectSet.add(subject);
+            }
+        }
+        selectedBand.setSubjectSet(subjectSet);
+        bandDAO.save(selectedBand);
     }
 
     @Override

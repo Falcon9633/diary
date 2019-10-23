@@ -4,11 +4,14 @@ import org.springframework.data.domain.Sort;
 import ua.com.entity.Band;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface BandService {
 
     void save(Band band);
+
+    void saveSubjectToBand(int bandId, Map<String, String> requestParam);
 
     Band findOne(int id);
 

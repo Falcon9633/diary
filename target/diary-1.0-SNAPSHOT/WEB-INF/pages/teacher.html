@@ -24,7 +24,7 @@
                 </li>
                 <li><a href="#">Класи</a></li>
                 <li><a href="#">Вчительська</a></li>
-                <li th:each="authority : ${principal.getAuthorities()}"
+                <li th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
                     th:if="${authority.getAuthority()} == 'ROLE_ADMIN'" >
                     <a th:href="@{/admin}">Управління</a>
                 </li>

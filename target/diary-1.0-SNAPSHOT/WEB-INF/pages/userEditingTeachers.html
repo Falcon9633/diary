@@ -32,9 +32,9 @@
             emails = teachers.map(teacher => teacher.email);
 
             teachers.forEach(function (teacher) {
-                let subjectList = teacher.subjectList.map(teacher => teacher.name);
+                let subjectList = teacher.subjectSet.map(teacher => teacher.name);
 
-                subjectList.forEach(function (subject) {
+                subjectSet.forEach(function (subject) {
                     subjects.push(subject);
                 });
             });
@@ -118,16 +118,18 @@
         <table class="bordered">
             <thead>
             <tr>
+                <th hidden>Id</th>
                 <th>№ з/п</th>
                 <th>Прізвище</th>
                 <th>Ім’я</th>
                 <th>Електронна пошта</th>
                 <th>Предмети</th>
-                <th hidden>Id</th>
+                <th>Адміністратор</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="teacher, statTeacher :${allTeachers}">
+                <td hidden th:text="${teacher.id}"/>
                 <td th:text="${statTeacher.count}"/>
                 <td th:text="${teacher.surname}"/>
                 <td th:text="${teacher.name}"/>
@@ -136,7 +138,9 @@
                     <div th:each="subjectList, statSubjectList:${teacher.subjectList}"
                          th:text="!${statSubjectList.last}? ${subjectList.name} + ',' : ${subjectList.name}"/>
                 </td>
-                <td hidden th:text="${teacher.id}"/>
+                <td>
+                    <input type="checkbox"  disabled th:checked="${teacher.authority.name()} == 'ROLE_ADMIN'">
+                </td>
             </tr>
             </tbody>
         </table>
@@ -163,6 +167,11 @@
                         <div class="row">
                             <h2 class="inline" id="currentEmail"></h2>
                             <input type="text" name="email" placeholder="Новий емеіл"/>
+                        </div>
+
+                        <div class="row">
+                            <h2 class="inline">Адміністратор</h2>
+                            <input type="checkbox" id="isAdmin" name="isAdmin"/>
                         </div>
 
                         <input type="hidden" id="userId" name="id"/>

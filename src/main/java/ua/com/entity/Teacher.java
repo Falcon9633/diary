@@ -2,12 +2,7 @@ package ua.com.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +11,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@ToString(exclude = {"subjectList", "scheduleList"})
+@ToString(exclude = {"subjectSet", "scheduleSet"})
 public class Teacher implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +33,13 @@ public class Teacher implements UserDetails {
     @JoinTable(name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    @JsonIgnoreProperties({"bandList", "teacherList", "scheduleList"})
+    @JsonIgnoreProperties({"bandSet", "teacherSet", "scheduleSet"})
     @OrderBy("name ASC")
-    private Set<Subject> subjectList = new HashSet<>();
+    private Set<Subject> subjectSet = new HashSet<>();
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "teacher")
-    @JsonIgnoreProperties({"band", "subject", "teacher"})
-    private Set<Schedule> scheduleList = new HashSet<>();
+    @JsonIgnoreProperties({"band", "subject", "teacher", "lesson"})
+    private Set<Schedule> scheduleSet = new HashSet<>();
 
     public Teacher() {
     }
@@ -114,20 +109,20 @@ public class Teacher implements UserDetails {
         this.enabled = enabled;
     }
 
-    public Set<Subject> getSubjectList() {
-        return subjectList;
+    public Set<Subject> getSubjectSet() {
+        return subjectSet;
     }
 
-    public void setSubjectList(Set<Subject> subjectList) {
-        this.subjectList = subjectList;
+    public void setSubjectSet(Set<Subject> subjectList) {
+        this.subjectSet = subjectList;
     }
 
-    public Set<Schedule> getScheduleList() {
-        return scheduleList;
+    public Set<Schedule> getScheduleSet() {
+        return scheduleSet;
     }
 
-    public void setScheduleList(Set<Schedule> scheduleList) {
-        this.scheduleList = scheduleList;
+    public void setScheduleSet(Set<Schedule> scheduleList) {
+        this.scheduleSet = scheduleList;
     }
 
     @Override

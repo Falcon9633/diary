@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Entity
-@ToString(exclude = "band")
+@ToString(exclude = {"band", "note"})
 public class Student implements UserDetails {
 
     @Id
@@ -37,8 +37,12 @@ public class Student implements UserDetails {
     private boolean enabled = true;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
+    @JsonIgnoreProperties({"studentsSet", "subjectSet", "scheduleSet"})
     private Band band;
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "student")
+    @JsonIgnoreProperties({"student", "lesson"})
+    private List<Note> noteList = new ArrayList<>();
 
     public Student() {
     }

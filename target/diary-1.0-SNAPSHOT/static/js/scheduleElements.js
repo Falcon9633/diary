@@ -55,7 +55,7 @@ function getSubjectsForBand(bands, subjects, selectedBandId) {
     }
 
     return subjects.filter(function (item) {
-        let selectedBandSubjectId = selectedBand.subjectList.map(function (item) {
+        let selectedBandSubjectId = selectedBand.subjectSet.map(function (item) {
             return item.id;
         });
         return selectedBandSubjectId.indexOf(item.id) !== -1;
@@ -72,7 +72,7 @@ function getTeachersForSubject(subjects, teachers, selectedSubjectId) {
     }
 
     return teachers.filter(function (item) {
-        let selectedSubjectTeacherId = selectedSubject.teacherList.map(function (item) {
+        let selectedSubjectTeacherId = selectedSubject.teacherSet.map(function (item) {
             return item.id;
         });
         return selectedSubjectTeacherId.indexOf(item.id) !== -1;

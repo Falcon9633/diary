@@ -8,7 +8,7 @@ import ua.com.service.*;
 import java.util.*;
 
 @RestController
-public class MainRestController {
+public class AdminRestController {
     @Autowired
     private StudentService studentService;
 
@@ -31,8 +31,8 @@ public class MainRestController {
 
     @RequestMapping(value = "/editBand", method = RequestMethod.POST)
     public void editBand(@RequestBody Band band) {
-        if (!band.getStudentsList().isEmpty()){
-            for (Student student : band.getStudentsList()) {
+        if (!band.getStudentsSet().isEmpty()){
+            for (Student student : band.getStudentsSet()) {
                 student.setBand(null);
                 studentService.save(student);
             }

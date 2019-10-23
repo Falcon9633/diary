@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString(exclude = {"band", "subject", "teacher"})
+@ToString(exclude = {"band", "subject", "teacher", "lesson"})
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +26,18 @@ public class Schedule {
     private int numberOfLesson;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"studentsList", "subjectList", "scheduleList"})
+    @JsonIgnoreProperties({"studentsSet", "subjectSet", "scheduleSet"})
     private Band band;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"bandList", "teacherList", "scheduleList"})
+    @JsonIgnoreProperties({"bandSet", "teacherSet", "scheduleSet"})
     private Subject subject;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"subjectList", "scheduleList"})
+    @JsonIgnoreProperties({"subjectSet", "scheduleSet"})
     private Teacher teacher;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"schedule", "noteList"})
+    private Lesson lesson;
 }

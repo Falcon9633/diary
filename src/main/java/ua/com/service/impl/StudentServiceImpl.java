@@ -8,11 +8,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.com.dao.BandDAO;
 import ua.com.dao.StudentDAO;
+import ua.com.dto.UserRegistrationDTO;
+import ua.com.entity.Band;
 import ua.com.entity.Student;
+import ua.com.service.BandService;
 import ua.com.service.StudentService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -21,6 +26,10 @@ public class StudentServiceImpl implements StudentService{
 
     @Autowired
     private StudentDAO studentDAO;
+
+    @Autowired
+    private BandDAO bandDAO;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -30,6 +39,44 @@ public class StudentServiceImpl implements StudentService{
 //        String encode = passwordEncoder.encode(password);
 //        student.setPassword(encode);
         studentDAO.save(student);
+    }
+
+    @Override
+    public void save(UserRegistrationDTO userRegistrationDTO) {
+        Student student = new Student();
+        student.setName(userRegistrationDTO.getName());
+        student.setSurname(userRegistrationDTO.getSurname());
+        student.setEmail(userRegistrationDTO.getEmail());
+        String password = "1";
+        String encode = passwordEncoder.encode(password);
+        student.setPassword(encode);
+        studentDAO.save(student);
+    }
+
+    @Override
+    public void saveStudentToBand(Map<String, String> requestParam) {
+        Band selectedBand = bandDAO.findOne(Integer.parseInt(requestParam.get("band")));
+        for (String key : requestParam.keySet()) {
+            if (key.contains("user")) {
+                Student student = studentDAO.findStudentByIdWithBand(Integer.parseInt(requestParam.get(key)));
+                student.setBand(selectedBand);
+                studentDAO.save(student);
+            }
+        }
+    }
+
+    public void edit(int id, String name, String surname, String email){
+        Student selectedStudent = studentDAO.findOne(id);
+        if (!surname.trim().isEmpty()) {
+            selectedStudent.setSurname(surname);
+        }
+        if (!name.trim().isEmpty()) {
+            selectedStudent.setName(name);
+        }
+        if (!email.trim().isEmpty()) {
+            selectedStudent.setEmail(email);
+        }
+        studentDAO.save(selectedStudent);
     }
 
     @Override
@@ -64,11 +111,12 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Set<Student> findSpecific(String searchForm) {
-        return studentDAO.findSpecific(searchForm);
-    }
+        String[] splitSearchForm = searchForm.trim().split(" ");
 
-    @Override
-    public Set<Student> findSpecific(String searchForm1, String searchForm2) {
-        return studentDAO.findSpecific(searchForm1, searchForm2);
+        if (splitSearchForm.length > 1) {
+            return studentDAO.findSpecific(splitSearchForm[0], splitSearchForm[1]);
+
+        }
+        return studentDAO.findSpecific(searchForm);
     }
 }

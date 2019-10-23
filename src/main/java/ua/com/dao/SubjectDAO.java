@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Set;
 
 public interface SubjectDAO extends JpaRepository<Subject, Integer> {
-    @Query("from Subject s left join fetch s.teacherList where s.id=:id")
+    @Query("from Subject s left join fetch s.teacherSet where s.id=:id")
     Subject findByIdWithTeacher(@Param("id") int id);
 
-    @Query("from Subject s left join fetch s.bandList")
+    @Query("from Subject s left join fetch s.bandSet")
     Set<Subject> findAllWithBand(Sort sort);
 
-    @Query("from Subject s left join fetch s.bandList " +
-            "left join fetch s.teacherList " +
-            "left join fetch s.scheduleList")
+    @Query("from Subject s left join fetch s.bandSet " +
+            "left join fetch s.teacherSet " +
+            "left join fetch s.scheduleSet")
     Set<Subject> findAllWithAllNested ();
 }
