@@ -1,10 +1,12 @@
 package ua.com.service;
 
+import ua.com.entity.Band;
 import ua.com.entity.Schedule;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public interface ScheduleService {
@@ -13,6 +15,8 @@ public interface ScheduleService {
     void createSchedule(Map<String, String> requestParam);
 
     void editSchedule(int bandId, int weekOfYear, int dayOfWeek, Map<String, String> requestParam);
+
+    List<Schedule> journalSchedules(int subjectId, int bandId, int monthIndex);
 
     Schedule findOne(int id);
 
@@ -27,7 +31,7 @@ public interface ScheduleService {
 
     List<Schedule> findAllByBandAndWeekOfYearAndDayOfWeek(int bandId, int weekOfYear, int dayOfWeek);
 
-    List<Schedule> findAllGraterThenOrEqualToWeekOfYear(int weekOfYear);
+//    Set<Band> findAllBandBySubjectAndTeacher
 
     void delete(Schedule schedule);
 }

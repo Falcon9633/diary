@@ -18,4 +18,9 @@ public interface BandDAO extends JpaRepository<Band, Integer> {
             " left join fetch b.subjectSet" +
             " left join fetch b.scheduleSet")
     Set<Band> findAllWithAllNested();
+
+    @Query("from Band band " +
+            "left join fetch band.scheduleSet schedules " +
+            "where schedules.subject.id=:subjectId and schedules.teacher.id=:teacherId")
+    Set<Band> findAllBySubjectAndTeacher(@Param("subjectId") int subjectId, @Param("teacherId") int teacherId);
 }

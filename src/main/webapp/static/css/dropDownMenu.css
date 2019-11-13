@@ -114,3 +114,45 @@ ul.h-menu li ul li:hover ul li a:hover {
     background-color: transparent;
     text-decoration: underline;
 }
+
+/*Simple menu*/
+ul.simple-menu {
+    height: 40px;
+    text-align: center;
+    margin: 0;
+    background: #313942;
+}
+
+ul.simple-menu li{
+    list-style: none;
+    position: relative;
+    width: 200px;
+    margin: auto;
+    padding-top: 11px;
+}
+
+ul.simple-menu li ul {
+    display:none;
+    width: 200px;
+    padding: 0;
+    margin: 7px auto;
+    background: #313942;
+    border-radius: 0 0 12px 12px;
+}
+
+ul.simple-menu li:hover > ul{
+    display: block;
+
+}
+
+ul.simple-menu li ul li{
+    padding: 4px 0;
+}
+
+ul.simple-menu li ul li:hover{
+    background: #292e35;
+}
+
+ul.simple-menu a{
+    text-decoration: unset;
+}

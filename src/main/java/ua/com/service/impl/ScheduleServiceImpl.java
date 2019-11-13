@@ -7,13 +7,13 @@ import ua.com.dao.BandDAO;
 import ua.com.dao.ScheduleDAO;
 import ua.com.dao.SubjectDAO;
 import ua.com.dao.TeacherDAO;
+import ua.com.entity.Lesson;
 import ua.com.entity.Schedule;
+import ua.com.entity.Teacher;
 import ua.com.service.ScheduleService;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -44,8 +44,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         final int MAX_LESSON_NR = 8;
         GregorianCalendar calendar = new GregorianCalendar();
         Date currentTime = calendar.getTime();
+        int currentYear = calendar.get(Calendar.YEAR);
         int currentWeekOfYear = calendar.get(GregorianCalendar.WEEK_OF_YEAR);
-        List<Schedule> oldSchedule = scheduleDAO.findAllGraterThenOrEqualToWeekOfYear(currentWeekOfYear);
+        List<Schedule> oldSchedule = scheduleDAO.findAllGraterThenOrEqualToWeekOfYearOrYearAndByBand(
+                currentYear,
+                currentWeekOfYear + 1,
+                Integer.parseInt(requestParam.get("bandId"))
+        );
+        List<Schedule> newSchedule = new ArrayList<>();
 
         scheduleDAO.delete(oldSchedule);
 
@@ -54,11 +60,15 @@ public class ScheduleServiceImpl implements ScheduleService {
                 if (calendar.get(GregorianCalendar.DAY_OF_WEEK) == dayOfWeek) {
                     for (int numberOfLesson = MIN_LESSON_NR; numberOfLesson <= MAX_LESSON_NR; numberOfLesson++) {
                         Schedule schedule = new Schedule();
+                        schedule.setCalendar(new GregorianCalendar(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)));
                         schedule.setEditingDate(currentTime);
+                        schedule.setYear(calendar.get(Calendar.YEAR));
+                        schedule.setMonth(calendar.get(Calendar.MONTH));
+                        schedule.setDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
                         schedule.setWeekOfYear(calendar.get(GregorianCalendar.WEEK_OF_YEAR));
                         schedule.setDayOfWeek(dayOfWeek);
                         schedule.setNumberOfLesson(numberOfLesson);
-//                        scheduleDAO.save(schedule);
+                        schedule.setLesson(new Lesson());
                         try {
                             schedule.setBand(bandDAO
                                     .findOne(Integer.parseInt(
@@ -83,12 +93,14 @@ public class ScheduleServiceImpl implements ScheduleService {
                         } catch (NumberFormatException ex) {
                             schedule.setTeacher(null);
                         }
-                        scheduleDAO.save(schedule);
+                        newSchedule.add(schedule);
                     }
                 }
             }
             calendar.add(GregorianCalendar.DAY_OF_MONTH, 1); // day increment
         }
+
+        scheduleDAO.save(newSchedule);
     }
 
     @Override
@@ -98,7 +110,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         GregorianCalendar calendar = new GregorianCalendar();
         Date currentTime = calendar.getTime();
         for (int numberOfLesson = MIN_LESSON_NR; numberOfLesson <= MAX_LESSON_NR; numberOfLesson++) {
-            Schedule currentLessonSchedule = scheduleDAO.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(
+            Schedule currentLessonSchedule = scheduleDAO.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithNested(
                     bandId,
                     weekOfYear,
                     dayOfWeek,
@@ -126,13 +138,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> journalSchedules(int subjectId, int bandId, int monthIndex) {
+        List<Integer> teachersId = teacherDAO.findAllBySubjectAndBand(subjectId, bandId).stream().map(Teacher::getId).collect(Collectors.toList());
+        List<Schedule> schedules = scheduleDAO.findAllByTeacherAndSubjectAndBandAndMonth(teachersId, subjectId, bandId, monthIndex);
+        return schedules;
+    }
+
+    @Override
     public Schedule findOne(int id) {
         return scheduleDAO.findOne(id);
     }
 
     @Override
     public Schedule findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(int bandId, int weekOfYear, int dayOfWeek, int numberOfLesson) {
-        return scheduleDAO.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithAllNested(bandId, weekOfYear, dayOfWeek, numberOfLesson);
+        return scheduleDAO.findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLessonWithNested(bandId, weekOfYear, dayOfWeek, numberOfLesson);
     }
 
     @Override
@@ -142,17 +161,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> findAllByWeekOfYearWithAllNested(int weekOfYear) {
-        return scheduleDAO.findAllByWeekOfYearWithAllNested(weekOfYear);
+        return scheduleDAO.findAllByWeekOfYearWithNested(weekOfYear);
     }
 
     @Override
     public List<Schedule> findAllByBandAndWeekOfYearAndDayOfWeek(int bandId, int weekOfYear, int dayOfWeek) {
         return scheduleDAO.findAllByBandAndWeekOfYearAndDayOfWeek(bandId, weekOfYear,dayOfWeek);
-    }
-
-    @Override
-    public List<Schedule> findAllGraterThenOrEqualToWeekOfYear(int weekOfYear) {
-        return scheduleDAO.findAllGraterThenOrEqualToWeekOfYear(weekOfYear);
     }
 
     @Override

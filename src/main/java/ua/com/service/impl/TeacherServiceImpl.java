@@ -8,14 +8,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.com.dao.BandDAO;
 import ua.com.dao.TeacherDAO;
 import ua.com.dto.UserRegistrationDTO;
 import ua.com.entity.Authority;
+import ua.com.entity.Band;
+import ua.com.entity.Subject;
 import ua.com.entity.Teacher;
 import ua.com.service.TeacherService;
 
-import java.util.List;
-import java.util.Set;
+import java.security.Principal;
+import java.util.*;
 
 @Service
 @Transactional
@@ -23,6 +26,10 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Autowired
     private TeacherDAO teacherDAO;
+
+    @Autowired
+    private BandDAO bandDAO;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -89,6 +96,11 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
+    public Set<Teacher> findAllBySubjectAndBand(int subjectId, int bandId) {
+        return teacherDAO.findAllBySubjectAndBand(subjectId, bandId);
+    }
+
+    @Override
     public Set<Teacher> findAllWithAllNested(Sort sort) {
         return teacherDAO.findAllWithAllNested(sort);
     }
@@ -102,5 +114,17 @@ public class TeacherServiceImpl implements TeacherService{
 
         }
         return teacherDAO.findSpecific(searchForm);
+    }
+
+    @Override
+    public Map<Subject, Set<Band>> journalNavigationSubjectAndBand(Principal principal) {
+        Map<Subject, Set<Band>> journalNavigationSubjectAndBand = new LinkedHashMap<>();
+        Teacher selectedTeacher = teacherDAO.findByEmailWithSubject(principal.getName());
+        Set<Subject> subjectSet = selectedTeacher.getSubjectSet();
+        for (Subject subject : subjectSet) {
+            Set<Band> bandSet = bandDAO.findAllBySubjectAndTeacher(subject.getId(), selectedTeacher.getId());
+            journalNavigationSubjectAndBand.put(subject, bandSet);
+        }
+        return journalNavigationSubjectAndBand;
     }
 }

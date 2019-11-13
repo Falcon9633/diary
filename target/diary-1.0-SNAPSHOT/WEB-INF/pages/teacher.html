@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Teacher page</title>
+    <title>Сторінка вчителя</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,7 +14,8 @@
 <div class="wrapper">
     <div class="header">
         <div class="headerContent">
-            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a></div>
+            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
+            </div>
             <ul class="nav h-menu">
                 <li><a href="#">Розклад</a>
                     <ul>
@@ -22,10 +23,25 @@
                         <li><a href="">Загальний</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Класи</a></li>
+                <li><a>Журнал</a>
+                    <ul>
+                        <li th:each="element : ${journalNavigationSubjectAndBand}">
+                            <a th:text="${element.key.name}"></a>
+                            <ul th:with="calendar=${#calendars.createNow()}">
+                                <li th:each="band : ${element.value}" th:if="${band} != null">
+                                    <a class="nobr" th:text="${band.name}"
+                                       th:href="@{/teacher/journalEditing-{subjectId}-{bandId}-{monthIndex}
+                                    (subjectId = ${element.key.id},
+                                    bandId = ${band.id},
+                                    monthIndex = ${#calendars.month(calendar)})}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#">Вчительська</a></li>
                 <li th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
-                    th:if="${authority.getAuthority()} == 'ROLE_ADMIN'" >
+                    th:if="${authority.getAuthority()} == 'ROLE_ADMIN'">
                     <a th:href="@{/admin}">Управління</a>
                 </li>
                 <li><a th:text="${#request.getUserPrincipal().name}"></a>
@@ -38,10 +54,11 @@
         </div>
     </div>
     <h1>Сторінка вчителя</h1>
+
+
 </div>
 
 
 <div th:replace="fragments/styles::main"/>
-<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
 </body>
 </html>

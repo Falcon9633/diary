@@ -57,7 +57,7 @@
                 <li><a href="">Статистика</a></li>
                 <li><a th:text="${#request.getUserPrincipal().name}"></a>
                     <ul>
-                        <li><a href="">Повернення на сторінку вчителя</a></li>
+                        <li><a th:href="@{/teacher}">Повернення на сторінку вчителя</a></li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>
@@ -122,8 +122,7 @@
 
 <div th:replace="fragments/styles::modal"/>
 <div th:replace="fragments/styles::main"/>
-<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<script type="text/javascript" th:src="@{../js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{../js/bandEditing.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bandEditing.js}"></script>
 </body>
 </html>

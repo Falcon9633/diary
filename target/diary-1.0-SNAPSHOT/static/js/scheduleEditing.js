@@ -36,6 +36,7 @@ function init() {
             adjacentDaysChangeMonth: true,
             forceSixRows: true,
             trackSelectedDate: true,
+            daysOfTheWeek: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 
             doneRendering: function () {
                 createEventForm();

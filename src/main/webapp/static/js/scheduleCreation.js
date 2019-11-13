@@ -116,7 +116,7 @@ function createSubjectsTeachersSelects(selectedBandId) {
     $teachersForm = $('div.scheduleTeacherForm');
     for (let dayNr = MIN_DAY_NR; dayNr <= MAX_DAY_NR; dayNr++) {
         generateSubjectForm($subjectsForm[dayNr - MIN_DAY_NR], selectedBandId, dayNr);
-        generateTeacherForm($teachersForm[dayNr - MIN_DAY_NR], dayNr);
+        generateTeacherForm($teachersForm[dayNr - MIN_DAY_NR], selectedBandId, dayNr);
     }
 }
 
@@ -126,7 +126,7 @@ function generateSubjectForm($subjectsForm, selectedBandId, dayNr) {
 
     for (let lessonNr = MIN_LESSON_NR; lessonNr <= MAX_LESSON_NR; lessonNr++) {
         let currentSubject = function(){
-            let currentLesson = getCurrentLessonSchedule(dayNr, lessonNr);
+            let currentLesson = getCurrentLessonSchedule(dayNr, lessonNr, selectedBandId);
 
             if (currentLesson){
                 return currentLesson.subject;
@@ -145,14 +145,14 @@ function generateSubjectForm($subjectsForm, selectedBandId, dayNr) {
     }
 }
 
-function generateTeacherForm($teachersForm, dayNr) {
+function generateTeacherForm($teachersForm, selectedBandId, dayNr) {
     let $teacherDayContainer = $('<ul>').attr({'type': 'none', 'style': 'margin: 0'}).appendTo($teachersForm);
 
     for (let lessonNr = MIN_LESSON_NR; lessonNr <= MAX_LESSON_NR; lessonNr++) {
         let selectedSubjectId = parseInt($(`select[name='subject_${dayNr}_${lessonNr}']`).val());
         let availableTeachers = getTeachersForSubject(subjects, teachers, selectedSubjectId);
         let currentTeacher = function(){
-            let currentLesson = getCurrentLessonSchedule(dayNr, lessonNr);
+            let currentLesson = getCurrentLessonSchedule(dayNr, lessonNr, selectedBandId);
 
             if (currentLesson){
                 return currentLesson.teacher;
@@ -168,9 +168,9 @@ function generateTeacherForm($teachersForm, dayNr) {
     }
 }
 
-function getCurrentLessonSchedule(dayNr, lessonNr) {
+function getCurrentLessonSchedule(dayNr, lessonNr, selectedBandId) {
     return currentWeekSchedule.find(function (item) {
-        return item.dayOfWeek === dayNr && item.numberOfLesson === lessonNr;
+        return item.dayOfWeek === dayNr && item.numberOfLesson === lessonNr && item.band.id === selectedBandId;
     });
 }
 

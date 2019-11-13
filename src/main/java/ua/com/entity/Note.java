@@ -22,7 +22,7 @@ public class Note {
     @DateTimeFormat(pattern = "YYYY/MM/DD")
     private Date editingDate;
     private int mark;
-    private boolean present = true;
+    private boolean absent = false;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"band", "noteList"})

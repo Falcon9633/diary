@@ -54,7 +54,7 @@
                 <li><a href="">Статистика</a></li>
                 <li><a th:text="${#request.getUserPrincipal().name}"></a>
                     <ul>
-                        <li><a href="">Повернення на сторінку вчителя</a></li>
+                        <li><a th:href="@{/teacher}">Повернення на сторінку вчителя</a></li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>
@@ -89,11 +89,10 @@
 
 <div th:replace="fragments/styles::main"/>
 <div th:replace="fragments/styles::calendar"/>
-<script type="text/javascript" th:src="@{../js/css3-mediaqueries.js}"></script>
-<script type="text/javascript" th:src="@{../js/moment-with-locales.js}"></script>
-<script type="text/javascript" th:src="@{../js/underscore.js}"></script>
-<script type="text/javascript" th:src="@{../js/clndr.js}"></script>
-<script type="text/javascript" th:src="@{../js/scheduleElements.js}"></script>
-<script type="text/javascript" th:src="@{../js/scheduleEditing.js}"></script>
+<script type="text/javascript" th:src="@{/js/moment-with-locales.js}"></script>
+<script type="text/javascript" th:src="@{/js/underscore.js}"></script>
+<script type="text/javascript" th:src="@{/js/clndr.js}"></script>
+<script type="text/javascript" th:src="@{/js/scheduleElements.js}"></script>
+<script type="text/javascript" th:src="@{/js/scheduleEditing.js}"></script>
 </body>
 </html>

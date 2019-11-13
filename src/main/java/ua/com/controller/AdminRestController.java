@@ -63,7 +63,7 @@ public class AdminRestController {
     @GetMapping("/getAllScheduleCurrentWeek")
     public List<Schedule> getAllScheduleCurrentWeek(){
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        return scheduleService.findAllByWeekOfYearWithAllNested(gregorianCalendar.get(GregorianCalendar.WEEK_OF_YEAR));
+        return scheduleService.findAllByWeekOfYearWithAllNested(gregorianCalendar.get(GregorianCalendar.WEEK_OF_YEAR) + 1);
     }
 
     @GetMapping("/getBandScheduleByDate")

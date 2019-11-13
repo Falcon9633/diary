@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Entity
-@ToString(exclude = {"band", "note"})
+@ToString(exclude = {"band", "noteList"})
 public class Student implements UserDetails {
 
     @Id
@@ -153,9 +153,16 @@ public class Student implements UserDetails {
         return enabled;
     }
 
+    public List<Note> getNoteList() {
+        return noteList;
+    }
+
+    public void setNoteList(List<Note> noteList) {
+        this.noteList = noteList;
+    }
 
 
-    //    public void setBand(Band band) {
+//    public void setBand(Band band) {
 //        setBand(band, true);
 //    }
 //
