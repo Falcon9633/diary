@@ -64,8 +64,10 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public List<Band> findAll(Sort sort) {
-        return bandDAO.findAll(sort);
+    public List<Band> findAll(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return bandDAO.findAll(orders);
     }
 
     @Override

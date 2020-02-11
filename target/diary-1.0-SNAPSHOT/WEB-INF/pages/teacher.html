@@ -17,10 +17,16 @@
             <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
             </div>
             <ul class="nav h-menu">
-                <li><a href="#">Розклад</a>
+                <li><a>Розклад</a>
                     <ul>
-                        <li><a href="">Поточний день</a></li>
-                        <li><a href="">Загальний</a></li>
+                        <li><a th:href="@{/teacher/scheduleReview}">Поточний</a></li>
+                        <li>
+                            <a>Загальний</a>
+                            <ul>
+                                <li><a th:href="@{/teacher/scheduleBandsGeneralReview}">Класи</a></li>
+                                <li><a th:href="@{/teacher/scheduleTeachersGeneralReview}">Вчителі</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li><a>Журнал</a>
@@ -39,7 +45,6 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="#">Вчительська</a></li>
                 <li th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
                     th:if="${authority.getAuthority()} == 'ROLE_ADMIN'">
                     <a th:href="@{/admin}">Управління</a>

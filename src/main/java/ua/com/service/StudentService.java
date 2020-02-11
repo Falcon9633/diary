@@ -22,13 +22,13 @@ public interface StudentService {
 
     Student findByEmail(String email);
 
-    List<Student> findAll();
+    Student findByIdWithBand(int id);
 
-    Student findStudentByIdWithBand(int id);
+    List<Student> findAll();
 
     Set<Student> findAllWithBand();
 
-    Set<Student> findAllWithBand(Sort sort);
+    Set<Student> findAllWithBand(Sort.Direction sortDirection, String property);
 
     Set<Student> findSpecific(String searchForm);
 

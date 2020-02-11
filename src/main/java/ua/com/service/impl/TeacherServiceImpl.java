@@ -86,8 +86,17 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public Set<Teacher> findAllWithSubject(Sort sort) {
-        return teacherDAO.findAllWithSubject(sort);
+    public List<Teacher> findAll(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return teacherDAO.findAll(orders);
+    }
+
+    @Override
+    public Set<Teacher> findAllWithSubject(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return teacherDAO.findAllWithSubject(orders);
     }
 
     @Override
@@ -96,13 +105,15 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public Set<Teacher> findAllBySubjectAndBand(int subjectId, int bandId) {
-        return teacherDAO.findAllBySubjectAndBand(subjectId, bandId);
+    public Set<Teacher> findAllWithAllNested(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return teacherDAO.findAllWithAllNested(orders);
     }
 
     @Override
-    public Set<Teacher> findAllWithAllNested(Sort sort) {
-        return teacherDAO.findAllWithAllNested(sort);
+    public Set<Teacher> findAllBySubjectAndBand(int subjectId, int bandId) {
+        return teacherDAO.findAllBySubjectAndBand(subjectId, bandId);
     }
 
     @Override
@@ -118,11 +129,13 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public Map<Subject, Set<Band>> journalNavigationSubjectAndBand(Principal principal) {
+        Sort.Order sortByNameAsc = new Sort.Order(Sort.Direction.ASC, "name");
+        Sort orders = new Sort(sortByNameAsc);
         Map<Subject, Set<Band>> journalNavigationSubjectAndBand = new LinkedHashMap<>();
         Teacher selectedTeacher = teacherDAO.findByEmailWithSubject(principal.getName());
         Set<Subject> subjectSet = selectedTeacher.getSubjectSet();
         for (Subject subject : subjectSet) {
-            Set<Band> bandSet = bandDAO.findAllBySubjectAndTeacher(subject.getId(), selectedTeacher.getId());
+            Set<Band> bandSet = bandDAO.findAllBySubjectAndTeacher(subject.getId(), selectedTeacher.getId(), orders);
             journalNavigationSubjectAndBand.put(subject, bandSet);
         }
         return journalNavigationSubjectAndBand;

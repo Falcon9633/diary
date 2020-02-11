@@ -2,8 +2,10 @@
 
 moment.updateLocale('uk', {
     week: {
-        dow: 0,
-    }
+        dow: 1,
+    },
+    // weekdaysShort : ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    // weekdaysMin : ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 });
 moment.locale('uk');
 
@@ -36,7 +38,6 @@ function init() {
             adjacentDaysChangeMonth: true,
             forceSixRows: true,
             trackSelectedDate: true,
-            daysOfTheWeek: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 
             doneRendering: function () {
                 createEventForm();
@@ -82,7 +83,7 @@ function loadData() {
 
 function setWOYandDOWinputsValue(moment) {
     $('input[name=weekOfYear]').val(moment.week());
-    $('input[name=dayOfWeek]').val(moment.weekday() + 1)
+    $('input[name=dayOfWeek]').val(moment.weekday() + 2);
 }
 
 function handleSubmitForm(event){
@@ -163,7 +164,7 @@ function emptySubjectTeacherForm() {
 
 function getBandScheduleByDate(selectedBandId, moment) {
     let weekOfYear = moment.week();
-    let dayOfWeek = moment.weekday() + 1;
+    let dayOfWeek = moment.weekday() + 2;
 
     $.getJSON("/getBandScheduleByDate",
         {bandId: parseInt(selectedBandId), weekOfYear: parseInt(weekOfYear), dayOfWeek: parseInt(dayOfWeek)},

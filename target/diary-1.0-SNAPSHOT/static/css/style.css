@@ -266,6 +266,19 @@ table.bordered colgroup.countWidth {
     width: 35px;
 }
 
+table.scheduleReview {
+    width: calc(100% / 6);
+    float: left;
+}
+
+table.scheduleReview th.today {
+    background-color: #72c6d8;
+}
+
+table.scheduleReview td {
+    height: 54px;
+}
+
 .wrapper {
     width: 980px;
     padding: 0 10px;

@@ -2,9 +2,6 @@ package ua.com.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +10,6 @@ import ua.com.dao.StudentDAO;
 import ua.com.dto.UserRegistrationDTO;
 import ua.com.entity.Band;
 import ua.com.entity.Student;
-import ua.com.service.BandService;
 import ua.com.service.StudentService;
 
 import java.util.List;
@@ -58,7 +54,7 @@ public class StudentServiceImpl implements StudentService{
         Band selectedBand = bandDAO.findOne(Integer.parseInt(requestParam.get("band")));
         for (String key : requestParam.keySet()) {
             if (key.contains("user")) {
-                Student student = studentDAO.findStudentByIdWithBand(Integer.parseInt(requestParam.get(key)));
+                Student student = studentDAO.findByIdWithBand(Integer.parseInt(requestParam.get(key)));
                 student.setBand(selectedBand);
                 studentDAO.save(student);
             }
@@ -90,13 +86,13 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public List<Student> findAll() {
-        return studentDAO.findAll();
+    public Student findByIdWithBand(int id) {
+        return studentDAO.findByIdWithBand(id);
     }
 
     @Override
-    public Student findStudentByIdWithBand(int id) {
-        return studentDAO.findStudentByIdWithBand(id);
+    public List<Student> findAll() {
+        return studentDAO.findAll();
     }
 
     @Override
@@ -105,8 +101,10 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Set<Student> findAllWithBand(Sort sort) {
-        return studentDAO.findAllWithBand(sort);
+    public Set<Student> findAllWithBand(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return studentDAO.findAllWithBand(orders);
     }
 
     @Override

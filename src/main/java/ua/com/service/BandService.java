@@ -21,7 +21,7 @@ public interface BandService {
 
     List<Band> findAll();
 
-    List<Band> findAll(Sort sort);
+    List<Band> findAll(Sort.Direction sortDirection, String property);
 
     Set<Band> findAllWithAllNested();
 }

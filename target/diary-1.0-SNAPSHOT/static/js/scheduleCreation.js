@@ -16,45 +16,34 @@ var teachers;
 var currentWeekSchedule;
 
 function init() {
-    let count = 0;
-    const INIT_VAR_COUNT = 4;
-
     $mainTable = $('div.mobile');
     $bandSelect = $('select[name=bandId]');
 
     $mainTable.hide();
+    $bandSelect.prop('disabled', true);
+    loadData();
 
     $('form').submit(handleSubmitForm);
 
+    $(document).ajaxStop(createSchedule);
+}
+
+function loadData() {
     $.getJSON("/getAllBands", function (json) {
         bands = json;
-        count++;
-        mayBeRunApp();
     });
 
     $.getJSON("/getAllSubjects", function (json) {
         subjects = json;
-        count++;
-        mayBeRunApp();
     });
 
     $.getJSON("/getAllTeachers", function (json) {
         teachers = json;
-        count++;
-        mayBeRunApp();
     });
 
     $.getJSON("/getAllScheduleCurrentWeek", function (json) {
         currentWeekSchedule = json;
-        count++;
-        mayBeRunApp();
     });
-
-    function mayBeRunApp() {
-        if (count === INIT_VAR_COUNT) {
-            createSchedule();
-        }
-    }
 }
 
 function handleSubmitForm(event){
@@ -67,6 +56,7 @@ function handleSubmitForm(event){
 }
 
 function createSchedule() {
+    $bandSelect.prop('disabled', false);
     createSubjectTeacherForm();
     $bandSelect.on('change', handleBandSelectChange);
 }

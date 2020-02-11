@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Додавання предметів в клас</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
+            </div>
+            <ul class="nav h-menu">
+                <li><a>Користувачі</a>
+                    <ul>
+                        <li><a th:href="@{/admin/userRegistration}">Реєстрація користувачів</a></li>
+                        <li>
+                            <a>Редагування користувачів</a>
+                            <ul>
+                                <li><a th:href="@{/admin/userEditingTeachers}">Вчителі</a></li>
+                                <li><a th:href="@{/admin/userEditingStudents}">Студенти</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/admin/setStudentToBand}">Додавання студентів в групу</a></li>
+                    </ul>
+                </li>
+                <li><a class="active">Класи</a>
+                    <ul>
+                        <li><a th:href="@{/admin/bandCreation}">Створення класів</a></li>
+                        <li><a th:href="@{/admin/bandEditing}">Редагування класів</a></li>
+                        <li><a th:href="@{/admin/setSubjectToBand}" class="active">Додавання предметів</a></li>
+                    </ul>
+                </li>
+                <li><a>Предмети</a>
+                    <ul>
+                        <li><a th:href="@{/admin/subjectCreation}">Створення предметів</a></li>
+                        <li><a th:href="@{/admin/subjectEditing}">Редагування предметів</a></li>
+                        <li><a th:href="@{/admin/setTeacherToSubject}">Додавання вчителів</a></li>
+                    </ul>
+                </li>
+                <li><a>Розклад</a>
+                    <ul>
+                        <li><a th:href="@{/admin/scheduleCreation}">Створення розкладу</a></li>
+                        <li><a th:href="@{/admin/scheduleEditing}">Редагування розкладу</a></li>
+                    </ul>
+                </li>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
+                    <ul>
+                        <li><a th:href="@{/teacher}">Повернення на сторінку вчителя</a></li>
+                        <li><a th:href="@{/logout}">Вийти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form th:action="@{/admin/saveSubjectToBand}" method="post">
+        <div class="row">
+            <h1>
+                <label>Додавання предметів
+                    <select name="bandId">
+                        <option value="">-- Оберіть клас --</option>
+                        <option th:each="bands:${allBand}" th:text="${bands.name}" th:value="${bands.id}"></option>
+                    </select>
+                    <button type="submit">Додати</button>
+                </label>
+                <h3 id="bandSelectError" class="errors hideError">Оберіть клас</h3>
+            </h1>
+        </div>
+
+        <div class="mobile">
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th>№ з/п</th>
+                    <th>Назва предмету</th>
+                    <th>Класи</th>
+                    <th>Вибрати</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="subjects, statSubject :${allSubject}">
+                    <td th:text="${statSubject.count}"/>
+                    <td th:text="${subjects.name}"/>
+                    <td>
+                        <div th:each="band, statBand :${subjects.bandSet}"
+                             th:text="!${statBand.last}? ${band.name} + ',' : ${band.name}"></div>
+                    </td>
+                    <td>
+                        <input type="checkbox" th:name="subjectId-+${subjects.id}" th:value="${subjects.id}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+
+</div>
+
+
+<div th:replace="fragments/styles::main"/>
+<script type="text/javascript">
+    $('form').submit(function (event) {
+        if (!$('select[name=bandId]').val()){
+            let $errorElement = $('#bandSelectError');
+            $errorElement.show();
+            alert($errorElement.text());
+            event.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

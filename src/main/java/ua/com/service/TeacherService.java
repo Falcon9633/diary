@@ -24,13 +24,15 @@ public interface TeacherService {
 
     List<Teacher> findAll();
 
-    Set<Teacher> findAllWithSubject(Sort sort);
+    List<Teacher> findAll(Sort.Direction sortDirection, String property);
+
+    Set<Teacher> findAllWithSubject(Sort.Direction sortDirection, String property);
 
     Set<Teacher> findAllWithAllNested();
 
-    Set<Teacher> findAllBySubjectAndBand(int subjectId, int bandId);
+    Set<Teacher> findAllWithAllNested(Sort.Direction sortDirection, String property);
 
-    Set<Teacher> findAllWithAllNested(Sort sort);
+    Set<Teacher> findAllBySubjectAndBand(int subjectId, int bandId);
 
     Set<Teacher> findSpecific(String searchForm);
 

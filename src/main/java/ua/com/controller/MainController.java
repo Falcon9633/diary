@@ -23,9 +23,4 @@ public class MainController {
         model.addAttribute("loginError", true);
         return "index";
     }
-
-    @GetMapping("/student")
-    public String student() {
-        return "student";
-    }
 }

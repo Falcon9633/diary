@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Додавання учня в клас</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
+            </div>
+            <ul class="nav h-menu">
+                <li><a class="active">Користувачі</a>
+                    <ul>
+                        <li><a th:href="@{/admin/userRegistration}">Реєстрація користувачів</a></li>
+                        <li>
+                            <a>Редагування користувачів</a>
+                            <ul>
+                                <li><a th:href="@{/admin/userEditingTeachers}">Вчителі</a></li>
+                                <li><a th:href="@{/admin/userEditingStudents}">Студенти</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/admin/setStudentToBand}" class="active">Додавання студентів в групу</a></li>
+                    </ul>
+                </li>
+                <li><a>Класи</a>
+                    <ul>
+                        <li><a th:href="@{/admin/bandCreation}">Створення класів</a></li>
+                        <li><a th:href="@{/admin/bandEditing}">Редагування класів</a></li>
+                        <li><a th:href="@{/admin/setSubjectToBand}">Додавання предметів</a></li>
+                    </ul>
+                </li>
+                <li><a>Предмети</a>
+                    <ul>
+                        <li><a th:href="@{/admin/subjectCreation}">Створення предметів</a></li>
+                        <li><a th:href="@{/admin/subjectEditing}">Редагування предметів</a></li>
+                        <li><a th:href="@{/admin/setTeacherToSubject}">Додавання вчителів</a></li>
+                    </ul>
+                </li>
+                <li><a>Розклад</a>
+                    <ul>
+                        <li><a th:href="@{/admin/scheduleCreation}">Створення розкладу</a></li>
+                        <li><a th:href="@{/admin/scheduleEditing}">Редагування розкладу</a></li>
+                    </ul>
+                </li>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
+                    <ul>
+                        <li><a th:href="@{/teacher}">Повернення на сторінку вчителя</a></li>
+                        <li><a th:href="@{/logout}">Вийти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <form th:action="@{/admin/saveStudentToBand}" method="post">
+        <div class="row">
+            <h2><label>Додавання учня у клас
+                <select name="band">
+                    <option value="">-- Оберіть клас --</option>
+                    <option th:each="band:${allBands}" th:text="${band.name}" th:value="${band.id}">
+                        </option>
+
+                </select>
+            </label></h2>
+        </div>
+
+
+        <div class="mobile">
+            <table class="bordered">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Ім'я</th>
+                    <th>Прізвище</th>
+                    <th>Електронна пошта</th>
+                    <th>Клас</th>
+                    <th>Вибрати</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student,stat:${allStudents}">
+                    <td th:text="${stat.count}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.surname}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.band}? ${student.band.name} : ''"></td>
+                    <td><input th:name="user-+${student.id}" type="checkbox" th:value="${student.id}"/></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <button type="submit">Додати</button>
+        </div>
+
+    </form>
+
+
+    
+</div>
+
+
+<div th:replace="fragments/styles::main"/>
+</body>
+</html>

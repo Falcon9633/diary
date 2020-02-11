@@ -45,11 +45,6 @@ public class AdminController {
     @Autowired
     private SubjectValidator subjectValidator;
 
-    private Sort sortByPropertyASC(String property) {
-        Sort.Order byProperty = new Sort.Order(Sort.Direction.ASC, property);
-        return new Sort(byProperty);
-    }
-
     @GetMapping("/admin")
     public String admin(Principal principal, Model model) {
         model.addAttribute("principal", principal);
@@ -59,7 +54,7 @@ public class AdminController {
     @GetMapping("/admin/userRegistration")
     public String userRegistration(Model model) {
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
-        return "userRegistration";
+        return "adminUserRegistration";
     }
 
     @PostMapping("/admin/saveUser")
@@ -69,7 +64,7 @@ public class AdminController {
             bindingResult
                     .getFieldErrors()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
-            return "userRegistration";
+            return "adminUserRegistration";
         }
 
         if (userRegistrationDTO.getUserType().equals("student")) {
@@ -85,16 +80,15 @@ public class AdminController {
 
     @GetMapping("/admin/userEditingTeachers")
     public String userEditingTeachers(Model model) {
-        Sort orders = sortByPropertyASC("surname");
-        model.addAttribute("allTeachers", teacherService.findAllWithAllNested(orders));
-        return "userEditingTeachers";
+        model.addAttribute("allTeachers", teacherService.findAllWithAllNested(Sort.Direction.ASC, "surname"));
+        return "adminUserEditingTeachers";
     }
 
     @GetMapping("/admin/findSpecificTeacher")
     public String findSpecificTeacher(@RequestParam("searchForm") String searchForm, Model model) {
         model.addAttribute("searchForm", searchForm);
         model.addAttribute("specifiedTeachers", teacherService.findSpecific(searchForm));
-        return "userEditingSpecifiedTeachers";
+        return "adminUserEditingSpecifiedTeachers";
     }
 
     @PostMapping("/admin/editTeacher")
@@ -109,16 +103,15 @@ public class AdminController {
 
     @GetMapping("/admin/userEditingStudents")
     public String userEditingStudents(Model model) {
-        Sort orders = sortByPropertyASC("surname");
-        model.addAttribute("allStudents", studentService.findAllWithBand(orders));
-        return "userEditingStudents";
+        model.addAttribute("allStudents", studentService.findAllWithBand(Sort.Direction.ASC, "surname"));
+        return "adminUserEditingStudents";
     }
 
     @GetMapping("/admin/findSpecificStudent")
     public String findSpecificStudent(@RequestParam("searchForm") String searchForm, Model model) {
         model.addAttribute("searchFrom", searchForm);
         model.addAttribute("specifiedStudents", studentService.findSpecific(searchForm));
-        return "userEditingSpecifiedStudents";
+        return "adminUserEditingSpecifiedStudents";
     }
 
     @PostMapping("/admin/editStudent")
@@ -134,7 +127,7 @@ public class AdminController {
     public String setStudentToBand(Model model) {
         model.addAttribute("allBands", bandService.findAll());
         model.addAttribute("allStudents", studentService.findAllWithBand());
-        return "setStudentToBand";
+        return "adminSetStudentToBand";
     }
 
     @PostMapping("/admin/saveStudentToBand")
@@ -146,7 +139,7 @@ public class AdminController {
     @GetMapping("/admin/bandCreation")
     public String bandRegistration(Model model) {
         model.addAttribute("band", new Band());
-        return "bandCreation";
+        return "adminBandCreation";
     }
 
     @PostMapping("/admin/saveBand")
@@ -155,7 +148,7 @@ public class AdminController {
             bindingResult
                     .getFieldErrors()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
-            return "bandCreation";
+            return "adminBandCreation";
         }
         bandService.save(band);
         return "redirect:/admin/bandCreation";
@@ -163,17 +156,15 @@ public class AdminController {
 
     @GetMapping("/admin/bandEditing")
     public String bandEditing(Model model) {
-        Sort orders = sortByPropertyASC("name");
-        model.addAttribute("allBand", bandService.findAll(orders));
-        return "bandEditing";
+        model.addAttribute("allBand", bandService.findAll(Sort.Direction.ASC, "name"));
+        return "adminBandEditing";
     }
 
     @GetMapping("/admin/setSubjectToBand")
     public String setSubjectToBand(Model model) {
-        Sort orders = sortByPropertyASC("name");
         model.addAttribute("allBand", bandService.findAll());
-        model.addAttribute("allSubject", subjectService.findAllWithBand(orders));
-        return "setSubjectToBand";
+        model.addAttribute("allSubject", subjectService.findAllWithBand(Sort.Direction.ASC, "name"));
+        return "adminSetSubjectToBand";
     }
 
     @PostMapping("/admin/saveSubjectToBand")
@@ -186,7 +177,7 @@ public class AdminController {
     @GetMapping("/admin/subjectCreation")
     public String subjectRegistration(Model model) {
         model.addAttribute("subject", new Subject());
-        return "subjectCreation";
+        return "adminSubjectCreation";
     }
 
     @PostMapping("/admin/saveSubject")
@@ -195,7 +186,7 @@ public class AdminController {
             bindingResult
                     .getFieldErrors()
                     .forEach(f -> System.out.println(f.getField() + ": " + f.getCode()));
-            return "subjectCreation";
+            return "adminSubjectCreation";
         }
         subjectService.save(subject);
         return "redirect:/admin/subjectCreation";
@@ -203,17 +194,15 @@ public class AdminController {
 
     @GetMapping("/admin/subjectEditing")
     public String subjectEditing(Model model) {
-        Sort orders = sortByPropertyASC("name");
-        model.addAttribute("allSubject", subjectService.findAll(orders));
-        return "subjectEditing";
+        model.addAttribute("allSubject", subjectService.findAll(Sort.Direction.ASC, "name"));
+        return "adminSubjectEditing";
     }
 
     @GetMapping("/admin/setTeacherToSubject")
     public String setTeacherToSubject(Model model) {
-        Sort orders = sortByPropertyASC("surname");
         model.addAttribute("allSubjects", subjectService.findAll());
-        model.addAttribute("allTeachers", teacherService.findAllWithSubject(orders));
-        return "setTeacherToSubject";
+        model.addAttribute("allTeachers", teacherService.findAllWithSubject(Sort.Direction.ASC, "surname"));
+        return "adminSetTeacherToSubject";
     }
 
     @PostMapping("/admin/saveTeacherToSubject")
@@ -225,8 +214,8 @@ public class AdminController {
 
     @GetMapping("/admin/scheduleCreation")
     public String scheduleCreating(Model model) {
-        model.addAttribute("allBand", bandService.findAll());
-        return "scheduleCreation";
+        model.addAttribute("allBand", bandService.findAll(Sort.Direction.ASC, "name"));
+        return "adminScheduleCreation";
     }
 
     @PostMapping("/admin/createSchedule")
@@ -237,8 +226,8 @@ public class AdminController {
 
     @GetMapping("/admin/scheduleEditing")
     public String scheduleEditing(Model model) {
-        model.addAttribute("allBand", bandService.findAll());
-        return "scheduleEditing";
+        model.addAttribute("allBand", bandService.findAll(Sort.Direction.ASC, "name"));
+        return "adminScheduleEditing";
     }
 
     @PostMapping("/admin/editSchedule")

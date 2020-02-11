@@ -17,7 +17,6 @@
             <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
             </div>
             <ul class="nav h-menu">
-                <li><a th:href="@{/}" class="active">Головна</a></li>
                 <li><a href="#">Про проект</a></li>
                 <li><a href="#">Як зареєструватись</a></li>
                 <li><a href="#">Контакти</a></li>
@@ -29,18 +28,14 @@
                     <ul>
                         <li>
                             <a th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
-                               th:href="${authority.getAuthority()} != 'ROLE_STUDENT' ? @{/teacher} : @{/student}">Особистий кабінет</a></li>
+                               th:href="${authority.getAuthority()} == 'ROLE_STUDENT' ? @{/student} : @{/teacher}">Особистий кабінет</a>
+                        </li>
                         <li><a th:href="@{/logout}">Вийти</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
-
-    <a th:href="@{/student}">student page</a><br>
-    <a th:href="@{/teacher}">teacher page</a><br>
-    <a th:href="@{/admin}">admin page</a><br>
-
 
     <form th:action="@{/login}" method="post">
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">

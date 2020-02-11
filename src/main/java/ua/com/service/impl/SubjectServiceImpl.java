@@ -60,13 +60,17 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public List<Subject> findAll(Sort sort) {
-        return subjectDAO.findAll(sort);
+    public List<Subject> findAll(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return subjectDAO.findAll(orders);
     }
 
     @Override
-    public Set<Subject> findAllWithBand(Sort sort) {
-        return subjectDAO.findAllWithBand(sort);
+    public Set<Subject> findAllWithBand(Sort.Direction sortDirection, String property) {
+        Sort.Order byProperty = new Sort.Order(sortDirection, property);
+        Sort orders = new Sort(byProperty);
+        return subjectDAO.findAllWithBand(orders);
     }
 
     @Override

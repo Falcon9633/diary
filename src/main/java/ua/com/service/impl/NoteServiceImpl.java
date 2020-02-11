@@ -74,9 +74,6 @@ public class NoteServiceImpl implements NoteService {
                 }
                 Date currentTime = new GregorianCalendar().getTime();
 
-                System.out.println(requestParam.get("absent-" + studentId));
-                System.out.println(absent);
-
                 if (!requestParam.get("note-" + studentId).isEmpty()) {
                     int noteId = Integer.parseInt(requestParam.get("note-" + studentId));
                     Note currentNote = noteDAO.findOne(noteId);

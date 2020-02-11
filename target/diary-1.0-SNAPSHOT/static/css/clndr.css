@@ -347,6 +347,10 @@ p {
     color: gray;
 }
 
+.cal2 .clndr .clndr-grid .day:hover {
+    background: #eee
+}
+
 .cal2 .clndr .clndr-grid .empty,
 .cal2 .clndr .clndr-grid .adjacent-month {
     float: left;
@@ -544,6 +548,34 @@ p {
     width: 160px;
 }
 
+.date-holder {
+    float: left;
+    height: 35px;
+    margin: 2px 3%;
+}
+
+#scheduleGeneralReview {
+    margin: -40px -38px;
+    padding: 45px 55px;
+    position: absolute;
+}
+
+#scheduleGeneralReviewContent {
+    margin-top: 60px;
+}
+
+.clndr {
+    background-color: #373e47;
+}
+
 .cal1 td.selected {
     background-color: green !important;
+}
+
+.cal2 .clndr .clndr-grid div.week.selected div.day {
+    background-color: #E37FD6 !important;
+}
+
+.cal2 .clndr .clndr-grid div.week:hover div.day {
+    background-color: #eee !important;
 }

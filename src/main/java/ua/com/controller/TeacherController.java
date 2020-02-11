@@ -1,6 +1,7 @@
 package ua.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -66,7 +67,7 @@ public class TeacherController {
         String[] availableMarks = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
         model.addAttribute("monthsNames", monthsNames);
         model.addAttribute("availableMarks", availableMarks);
-        return "journalEditing";
+        return "teacherJournalEditing";
     }
 
     @PostMapping("/teacher/editJournal-{subjectId}-{bandId}-{monthIndex}")
@@ -76,5 +77,25 @@ public class TeacherController {
                               @RequestParam Map<String, String> requestParam) {
         noteService.editJournal(requestParam);
         return "redirect:/teacher/journalEditing-" + subjectId + "-" + bandId + "-" + monthIndex;
+    }
+
+    @GetMapping("/teacher/scheduleReview")
+    public String scheduleReview(Principal principal, Model model) {
+        model.addAttribute("journalNavigationSubjectAndBand", teacherService.journalNavigationSubjectAndBand(principal));
+        return "teacherScheduleReview";
+    }
+
+    @GetMapping("/teacher/scheduleBandsGeneralReview")
+    public String scheduleBandsGeneralReview(Principal principal, Model model){
+        model.addAttribute("journalNavigationSubjectAndBand", teacherService.journalNavigationSubjectAndBand(principal));
+        model.addAttribute("allBands", bandService.findAll(Sort.Direction.ASC, "name"));
+        return "teacherScheduleBandsGeneralReview";
+    }
+
+    @GetMapping("/teacher/scheduleTeachersGeneralReview")
+    public String scheduleTeachersGeneralReview(Principal principal, Model model){
+        model.addAttribute("journalNavigationSubjectAndBand", teacherService.journalNavigationSubjectAndBand(principal));
+        model.addAttribute("allTeachers", teacherService.findAll(Sort.Direction.ASC, "surname"));
+        return "teacherScheduleTeachersGeneralReview";
     }
 }

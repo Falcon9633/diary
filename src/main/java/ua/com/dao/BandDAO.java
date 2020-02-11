@@ -1,5 +1,6 @@
 package ua.com.dao;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,5 +23,5 @@ public interface BandDAO extends JpaRepository<Band, Integer> {
     @Query("from Band band " +
             "left join fetch band.scheduleSet schedules " +
             "where schedules.subject.id=:subjectId and schedules.teacher.id=:teacherId")
-    Set<Band> findAllBySubjectAndTeacher(@Param("subjectId") int subjectId, @Param("teacherId") int teacherId);
+    Set<Band> findAllBySubjectAndTeacher(@Param("subjectId") int subjectId, @Param("teacherId") int teacherId, Sort sort);
 }
