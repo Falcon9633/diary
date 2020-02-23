@@ -4,6 +4,7 @@ import org.springframework.data.domain.Sort;
 import ua.com.dto.UserRegistrationDTO;
 import ua.com.entity.Student;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,9 +19,15 @@ public interface StudentService {
 
     void edit(int id,  String name, String surname, String email);
 
+    boolean passwordCheck (Principal principal, String password);
+
+    void changePassword (Principal principal, String password);
+
     Student findOne(int id);
 
     Student findByEmail(String email);
+
+    Student findByEmailWithNested(String email);
 
     Student findByIdWithBand(int id);
 

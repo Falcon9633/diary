@@ -9,6 +9,7 @@ import ua.com.entity.*;
 import ua.com.service.NoteService;
 import ua.com.service.ScheduleService;
 
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,14 @@ public class NoteServiceImpl implements NoteService {
             }
         }
         return studentScheduleNoteDTOS;
+    }
+
+    @Override
+    public List<Note> getAllStudentsNotes(Principal principal) {
+        Student student = studentDAO.findByEmail(principal.getName());
+        System.out.println(student);
+        System.out.println(noteDAO.findAllByStudent(student.getId()));
+        return noteDAO.findAllByStudent(student.getId());
     }
 
     @Override

@@ -5,10 +5,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.dao.BandDAO;
+import ua.com.dao.StudentDAO;
 import ua.com.dao.SubjectDAO;
 import ua.com.entity.Band;
 import ua.com.entity.Subject;
 import ua.com.service.BandService;
+
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,9 +22,10 @@ public class BandServiceImpl implements BandService {
 
     @Autowired
     private BandDAO bandDAO;
-
     @Autowired
     private SubjectDAO subjectDAO;
+    @Autowired
+    private StudentDAO studentDAO;
 
     @Override
     public void save(Band band) {

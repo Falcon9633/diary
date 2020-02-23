@@ -48,7 +48,7 @@ function init() {
     $CALENDAR.hide();
 
     $SELECT.on('change', handleBandSelectChange);
-    dateHolderVisibilityHandler();
+    calendarVisibilityHandler();
     initCalendar();
 }
 
@@ -81,7 +81,7 @@ function handleBandSelectChange() {
     }
 }
 
-function dateHolderVisibilityHandler() {
+function calendarVisibilityHandler() {
     $DATE_HOLDER.hover(
         function () {
             $CALENDAR.show();
@@ -102,7 +102,7 @@ function initCalendar() {
         },
 
         doneRendering: function () {
-            $('#scheduleGeneralReview').on('click', 'div.week', handleWeekSelection);
+            $CALENDAR.on('click', 'div.week', handleWeekSelection);
         },
 
         clickEvents : {

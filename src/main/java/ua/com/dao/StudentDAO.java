@@ -14,8 +14,11 @@ public interface StudentDAO extends JpaRepository<Student, Integer> {
     @Query("from Student s where s.email=:email")
     Student findByEmail(@Param("email") String email);
 
-    @Query("from Student s left join fetch s.band where s.email=:email")
-    Student findByEmailWithBand(@Param("email") String email);
+    @Query("from Student s " +
+            "left join fetch s.band " +
+            "left join fetch s.noteList " +
+            "where s.email=:email")
+    Student findByEmailWithNested(@Param("email") String email);
 
     @Query("from Student s left join fetch s.band where s.id=:id")
     Student findByIdWithBand(@Param("id") int id);

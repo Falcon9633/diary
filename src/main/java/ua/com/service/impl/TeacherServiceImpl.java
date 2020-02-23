@@ -71,6 +71,20 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
+    public boolean passwordCheck(Principal principal, String password) {
+        String encodedPassword = teacherDAO.findByEmail(principal.getName()).getPassword();
+        return passwordEncoder.matches(password, encodedPassword);
+    }
+
+    @Override
+    public void changePassword(String password, Principal principal) {
+        Teacher teacher = teacherDAO.findByEmail(principal.getName());
+        String encode = passwordEncoder.encode(password);
+        teacher.setPassword(encode);
+        teacherDAO.save(teacher);
+    }
+
+    @Override
     public Teacher findOne(int id) {
         return teacherDAO.findOne(id);
     }

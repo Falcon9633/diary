@@ -13,4 +13,10 @@ public interface LessonDAO extends JpaRepository<Lesson, Integer> {
             "left join fetch l.noteList " +
             "where MONTH(l.schedule.calendar)=:monthIndex")
     List<Lesson> findAllByMonth(@Param("monthIndex") int monthIndex);
+
+    @Query("from Lesson l " +
+            "left join fetch l.schedule " +
+            "left join fetch l.noteList " +
+            "where l.id in (:lessonsIds)")
+    List<Lesson> findAllByIds(@Param("lessonsIds") List<Integer> lessonsIds);
 }

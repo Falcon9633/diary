@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import ua.com.service.BandService;
 import ua.com.service.TeacherService;
 
@@ -36,5 +37,15 @@ public class StudentController {
     public String scheduleTeachersGeneralReview(Model model){
         model.addAttribute("allTeachers", teacherService.findAll(Sort.Direction.ASC, "surname"));
         return "studentScheduleTeachersGeneralReview";
+    }
+
+    @GetMapping("/student/diary")
+    public String diary(){
+        return "studentDiary";
+    }
+
+    @GetMapping("/student/settings")
+    public String settings(){
+        return "studentSettings";
     }
 }

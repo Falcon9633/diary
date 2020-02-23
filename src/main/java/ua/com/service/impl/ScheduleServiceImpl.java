@@ -6,7 +6,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.GC;
 import ua.com.dao.*;
 import ua.com.entity.*;
 import ua.com.service.ScheduleService;
@@ -164,8 +163,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         Sort.Order byCalendar = new Sort.Order(Sort.Direction.ASC, "calendar");
         Sort orders = new Sort(byCalendar);
         List<Integer> teachersId = teacherDAO.findAllBySubjectAndBand(subjectId, bandId).stream().map(Teacher::getId).collect(Collectors.toList());
-        List<Schedule> schedules = scheduleDAO.findAllByTeacherAndSubjectAndBandAndMonth(teachersId, subjectId, bandId, monthIndex, orders);
-        return schedules;
+        return scheduleDAO.findAllByTeacherAndSubjectAndBandAndMonth(teachersId, subjectId, bandId, monthIndex, orders);
     }
 
     @Override
@@ -182,7 +180,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         for (GrantedAuthority authority : authorities) {
             if (authority.getAuthority().equals("ROLE_STUDENT")){
-                Student currentStudent = studentDAO.findByEmailWithBand(principal.getName());
+                Student currentStudent = studentDAO.findByEmailWithNested(principal.getName());
                 if (currentStudent.getBand() != null){
                     return scheduleDAO.findAllBetweenBeginningAndEndingDateAndBand(beginningDate, endingDate, currentStudent.getBand().getId());
                 }
@@ -210,6 +208,20 @@ public class ScheduleServiceImpl implements ScheduleService {
         GregorianCalendar endingDate = new GregorianCalendar(beginningDate.get(GregorianCalendar.YEAR), beginningDate.get(GregorianCalendar.MONTH),
                 beginningDate.get(GregorianCalendar.DAY_OF_MONTH) + SCHEDULE_DAYS_PERIOD, 0, 0, 0);
         return scheduleDAO.findAllBetweenBeginningAndEndingDate(beginningDate, endingDate);
+    }
+
+    @Override
+    public List<Schedule> getScheduleWeekBySelectedDayAndBand(long millis, int bandId) {
+        final int SCHEDULE_DAYS_PERIOD = 6;
+        GregorianCalendar selectedDay = new GregorianCalendar();
+        selectedDay.setTimeInMillis(millis);
+        GregorianCalendar beginningDate = new GregorianCalendar(selectedDay.get(GregorianCalendar.YEAR), selectedDay.get(GregorianCalendar.MONTH),
+                selectedDay.get(GregorianCalendar.DAY_OF_MONTH), 0, 0, 0);
+        beginningDate.get(GregorianCalendar.DAY_OF_MONTH);
+        beginningDate.set(GregorianCalendar.DAY_OF_WEEK, selectedDay.getFirstDayOfWeek());
+        GregorianCalendar endingDate = new GregorianCalendar(beginningDate.get(GregorianCalendar.YEAR), beginningDate.get(GregorianCalendar.MONTH),
+                beginningDate.get(GregorianCalendar.DAY_OF_MONTH) + SCHEDULE_DAYS_PERIOD, 0, 0, 0);
+        return scheduleDAO.findAllBetweenBeginningAndEndingDateAndBand(beginningDate, endingDate, bandId);
     }
 
     @Override

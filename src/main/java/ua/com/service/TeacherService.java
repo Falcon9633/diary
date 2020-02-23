@@ -18,6 +18,10 @@ public interface TeacherService {
 
     void edit(int id, String name, String surname, String email, boolean isAdmin);
 
+    boolean passwordCheck(Principal principal, String password);
+
+    void changePassword(String password, Principal principal);
+
     Teacher findOne(int id);
 
     Teacher findByEmail(String email);

@@ -279,6 +279,15 @@ table.scheduleReview td {
     height: 54px;
 }
 
+table.diaryTable td:first-child,
+table.diaryTable td:last-child{
+    width: 25px;
+}
+
+table.diaryTable td:nth-child(2){
+    width: 150px;
+}
+
 .wrapper {
     width: 980px;
     padding: 0 10px;
@@ -536,7 +545,7 @@ ul.leftNav li:last-child a {
     float: left;
 }
 
-.scheduleMainTable {
+.scheduleMainTable, .diaryTable {
     width: 48% !important;
     float: left;
     margin: 5px 0.5% !important;

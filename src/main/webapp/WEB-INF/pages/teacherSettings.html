@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Налаштування</title>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="headerContent">
+            <div class="logo"><a th:href="@{/}">Щоден<span class="pink">ник</span><span class="gray">.com</span></a>
+            </div>
+            <ul class="nav h-menu">
+                <li><a>Розклад</a>
+                    <ul>
+                        <li><a th:href="@{/teacher/scheduleReview}">Поточний</a></li>
+                        <li>
+                            <a>Загальний</a>
+                            <ul>
+                                <li><a th:href="@{/teacher/scheduleBandsGeneralReview}">Класи</a></li>
+                                <li><a th:href="@{/teacher/scheduleTeachersGeneralReview}">Вчителі</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a>Журнал</a>
+                    <ul>
+                        <li th:each="element : ${journalNavigationSubjectAndBand}">
+                            <a th:text="${element.key.name}"></a>
+                            <ul th:with="calendar=${#calendars.createNow()}">
+                                <li th:each="band : ${element.value}" th:if="${band} != null">
+                                    <a class="nobr" th:text="${band.name}"
+                                       th:href="@{/teacher/journalEditing-{subjectId}-{bandId}-{monthIndex}
+                                    (subjectId = ${element.key.id},
+                                    bandId = ${band.id},
+                                    monthIndex = ${#calendars.month(calendar)})}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li th:each="authority : ${#request.getUserPrincipal().getAuthorities()}"
+                    th:if="${authority.getAuthority()} == 'ROLE_ADMIN'">
+                    <a th:href="@{/admin}">Управління</a>
+                </li>
+                <li><a th:text="${#request.getUserPrincipal().name}"></a>
+                    <ul>
+                        <li><a th:href="@{/teacher/settings}" class="active">Налаштування</a></li>
+                        <li><a th:href="@{/logout}">Вийти</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form th:action="@{/teacher/changePassword}" method="post">
+        <div class="row">
+            <label>
+                <h1>Пароль</h1>
+                <input id="password" type="text" placeholder="пароль" required/>
+            </label>
+            <h2 id="passwordError" class="errors hideError">Невірний пароль</h2>
+        </div>
+        <div class="row">
+            <label>
+                <h1>Новий пароль</h1>
+                <input id="newPassword" type="password" th:name="newPassword" placeholder="новий пароль"
+                       required/>
+                <input id="matchNewPassword" type="password" placeholder="підтвердити новий пароль"
+                       required/>
+                <button type="button" id="submit">Підтвердити</button>
+            </label>
+            <h2 id="newPasswordError" class="errors hideError">Новий пароль не збігається</h2>
+        </div>
+    </form>
+
+</div>
+
+
+<div th:replace="fragments/styles::main"/>
+<script type="text/javascript">
+    const $PASSWORD = $('#password');
+    const $NEW_PASSWORD = $('#newPassword');
+    const $MATCH_NEW_PASSWORD = $('#matchNewPassword');
+    const $PASSWORD_ERROR = $('#passwordError');
+    const $NEW_PASSWORD_ERROR = $('#newPasswordError');
+    const $SUBMIT_BUTTON = $('#submit');
+
+    function checkOldPassword() {
+        $.getJSON("/teacher/passwordCheck", {password: $PASSWORD.val()}, function (json) {
+            if (!json) {
+                $PASSWORD_ERROR.show();
+            } else {
+                matchNewPasswords();
+            }
+        })
+    }
+
+    function matchNewPasswords() {
+        if ($NEW_PASSWORD.val() !== $MATCH_NEW_PASSWORD.val()) {
+            $NEW_PASSWORD_ERROR.show();
+        } else {
+            changePassword();
+        }
+    }
+
+    function changePassword() {
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
+        $.ajax({
+            url: '/teacher/changePassword',
+            type: 'POST',
+            data: {password: $NEW_PASSWORD.val()},
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                alert("Сталась помилка");
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        $SUBMIT_BUTTON.click(function () {
+            checkOldPassword();
+        });
+    });
+</script>
+</body>
+</html>

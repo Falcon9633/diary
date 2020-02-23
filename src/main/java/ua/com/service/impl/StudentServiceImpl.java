@@ -12,6 +12,7 @@ import ua.com.entity.Band;
 import ua.com.entity.Student;
 import ua.com.service.StudentService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -76,6 +77,20 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public boolean passwordCheck(Principal principal, String password) {
+        String encodedPassword = studentDAO.findByEmail(principal.getName()).getPassword();
+        return passwordEncoder.matches(password, encodedPassword);
+    }
+
+    @Override
+    public void changePassword(Principal principal, String password) {
+        Student student = studentDAO.findByEmail(principal.getName());
+        String encode = passwordEncoder.encode(password);
+        student.setPassword(encode);
+        studentDAO.save(student);
+    }
+
+    @Override
     public Student findOne(int id) {
         return studentDAO.findOne(id);
     }
@@ -83,6 +98,11 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public Student findByEmail(String email) {
         return studentDAO.findByEmail(email);
+    }
+
+    @Override
+    public Student findByEmailWithNested(String email) {
+        return studentDAO.findByEmailWithNested(email);
     }
 
     @Override

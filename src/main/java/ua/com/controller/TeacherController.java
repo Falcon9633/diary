@@ -98,4 +98,10 @@ public class TeacherController {
         model.addAttribute("allTeachers", teacherService.findAll(Sort.Direction.ASC, "surname"));
         return "teacherScheduleTeachersGeneralReview";
     }
+
+    @GetMapping("/teacher/settings")
+    public String settings(Model model, Principal principal){
+        model.addAttribute("journalNavigationSubjectAndBand", teacherService.journalNavigationSubjectAndBand(principal));
+        return "teacherSettings";
+    }
 }

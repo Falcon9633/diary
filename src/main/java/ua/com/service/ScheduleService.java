@@ -24,6 +24,8 @@ public interface ScheduleService {
 
     List<Schedule> getScheduleWeekBySelectedDay(long millis);
 
+    List<Schedule> getScheduleWeekBySelectedDayAndBand(long millis, int bandId);
+
     Schedule findOne(int id);
 
     Schedule findByBandAndWeekOfYearAndDayOfWeekAndNumberOfLesson(int bandId,

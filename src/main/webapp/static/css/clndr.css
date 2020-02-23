@@ -554,7 +554,7 @@ p {
     margin: 2px 3%;
 }
 
-#scheduleGeneralReview {
+#scheduleGeneralReview, #diaryCalendar {
     margin: -40px -38px;
     padding: 45px 55px;
     position: absolute;
